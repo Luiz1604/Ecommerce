@@ -79,8 +79,31 @@
         </nav>
     </header>
     <main>
-        <section id="banner">
-            <div></div>
+        <section id="banner" class="carrossel-container">
+            <div class="carrossel-slides" id="carrosselSlides">
+                <div class="slide ativo">
+                    <img src="imagens/bannerMec2.jpeg" alt="Promoção 1">
+                </div>
+                <div class="slide">
+                    <img src="imagens/bannerInfo2.jpeg" alt="Promoção 2">
+                </div>
+                <div class="slide">
+                    <img src="imagens/bannerEletro3.png" alt="Promoção 3">
+                </div>
+            </div>
+
+            <button class="botao-carrossel anterior" onclick="mudarSlide(-1)">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="botao-carrossel proximo" onclick="mudarSlide(1)">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+
+            <div class="carrossel-indicadores">
+                <span class="ponto ativo" onclick="irParaSlide(0)"></span>
+                <span class="ponto" onclick="irParaSlide(1)"></span>
+                <span class="ponto" onclick="irParaSlide(2)"></span>
+            </div>
 
         </section>
 
