@@ -7,9 +7,10 @@
     $email = $_POST["email"];
     $senha = $_POST["senha"];
     $telefone = $_POST["telefone"];
+    $admin = $_POST['admin'];
 
-    $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)
-            VALUES (:nome, :email, :senha, :telefone)";
+    $varSQL = "INSERT INTO usuario (nome, email, senha, telefone, admin)
+            VALUES (:nome, :email, :senha, :telefone, :admin)";
 
     $insert = $conn->prepare($varSQL);
 
@@ -17,6 +18,7 @@
     $insert->bindParam(":email", $email);
     $insert->bindParam(":senha", $senha);
     $insert->bindParam(":telefone", $telefone);
+    $insert->bindParam(":admin", $admin);
 
     if($insert->execute()){
         $id = $conn->lastInsertId();
