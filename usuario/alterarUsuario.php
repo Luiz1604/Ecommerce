@@ -10,8 +10,8 @@
     $id = $_GET["id"];
 
     $varSQL = "SELECT *
-                    FROM usuario
-                    WHERE id_usuario = :id";
+            FROM usuario
+            WHERE id_usuario = :id";
 
     $select = $conn->prepare($varSQL);
     $select->bindParam(":id", $id);
