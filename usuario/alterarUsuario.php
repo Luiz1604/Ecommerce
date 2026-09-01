@@ -52,7 +52,7 @@
     ?>
 
     <label for="arquivo">Imagem</label>
-    <input type="file" name="arquivo"><br>
+    <input type="file" name="arquivo" id="arquivo"><br>
 
     <input type="submit" value="Alterar">
 

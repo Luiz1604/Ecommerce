@@ -1,6 +1,6 @@
 <html>
     <body>
-        <form action="insertUsuario" method="post"
+        <form action="insertUsuario.php" method="post"
         enctype="multipart/form-data">
             <label for="nome">Digite seu Nome</label>
             <input type="text" name="nome" id="nome" required><br>

@@ -43,7 +43,7 @@
         <td>$nome</td>
         <td>$email</td>
         <td>$telefone</td>
-        <td>".($admin ? "Sim" : "Não") ."</td>";
+        <td>".($admin ? "Sim" : "Não") ."</td><td>";
 
         if(!empty($imagem) && file_exists($imagem))
             echo "<img src='$imagem'>";
@@ -51,9 +51,9 @@
             echo "Não há imagem";
 
         echo "</td>
-        <td><a href='alterarUsuario.php?id=$id'>Alterar</a></td>
-        <td><a href='excuirUsuario.php?id=$id'>Excluir</a></td>
-        </tr>";
+            <td><a href='alterarUsuario.php?id=$id'>Alterar</a></td>
+            <td><a href='excuirUsuario.php?id=$id'>Excluir</a></td>
+            </tr>";
     }
     ?>
     </table>

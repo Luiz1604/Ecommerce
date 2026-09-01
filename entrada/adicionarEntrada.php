@@ -1,7 +1,7 @@
 <html>
 
 <body>
-    <form action="insertEntrada" method="post" enctype="multipart/form-data">
+    <form action="insertEntrada.php" method="post" enctype="multipart/form-data">
         <label for="qtd">Insira a quantidade:</label>
         <input type="number" min="0" step="1" name="qtd" id="qtd" required><br>
 
