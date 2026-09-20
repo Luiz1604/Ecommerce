@@ -1,5 +1,7 @@
 <?php
     include "./util.php";
+    include "./cabecalho.php";
+    SaiSeHacker();
 
     $conn = conecta();
 

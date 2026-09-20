@@ -1,3 +1,34 @@
+<?php 
+
+    include "/util.php";
+    include "/_cabecalho.php";
+
+    session_start();
+
+    if (isset($_POST['email'])){
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $nome = "";
+        $foto = "";
+        $admin = "";
+
+        if(ValidaLogin($email, $senha, $nome, $foto, $admin)){
+            $_SESSION['sessionConectado'] = TRUE;
+            $_SESSION['sessionEmail'] = $email; 
+            $_SESSION['sessionNome'] = $nome;
+            $_SESSION['sessionFoto'] = $foto;
+            $_SESSION['sessaoAdmin'] = $admin;
+            DefineCookie('email', $_SESSION['sessionEmail'], 1440);
+        } else {
+            echo "Verifique se a senha está correta ou se
+                você já está cadastrado";
+        }
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -93,8 +124,8 @@
                 <h2>Login</h2>
                 
                 <div class="textfield">
-                    <label for="usuario">E-mail ou Usuário</label>
-                    <input type="text" id="usuario" name="usuario" placeholder="Digite seu e-mail">
+                    <label for="email">E-mail ou Usuário</label>
+                    <input type="text" id="email" name="email" placeholder="Digite seu e-mail">
                 </div>
 
                 <div class="textfield">

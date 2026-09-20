@@ -1,5 +1,7 @@
 <?php
     include "util.php";
+    include "./cabecalho.php";
+    SaiSeHacker();
 
     $conn = conecta();
     $id = $_GET['id'];
@@ -8,4 +10,5 @@
     
     $delete->bindParam(':id', $id);
     $delete->execute();
+    header("Location: entrada.php");
 ?>
