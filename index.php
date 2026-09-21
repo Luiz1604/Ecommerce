@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="imagens/icone2.png">
+    <link rel="icon" type="image/png" href="imagens/favicon.png">
+    <script src="script.js" defer></script>
     <title>Home</title>
 </head>
 <link rel="stylesheet"
@@ -30,7 +31,7 @@
             <li><a href="#">Sobre Nós</a></li>
             <li><a href="#">Contato</a></li>
             <li><a href="#">Desenvolvedores</a></li>
-            <li><a href="#">Missão, Visão e Valores</a></li>
+            <li><a href="MVV.html">Missão, Visão e Valores</a></li>
         </ul>
     </aside>
 
@@ -58,9 +59,8 @@
 
             <ul class="menu-direita">
                 <li>
-                    <a href="#">
-
-                        <span>Minha conta</span>
+                    <a href="login.php">
+                        <span>Entrar</span>
                         <span class="material-symbols-outlined">person</span>
                     </a>
                 </li>
@@ -72,6 +72,11 @@
                 <li>
                     <a href="#" aria-label="Carrinho de compras">
                         <span class="material-symbols-outlined">shopping_cart</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" aria-label="Casa">
+                        <span class="material-symbols-outlined">Home</span>
                     </a>
                 </li>
             </ul>
@@ -245,7 +250,7 @@
                 <a href="#">Produtos</a><br>
                 <a href="#">Coleções</a><br>
                 <a href="#">Sobre Nós</a><br>
-                <a href="#">Missão, Visão e Valores</a><br>
+                <a href="MVV.html">Missão, Visão e Valores</a><br>
                 <a href="#">Contato</a><br>
                 <a href="#">Desenvolvedores</a>
             </div>
@@ -278,7 +283,5 @@
         </section>
         <div class="direitos">&#169 Todos os direitos reservados</div>
     </footer>
-    <script src="js.js"></script>
 </body>
-
 </html>

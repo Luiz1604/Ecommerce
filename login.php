@@ -1,7 +1,6 @@
 <?php 
-
-    include "/util.php";
-    include "/_cabecalho.php";
+    include "util.php";
+    include "_cabecalho.php";
 
     session_start();
 
@@ -26,7 +25,6 @@
         }
 
     }
-
 ?>
 
 <!DOCTYPE html>

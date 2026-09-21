@@ -656,6 +656,7 @@ footer{
 }
 
 .direitos{
+    text-align: center;
     background-color: var(--cor-destaque-titulo);
     color: var(--cor-menu);
 }
