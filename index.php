@@ -114,7 +114,7 @@
         <h2 class="subtitulo">Categorias</h2>
         <section id="categorias">
             <div class="categoria azul-escuro">
-                <img src="imagens/modalidade tech.png" alt="tech">
+                <img src="imagens/modalidade cursos.png" alt="tech">
             </div>
             <div class="categoria azul-claro">
                 <img src="imagens/modalidade cursos.png" alt="cursos">
