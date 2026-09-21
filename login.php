@@ -23,9 +23,7 @@
             echo "Verifique se a senha está correta ou se
                 você já está cadastrado";
         }
-
-    }
-?>
+    }?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -102,7 +100,7 @@
                     </a>
                 </li>-->
                 <li>
-                    <a href="index.html" aria-label="Casa">
+                    <a href="index.php" aria-label="Casa">
                         <span class="material-symbols-outlined">Home</span>
                     </a>
                 </li>

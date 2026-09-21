@@ -393,19 +393,19 @@ header {
 }
 
 .azul-escuro {
-    box-shadow: 0 8px 20px var(--cor-destaque-titulo);
+    box-shadow: 0 0px 20px var(--cor-destaque-titulo);
 }
 
 .azul-claro {
-    box-shadow: 0 8px 20px var(--cor-destaque-secundario);
+    box-shadow: 0 0px 20px var(--cor-destaque-secundario);
 }
 
 .azul-escuro:hover{
-    box-shadow: 0 15px 35px var(--cor-destaque-titulo);
+    box-shadow: 0 0px 35px var(--cor-destaque-titulo);
 }
 
 .azul-claro:hover{
-    box-shadow: 0 15px 35px var(--cor-destaque-secundario);
+    box-shadow: 0 0px 35px var(--cor-destaque-secundario);
 }
 
 .subtitulo{
