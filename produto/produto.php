@@ -2,9 +2,8 @@
 
 <body>
     <?php
-        include "./util.php";
-        include "./cabecalho.php";
-        SaiSeHacker();
+        include "../util.php";
+        include "../_cabecalho.php";
 
         $conn = conecta();
 
@@ -27,28 +26,30 @@
             <td></td>
         </tr>
 
-        <?php
-            while ($linha = $select->fetch())
+        
+            <?php
+                while ($linha = $select->fetch())
                 $id = $linha["id_produto"];
                 $nome = $linha["nome"];
                 $descricao = $linha["descricao"];
                 $valor = $linha["valor_unitario"];
                 $imagem = $linha["imagem"];
+            ?>
 
-                echo "<td>$ID</td>
-                    <td>$nome</td>
-                    <td>$descricao</td>
-                    <td>$valor</td>";
+                <td><?=$ID?></td>
+                    <td><?=$nome?></td>
+                    <td><?=$descricao?></td>
+                    <td><?=$valor?></td>";
+                <?php
                 if(!empty($imagem) && file_exists($imagem))
                     echo "<img src='$imagem'>";
                 else
-                    echo "Não há imagem";
-
-                echo"</td>
+                    ?>
+                    </td>
                     <td><a href='alterarProduto.php?id=$id'>Alterar</a></td>
                     <td><a href='excuirProduto.php?id=$id'>Excluir</a></td>
                     </tr>";
-        ?>
+        
     </table>
 </body>
 

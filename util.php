@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function conecta($paramStringConexao = "")
 {
   $seu_usuario = "loja5b";
@@ -234,9 +236,5 @@ function salvaUpload2($paramFiles,$paramCampo)
     }   
     return $arquivoNovo;  
   }
-
-?>
-
-
 
 ?>
