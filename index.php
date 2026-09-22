@@ -25,7 +25,7 @@
         </div>
 
         <ul class="links-menu-lateral">
-            <li><a href="#">Todos os produtos</a></li>
+            <li><a href="feedProdutos.html">Todos os produtos</a></li>
             <li><a href="#">Colares</a></li>
             <li><a href="#">Chaveiros</a></li>
             <li><a href="#">Sobre Nós</a></li>
@@ -134,7 +134,7 @@
         <section id="produtos-container">
             <div class="cabecalho-produtos">
                 <h2>Mais Vendidos</h2>
-                <a href="#" class="link-ver-todos">
+                <a href="feedProdutos.html" class="link-ver-todos">
                     Ver todos
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
@@ -280,8 +280,20 @@
                 <p>Luiz Miguél Piton</p>
                 <p>Marcus Pietro Morelli e Souza</p>
             </div>
+            <div class="redes-sociais">
+                <a href="https://www.instagram.com/keystyle.ltda" title="Acessar o perfil oficial da KeyStyle no Instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram da KeyStyle">
+                    <!-- Ícone SVG Oficial do Instagram -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                </a>
+            </div>
         </section>
+        <hr>
         <div class="direitos">&#169 Todos os direitos reservados</div>
     </footer>
 </body>
+
 </html>

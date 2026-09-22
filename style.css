@@ -240,7 +240,7 @@ header {
 }
 
 .botao-fechar:hover{
-    color: var(--cor-destaque-secundario);
+    color: red;
     transform: rotate(90deg);
 }
 
@@ -644,18 +644,34 @@ footer{
 .final a{
     text-decoration: none;
     color: var(--cor-menu);
-    font-weight: 500;
+    font-weight: 300;
     display: inline;
     transition-duration: 0.5s;
 }
 
 .final a:hover{
-    color: var(--cor-destaque-secundario);
+    color: var(--cor-icone);
     padding-left: 30px;
-    font-weight: bolder;
+    font-weight: 400;
+}
+
+.redes-sociais a{
+    color: white;
+}
+
+.redes-sociais a:hover{
+    color: #C630A3;
+    
+}
+
+hr{
+    display: flex;
+    width: 50%;
+    margin: auto;
 }
 
 .direitos{
+    padding: 20px;
     text-align: center;
     background-color: var(--cor-destaque-titulo);
     color: var(--cor-menu);
@@ -911,6 +927,272 @@ footer{
         width: 100%;
         padding: 25px 20px;
     }
+}
+
+
+/*Pagina feed de produtos 21/9/26*/
+
+/* Container Principal */
+.secao-prod {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #f3efe9;
+  font-family: Arial, sans-serif;
+}
+
+.titulo-secao {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0d0f68;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.grid-prod {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-content: center;
+}
+
+.card-prod {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-prod:hover {
+    box-shadow: 0px 0px 20px -2px #235aff;
+    transform: scale(1.01);
+    
+}
+
+.img-prod {
+  width: 100%;
+  height: 200px;
+  background-color: #121212;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.img-prod img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
+}
+
+.img-prod img:hover{
+    transform: scale(1.2);
+}
+
+.nome-prod {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d0f68;
+  margin: 8px 0 4px 0;
+}
+
+.preco-prod {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.btn-detalhes {
+  width: 100%;
+  padding: 10px 0;
+  background-color: var(--cor-destaque-secundario);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 6px;
+  text-transform: uppercase;
+  margin-top: auto;
+  transition: background-color 0.2s ease;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-detalhes:hover {
+  background-color: var(--cor-destaque-titulo);
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .grid-prod {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-prod {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*Descrição produtos*/
+
+/* Container Principal */
+.secao-detalhe-prod {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.container-detalhe {
+  display: flex;
+  gap: 40px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Coluna da Imagem (Esquerda) */
+.coluna-imagem {
+  flex: 1;
+  max-width: 500px;
+}
+
+.caixa-foto-grande {
+  width: 100%;
+  height: 400px;
+  background-color: #121212; /* Fundo escuro igual aos cards do feed */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.caixa-foto-grande img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Coluna das Informações (Direita) */
+.coluna-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-detalhe {
+  font-size: 1.8rem;
+  color: #0d0f68;
+  margin: 0 0 16px 0;
+  font-weight: 800;
+}
+
+.bloco-preco {
+  margin-bottom: 24px;
+}
+
+.preco-detalhe {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #000000;
+}
+
+/* Descrição */
+.bloco-descricao {
+  margin-bottom: 28px;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  padding: 16px 0;
+}
+
+.bloco-descricao h3 {
+  font-size: 1rem;
+  color: #0d0f68;
+  margin-bottom: 8px;
+}
+
+.bloco-descricao p {
+  color: #555555;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Área de Ação e Quantidade */
+.form-reserva {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo-qtd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.campo-qtd input {
+  width: 70px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Botão Reservar com Ícone */
+.btn-reservar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #030096;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-reservar:hover {
+  background-color: #020068;
+}
+
+.btn-reservar:active {
+  transform: scale(0.98);
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+  .container-detalhe {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .coluna-imagem {
+    max-width: 100%;
+  }
+
+  .caixa-foto-grande {
+    height: 300px;
+  }
 }
 
 /*Página de Missão, visão e valores*?
