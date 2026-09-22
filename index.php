@@ -1,18 +1,68 @@
 <?php
-    include "util.php";
-    include "_cabecalho.php";
+include "util.php";
+include "_cabecalho.php";
 ?>
+
 <body>
-    
+
     <main>
         <section id="banner" class="carrossel-container">
             <div class="carrossel-slides" id="carrosselSlides">
                 <div class="slide ativo">
-                    <img src="imagens/banner-1.png" alt="Promoção 1">
+                    <!--<img src="imagens/banner-1.png" alt="Promoção 1">-->
+                    <div class="banner-conteudo">
+                        <h1 class="banner-titulo">Seu estilo, seu acessório!</h1>
+                        <p class="banner-subtitulo">Encontre peças que combinam com você.</p>
+                        <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
+                    </div>
+
+                    <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
+                    <div class="banner-imagem">
+                        <img src="Hands - Procrastinating.png" alt="Colares da KeyStyle">
+                    </div>
                 </div>
+
+
                 <div class="slide">
-                    <img src="imagens/bannerInfo2.jpeg" alt="Promoção 2">
+                    <!--<img src="imagens/bannerInfo2.jpeg" alt="Promoção 2">-->$_COOKIE
+
+                    <div class="banner-conteudo">
+                        <h1 class="banner-titulo">COMPRAS RÁPIDAS E SEGURAS</h1>
+                        <p class="banner-subtitulo">A melhor experiência de compra na palma da sua mão.</p>
+                        <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
+                    </div>
+
+                    <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
+                    <div class="banner-imagem">
+                        <img src="Hands - Phone.png" alt="Colares da KeyStyle">
+                    </div>
                 </div>
+
+
+                <div class="slide">
+                    <div class="banner-conteudo">
+                        <h2 class="banner-titulo">ESTILO SEM FRONTEIRAS</h2>
+                        <p class="banner-subtitulo">Coleções temáticas feitas para conectar a sua paixão ao seu dia a dia.</p>
+                        <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
+                    </div>
+                    <div class="banner-imagem">
+                        <img src="Hands - Show.png" alt="Mão a segurar o planeta Terra">
+                    </div>
+                </div>
+
+
+                <div class="slide">
+                    <div class="banner-conteudo">
+                        <h2 class="banner-titulo">ENCONTRE O SEU FAVORITO</h2>
+                        <p class="banner-subtitulo">Navegue pelas nossas coleções e descubra peças altamente recomendadas.</p>
+                        <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
+                    </div>
+                    <div class="banner-imagem">
+                        <img src="Allura - Online Searching.png" alt="Ilustração de pesquisa online com avaliações e estrelas">
+                    </div>
+                </div>
+
+
                 <div class="slide">
                     <img src="imagens/bannerEletro2.jpeg" alt="Promoção 3">
                 </div>

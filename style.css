@@ -283,6 +283,80 @@ header {
     position: relative;
 }
 
+
+.carrossel-slides .slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #020024 0%, #03005a 50%, #002244 100%);
+}
+
+/* Coluna de Texto (Esquerda) */
+.banner-conteudo {
+    flex: 1;
+    max-width: 50%;
+    z-index: 2;
+    text-align: left;
+}
+
+.banner-titulo {
+    color: #ffb703; /* Amarelo/Dourado em destaque */
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.banner-subtitulo {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+/* Botão "VER COLEÇÃO" */
+.banner-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #0044ff;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 68, 255, 0.4);
+}
+
+.banner-btn:hover {
+    background-color: #002699;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 68, 255, 0.6);
+}
+
+/* Coluna da Imagem PNG (Direita) */
+.banner-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    z-index: 2;
+}
+
+.banner-imagem img {
+    max-height: 85%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.5));
+}
+
 .slide {
     position: absolute;
     top: 0;
@@ -298,9 +372,9 @@ header {
 }
 
 .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
     display: block;
 }
 
@@ -725,6 +799,38 @@ hr{
         width: 35px;
         height: 35px;
     }
+
+
+    .carrossel-slides .slide {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .banner-conteudo {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .banner-titulo {
+        font-size: 1.5rem;
+    }
+
+    .banner-subtitulo {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    .banner-imagem {
+        justify-content: center;
+    }
+
+    .banner-imagem img {
+        max-height: 160px;
+    }
+
 
     .subtitulo {
         font-size: 28px;
