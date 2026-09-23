@@ -12,28 +12,20 @@ include "_cabecalho.php";
                         <p class="banner-subtitulo">Encontre peças que combinam com você.</p>
                         <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
                     </div>
-
-                    <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
                     <div class="banner-imagem">
                         <img src="imagens/Hands - Procrastinating.png" alt="Colares da KeyStyle">
                     </div>
                 </div>
-
-
                 <div class="slide">
                     <div class="banner-conteudo">
                         <h1 class="banner-titulo">COMPRAS RÁPIDAS E SEGURAS</h1>
                         <p class="banner-subtitulo">A melhor experiência de compra na palma da sua mão.</p>
                         <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
-                    </div>
-
-                    <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
+                    </div>->
                     <div class="banner-imagem">
                         <img src="imagens/Hands - Phone.png" alt="Colares da KeyStyle">
                     </div>
                 </div>
-
-
                 <div class="slide">
                     <div class="banner-conteudo">
                         <h2 class="banner-titulo">ESTILO SEM FRONTEIRAS</h2>
@@ -44,8 +36,6 @@ include "_cabecalho.php";
                         <img src="imagens/Hands - Show.png" alt="Mão a segurar o planeta Terra">
                     </div>
                 </div>
-
-
                 <div class="slide">
                     <div class="banner-conteudo">
                         <h2 class="banner-titulo">ENCONTRE O SEU FAVORITO</h2>
