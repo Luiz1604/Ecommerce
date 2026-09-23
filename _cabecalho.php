@@ -7,12 +7,9 @@
     <link rel="icon" type="image/png" href="imagens/favicon.png">
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!--Pacote com os icones-->
     <script src="script.js" defer></script>
     <title>Missão, visão e valores</title>
 </head>
-
-
 <div class="fundo-escuro" id="fundoEscuro" onclick="fecharMenu()"></div>
 
     <aside class="menu-lateral" id="menuLateral">
@@ -24,7 +21,7 @@
         </div>
 
         <ul class="links-menu-lateral">
-            <li><a href="#">Todos os produtos</a></li>
+            <li><a href="feedProdutos.html">Todos os produtos</a></li>
             <li><a href="#">Colares</a></li>
             <li><a href="#">Chaveiros</a></li>
             <li><a href="#">Sobre Nós</a></li>
@@ -32,7 +29,7 @@
             <li><a href="#">Desenvolvedores</a></li>
             <li><a href="MVV.php">Missão, Visão e Valores</a></li>
             <li><a href="usuario.php">Usuarios</a></li>
-            <li><a href="produto/produto.php">Produtos</a></li>
+            <li><a href="produto.php">Produtos</a></li>
             <li><a href="entrada.php">Entradas</a></li>
         </ul>
     </aside>

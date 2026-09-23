@@ -2,14 +2,11 @@
 include "util.php";
 include "_cabecalho.php";
 ?>
-
 <body>
-
     <main>
         <section id="banner" class="carrossel-container">
             <div class="carrossel-slides" id="carrosselSlides">
                 <div class="slide ativo">
-                    <!--<img src="imagens/banner-1.png" alt="Promoção 1">-->
                     <div class="banner-conteudo">
                         <h1 class="banner-titulo">Seu estilo, seu acessório!</h1>
                         <p class="banner-subtitulo">Encontre peças que combinam com você.</p>
@@ -18,14 +15,12 @@ include "_cabecalho.php";
 
                     <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
                     <div class="banner-imagem">
-                        <img src="Hands - Procrastinating.png" alt="Colares da KeyStyle">
+                        <img src="imagens/Hands - Procrastinating.png" alt="Colares da KeyStyle">
                     </div>
                 </div>
 
 
                 <div class="slide">
-                    <!--<img src="imagens/bannerInfo2.jpeg" alt="Promoção 2">-->$_COOKIE
-
                     <div class="banner-conteudo">
                         <h1 class="banner-titulo">COMPRAS RÁPIDAS E SEGURAS</h1>
                         <p class="banner-subtitulo">A melhor experiência de compra na palma da sua mão.</p>
@@ -34,7 +29,7 @@ include "_cabecalho.php";
 
                     <!-- Coluna da Direita: Imagem do Produto (PNG sem fundo) -->
                     <div class="banner-imagem">
-                        <img src="Hands - Phone.png" alt="Colares da KeyStyle">
+                        <img src="imagens/Hands - Phone.png" alt="Colares da KeyStyle">
                     </div>
                 </div>
 
@@ -46,7 +41,7 @@ include "_cabecalho.php";
                         <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="Hands - Show.png" alt="Mão a segurar o planeta Terra">
+                        <img src="imagens/Hands - Show.png" alt="Mão a segurar o planeta Terra">
                     </div>
                 </div>
 
@@ -58,13 +53,8 @@ include "_cabecalho.php";
                         <a href="feedProdutos.html" class="banner-btn">VER COLEÇÃO</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="Allura - Online Searching.png" alt="Ilustração de pesquisa online com avaliações e estrelas">
+                        <img src="imagens/Allura - Online Searching.png" alt="Ilustração de pesquisa online com avaliações e estrelas">
                     </div>
-                </div>
-
-
-                <div class="slide">
-                    <img src="imagens/bannerEletro2.jpeg" alt="Promoção 3">
                 </div>
             </div>
 
@@ -79,6 +69,7 @@ include "_cabecalho.php";
                 <span class="ponto ativo" onclick="irParaSlide(0)"></span>
                 <span class="ponto" onclick="irParaSlide(1)"></span>
                 <span class="ponto" onclick="irParaSlide(2)"></span>
+                <span class="ponto" onclick="irParaSlide(3)"></span>
             </div>
 
         </section>
@@ -89,16 +80,16 @@ include "_cabecalho.php";
                 <img src="imagens/modalidade cursos.png" alt="tech">
             </div>
             <div class="categoria azul-claro">
-                <img src="imagens/modalidade cursos.png" alt="cursos">
+                <img src="imagens/modalidade cute.png" alt="cursos">
             </div>
             <div class="categoria azul-escuro">
-                <img src="imagens/modalidade gamer.png" alt="gamer">
+                <img src="imagens/modalidade religioso.png" alt="gamer">
             </div>
             <div class="categoria azul-claro">
-                <img src="imagens/modalidade cute.png" alt="cute">
+                <img src="imagens/modalidade astronomia.png" alt="cute">
             </div>
             <div class="categoria azul-escuro">
-                <img src="imagens/modalidade religioso.png" alt="religioso">
+                <img src="imagens/modalidade gamer.png" alt="religioso">
             </div>
         </section>
 
@@ -219,7 +210,7 @@ include "_cabecalho.php";
                 <h3>Navegação</h3>
                 <br>
                 <a href="#">Home</a><br>
-                <a href="#">Produtos</a><br>
+                <a href="feedProdutos.html">Produtos</a><br>
                 <a href="#">Coleções</a><br>
                 <a href="#">Sobre Nós</a><br>
                 <a href="MVV.html">Missão, Visão e Valores</a><br>

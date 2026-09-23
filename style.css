@@ -290,7 +290,7 @@ header {
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding: 0 40px;
+    padding: 0 100px;
     box-sizing: border-box;
     background: linear-gradient(135deg, #020024 0%, #03005a 50%, #002244 100%);
 }
