@@ -1,6 +1,6 @@
 <?php
 
-    include "./util.php";
+    include "../util.php";
 
     $conn = conecta();
 

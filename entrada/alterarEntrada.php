@@ -2,8 +2,7 @@
 
     <body>
         <?php
-            include "./util.php";
-            SaiSeHacker();
+            include "../util.php";
 
             $conn = conecta();
 
@@ -26,7 +25,7 @@
             $idProd = $linha["fk_produto"];
         ?>
 
-        <form action="updateUsuario.php" method="post" enctype="multipart/form-data">
+        <form action="updateEntrada.php" method="post" enctype="multipart/form-data">
     
     <input type="hidden" name="id" value="<?=$id ?>">
 

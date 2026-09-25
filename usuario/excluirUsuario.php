@@ -1,7 +1,6 @@
 <?php
 
-include "./util.php";
-SaiSeHacker();
+include "../util.php";
 
 $conn = conecta();
 

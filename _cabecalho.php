@@ -28,9 +28,9 @@
             <li><a href="#">Contato</a></li>
             <li><a href="#">Desenvolvedores</a></li>
             <li><a href="MVV.php">Missão, Visão e Valores</a></li>
-            <li><a href="usuario.php">Usuarios</a></li>
-            <li><a href="produto.php">Produtos</a></li>
-            <li><a href="entrada.php">Entradas</a></li>
+            <li><a href="/usuario/usuario.php">Usuarios</a></li>
+            <li><a href="/produto/produto.php">Produtos</a></li>
+            <li><a href="/entrada/entrada.php">Entradas</a></li>
         </ul>
     </aside>
 

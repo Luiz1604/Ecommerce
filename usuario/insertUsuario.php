@@ -1,5 +1,5 @@
 <?php
-    include "./util.php";
+    include "../util.php";
 
     $conn = conecta();
 
@@ -8,6 +8,8 @@
     $senha = $_POST["senha"];
     $telefone = $_POST["telefone"];
 
+    $senhaCripto = password_hash($senha, PASSWORD_DEFAULT);
+
     $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)
             VALUES (:nome, :email, :senha, :telefone)";
 
@@ -15,7 +17,7 @@
 
     $insert->bindParam(":nome", $nome);
     $insert->bindParam(":email", $email);
-    $insert->bindParam(":senha", $senha);
+    $insert->bindParam(":senha", $senhaCripto);
     $insert->bindParam(":telefone", $telefone);
 
     if($insert->execute()){

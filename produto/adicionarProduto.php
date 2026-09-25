@@ -1,12 +1,12 @@
 <?php
-    include "./util.php";
+    include "../util.php";
     SaiSeHacker();
 ?>
 
 <html>
 
 <body>
-    <form action="insertUsuario.php" method="post" enctype="multipart/form-data">
+    <form action="insertProduto.php" method="post" enctype="multipart/form-data">
         <label for="nome">Digite o nome do produto</label>
         <input type="text" name="nome" id="nome" required><br>
 

@@ -1,7 +1,7 @@
 <?php
-    include "./util.php";
+    include "../util.php";
     SaiSeHacker();
-
+    
     $conn = conecta();
 
     $nome = $_POST["nome"];

@@ -3,6 +3,7 @@
 <body>
     <?php
     include "../util.php";
+    SaiSeHacker();
 
     $conn = conecta();
 
@@ -14,7 +15,8 @@
     $select = $conn->prepare($varSQL);
     $select->execute();
     ?>
-    <table>
+
+    <table border="1">
         <tr>
             <td>ID</td>
             <td>Nome</td>
@@ -33,22 +35,28 @@
             $descricao = $linha["descricao"];
             $valor = $linha["valor_unitario"];
             $imagem = $linha["imagem"];
-        }
+        
         ?>
 
         <td><?= $id ?></td>
         <td><?= $nome ?></td>
         <td><?= $descricao ?></td>
-        <td><?= $valor ?></td>;
+        <td><?= $valor ?></td>
+        <td>
         <?php
         if (!empty($imagem) && file_exists($imagem))
             echo "<img src='$imagem'>";
         else
+            echo "Não há imagem";
         ?>
         </td>
-        <td><a href='alterarProduto.php?id=$id'>Alterar</a></td>
-        <td><a href='excluirProduto.php?id=$id'>Excluir</a></td>
-        </tr>;
+        <td><a href='alterarProduto.php?id=<?=$id?>'>Alterar</a></td>
+        <td><a href='excluirProduto.php?id=<?=$id?>'>Excluir</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+        <button><a href="adicionarProduto.php">Adicionar</a></button>
 
     </table>
 </body>
