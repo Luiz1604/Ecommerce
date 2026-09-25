@@ -929,7 +929,7 @@ hr{
 }
 
 .card-login{
-    width: 60%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -978,7 +978,7 @@ hr{
 .btn-login{
     width: 100%;
     padding: 16px 0px;
-    margin: 25px;
+    margin: 20px auto 0 auto;
     border: none;
     border-radius: 7px;
     outline: none;
@@ -991,6 +991,7 @@ hr{
     cursor: pointer;
     box-shadow: 0px 10px 40px -8px #4976ff;
     transition-duration: 0.5s;
+    text-align: center;
 }
 
 .btn-login:hover{
