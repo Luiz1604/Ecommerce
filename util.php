@@ -9,7 +9,7 @@ function conecta($paramStringConexao = "")
   $sua_senha = "kv03iZ5EWkBUUhI";
   // string padrao
   if ($paramStringConexao == "") {
-    $paramStringConexao = "pgsql:host=projetocti.com.br; port=54432;
+    $paramStringConexao = "pgsql:host=projetoscti.com.br; port=54432;
         dbname=$seu_banco; user=$seu_usuario; password=$sua_senha";
   }
 

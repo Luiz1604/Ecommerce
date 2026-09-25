@@ -8,7 +8,7 @@
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="script.js" defer></script>
-    <title>Missão, visão e valores</title>
+    <title>KeyStyle</title>
 </head>
 <div class="fundo-escuro" id="fundoEscuro" onclick="fecharMenu()"></div>
 

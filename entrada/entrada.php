@@ -3,7 +3,6 @@
     <body>
         <?php
             include "./util.php";
-            include "./cabecalho.php";
             SaiSeHacker();
 
             $conn = conecta();
@@ -37,19 +36,20 @@
                     $obs = $linha['obs'];
                     $data = $linha['data_entrada'];
 
-                    echo "<tr>
-                    <td>$id</td>
-                    <td>$idProd</td>
-                    <td>$qtd</td>
-                    <td>$custo</td>
-                    <td>$obs</td>
-                    <td>$data</td>
-                    <td><a href='alterarEntrada.php?id=$id'>Alterar</a></td>
-                    <td><a href='excuirEntrada.php?id=$id'>Excluir</a></td>
-                    </tr>";
+                    
                 }
                 
             ?>
+            <tr>
+                    <td><?=$id?></td>
+                    <td><?=$idProd?></td>
+                    <td><?=$qtd?></td>
+                    <td><?=$custo?></td>
+                    <td><?=$obs?></td>
+                    <td><?=$data?></td>
+                    <td><a href='alterarEntrada.php?id=$id'>Alterar</a></td>
+                    <td><a href='excuirEntrada.php?id=$id'>Excluir</a></td>
+                    </tr>;
         </table>
     </body>
 

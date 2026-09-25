@@ -1,6 +1,8 @@
 <?php
 include "util.php";
 include "_cabecalho.php";
+
+$_SESSION['sessaoSite'] = "index.php";
 ?>
 <body>
     <main>

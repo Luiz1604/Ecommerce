@@ -5,7 +5,6 @@
     
 
     include "./util.php";
-    include "./_cabecalho.php";
     SaiSeHacker();
 
     $conn = conecta();
@@ -41,14 +40,14 @@
         $telefone = $linha['telefone'];
         $admin = $linha['admin'];
         $imagem = $linha['imagem'];
-
-        echo "<tr>
-        <td>$id</td>
-        <td>$nome</td>
-        <td>$email</td>
-        <td>$telefone</td>
-        <td>".($admin ? "Sim" : "Não") ."</td><td>";
-
+        ?>
+        <tr>
+        <td><?=$id?></td>
+        <td><?=$nome?></td>
+        <td><?=$email?></td>
+        <td><?=$telefone?></td>
+        <td><?=($admin ? "Sim" : "Não") ?></td><td>";
+    <?php
         if(!empty($imagem) && file_exists($imagem))
             echo "<img src='$imagem'>";
         else
