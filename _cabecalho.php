@@ -1,5 +1,54 @@
+<?php
+
+if (isset($_SESSION['sessaoConectado'])) {
+
+    $login_logado = "
+        <li>
+            <a href='logout.php'>
+                <span>Sair</span>
+                <span class='material-symbols-outlined'>logout</span>
+            </a>
+        </li>
+    ";
+
+    $nomeUsuario = $_SESSION['sessaoNome'];
+    $imgUsuario = $_SESSION['sessaoFoto'];
+
+} else {
+
+    $login_logado = "
+        <li>
+            <a href='login.php'>
+                <span>Entrar</span>
+                <span class='material-symbols-outlined'>person</span>
+            </a>
+        </li>
+    ";
+
+    $nomeUsuario = "";
+    $imgUsuario = "";
+}
+
+
+// Opções exclusivas do administrador
+if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
+
+    $opcoesAdmin = "
+        <li><a href='/usuario/usuario.php'>Usuarios</a></li>
+        <li><a href='/produto/produto.php'>Produtos</a></li>
+        <li><a href='/entrada/entrada.php'>Entradas</a></li>
+    ";
+
+} else {
+
+    $opcoesAdmin = "";
+
+}
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +70,14 @@
         </div>
 
         <ul class="links-menu-lateral">
-            <li><a href="feedProdutos.html">Todos os produtos</a></li>
+            <li><a href="feedProdutos.php">Todos os produtos</a></li>
             <li><a href="#">Colares</a></li>
             <li><a href="#">Chaveiros</a></li>
             <li><a href="#">Sobre Nós</a></li>
             <li><a href="#">Contato</a></li>
             <li><a href="#">Desenvolvedores</a></li>
             <li><a href="MVV.php">Missão, Visão e Valores</a></li>
-            <li><a href="/usuario/usuario.php">Usuarios</a></li>
-            <li><a href="/produto/produto.php">Produtos</a></li>
-            <li><a href="/entrada/entrada.php">Entradas</a></li>
+            <?= $opcoesAdmin ?>
         </ul>
     </aside>
 
@@ -57,13 +104,7 @@
             </div>
 
             <ul class="menu-direita">
-                <li>
-                    <a href="login.php">
-
-                        <span>Entrar</span>
-                        <span class="material-symbols-outlined">person</span>
-                    </a>
-                </li>
+                <?=  $login_logado ?>
                 <li>
                     <a href="#" aria-label="Sacola de compras">
                         <span class="material-symbols-outlined">shopping_bag</span>

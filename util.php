@@ -232,7 +232,7 @@ function salvaUpload2($paramFiles,$paramCampo)
     } catch (PDOException $e) { // se der erro ...
         $arquivoNovo = "";
         echo "Erro, verifique o arquivo se a pasta imagens existe<br>
-              (Motivo ".$e.getMessage().")";
+              (Motivo ".$e->getMessage().")";
     }   
     return $arquivoNovo;  
   }

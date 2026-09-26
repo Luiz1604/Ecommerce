@@ -11,12 +11,13 @@ if (isset($_POST['email'])) {
     $admin = "";
 
     if (ValidaLogin($email, $senha, $nome, $foto, $admin)) {
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionEmail'] = $email;
-        $_SESSION['sessionNome'] = $nome;
-        $_SESSION['sessionFoto'] = $foto;
+        $_SESSION['sessaoConectado'] = true;
+        $_SESSION['sessaoLogin'] = $email;
+        $_SESSION['sessaoNome'] = $nome;
+        $_SESSION['sessaoFoto'] = $foto;
         $_SESSION['sessaoAdmin'] = $admin;
-        DefineCookie('email', $_SESSION['sessionEmail'], 1440);
+
+        DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
     } else {
         echo "Verifique se a senha está correta ou se
                 você já está cadastrado";
@@ -38,7 +39,7 @@ if (isset($_POST['email'])) {
             <div class="card-login">
                 <h2>Login</h2>
 
-                <form action="validar_login.php" method="POST">
+                <form action="login.php" method="POST">
                     <div class="textfield">
                         <label for="email">E-mail ou Usuário</label>
                         <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
@@ -55,6 +56,9 @@ if (isset($_POST['email'])) {
         </div>
     </main>
 
+    <?php
+        include "_rodape.php";
+    ?>
 </body>
 
 </html>
