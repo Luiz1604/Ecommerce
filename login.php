@@ -17,6 +17,8 @@ if (isset($_POST['email'])) {
         $_SESSION['sessaoFoto'] = $foto;
         $_SESSION['sessaoAdmin'] = $admin;
 
+        header("Location: index.php");
+
         DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
     } else {
         echo "Verifique se a senha está correta ou se

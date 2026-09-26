@@ -4,6 +4,7 @@
     <?php
 
     include "../util.php";
+    SaiSeHacker();
 
     $conn = conecta();
 
@@ -29,32 +30,38 @@
     ?>
 
     <form action="updateUsuario.php" method="post" enctype="multipart/form-data">
-    
-    <input type="hidden" name="id" value="<?=$id ?>">
 
-    <label for="nome">Nome</label>
-    <input type="text" name="nome" id="nome" value="<?=$nome ?>"><br>
+        <input type="hidden" name="id" value="<?= $id ?>">
 
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" value="<?=$email ?>"><br>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" value="<?= $nome ?>"><br>
 
-    <label for="telefone">Telefone</label>
-    <input type="text" name="telefone" id="telefone" value="<?=$telefone ?>"><br>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="<?= $email ?>"><br>
 
-    <label for="admin">Administrador</label>
-    <input type="text" name="admin" id="admin" value="true" <?=$admin ? 'checked' : '' ?>><br>
+        <label for="telefone">Telefone</label>
+        <input type="tel" name="telefone" id="telefone" value="<?= $telefone ?>"><br>
 
-    <?php
-    
-        if(!empty($imagem) && file_exists($imagem))
+        <label for="admin">Administrador</label>
+        <div>
+        <input type="radio" name="admin" id="admin" value="true" <?= $admin ? 'checked' : '' ?>>
+        <label for="">Verdadeiro</label>
+        <input type="radio" name="admin" id="admin" value="false" <?= $admin ? '' : 'checked' ?>>
+        <label for="">falso</label>
+        </div>
+        <br>
+
+        <?php
+
+        if (!empty($imagem) && file_exists($imagem))
             echo "<img src='$imagem' alt=''><br>";
 
-    ?>
+        ?>
 
-    <label for="arquivo">Imagem</label>
-    <input type="file" name="arquivo" id="arquivo"><br>
+        <label for="arquivo">Imagem</label>
+        <input type="file" name="arquivo" id="arquivo"><br>
 
-    <input type="submit" value="Alterar">
+        <input type="submit" value="Alterar">
 
     </form>
 </body>

@@ -4,9 +4,9 @@ if (isset($_SESSION['sessaoConectado'])) {
 
     $login_logado = "
         <li>
-            <a href='logout.php'>
+            <a href='minhaConta.php'>
                 <span>Sair</span>
-                <span class='material-symbols-outlined'>logout</span>
+                <span class='material-symbols-outlined'>#foto</span>
             </a>
         </li>
     ";
@@ -34,9 +34,9 @@ if (isset($_SESSION['sessaoConectado'])) {
 if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
     $opcoesAdmin = "
-        <li><a href='/usuario/usuario.php'>Usuarios</a></li>
-        <li><a href='/produto/produto.php'>Produtos</a></li>
-        <li><a href='/entrada/entrada.php'>Entradas</a></li>
+        <li><a href='usuario/usuario.php'>Usuarios</a></li>
+        <li><a href='produto/produto.php'>Produtos</a></li>
+        <li><a href='entrada/entrada.php'>Entradas</a></li>
     ";
 
 } else {

@@ -1,6 +1,7 @@
 <?php
 
     include "../util.php";
+    SaiSeHacker();
 
     $conn = conecta();
 
@@ -8,8 +9,7 @@
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
-
-    $admin = isset($_POST['admin']) ? 'true' : 'false';
+    $admin = $_POST['admin'];
 
     $varSQL = "UPDATE usuario
         SET nome = :nome,
