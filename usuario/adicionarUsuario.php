@@ -1,11 +1,12 @@
 <?php
-// Recua uma pasta para encontrar os arquivos de inclusão
+// Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
 include "../util.php";
 include "../_cabecalho.php";
 ?>
 
 <body>
     <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script> <!--alterado-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <main class="main-login">
@@ -22,17 +23,22 @@ include "../_cabecalho.php";
                                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                                 alt="Foto de Perfil">
                         </div>
-
                         <label for="foto" class="btn-upload">
                             <i class="fa-solid fa-camera"></i>
                         </label>
 
+                        <!--alterado foto-->
                         <input type="file"
                             id="foto"
-                            name="foto"
+                            name="arquivo"
                             accept="image/*"
                             onchange="previewImagem(event)">
+
+
                     </div>
+                    <small class="imagem-opcional">
+                            Foto opcional (sinta-se à vontade para enviar)
+                        </small>
 
                     <label for="nome">Digite seu Nome</label>
                     <div class="input-box">
@@ -54,7 +60,7 @@ include "../_cabecalho.php";
 
                     <input type="hidden" name="admin" value="false">
 
-                    <label for="telefone">Digite seu telefone</label>
+                    <label for="telefone">Digite seu telefone (opcional)</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-phone"></i></span>
                         <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000">
@@ -70,10 +76,11 @@ include "../_cabecalho.php";
             </div>
         </div>
     </main>
-    
+
 
     <?php
     include "../_rodape.php";
     ?>
 </body>
+
 </html>

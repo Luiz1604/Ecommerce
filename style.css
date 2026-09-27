@@ -1144,19 +1144,22 @@ h2{
 
 /*pagina Cadastrar usuarios*/
 
+.main-login{
+    margin-bottom: 20px;
+}
 
-
-.form-usuario {
+.imagem-opcional{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100%;
-    box-sizing: border-box;
+    color: var(--cor-destaque-secundario);
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .avatar-upload {
     position: relative;
-    max-width: 100px;
+    max-width: 90px;
     margin: 0 auto 25px auto;
 }
 
