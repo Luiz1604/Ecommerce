@@ -789,8 +789,10 @@ hr{
         display: none;
     }
 
+    /* --- CARROSSEL (CORRIGIDO) --- */
+
     .carrossel-container {
-        height: 250px;
+        height: 380px; /* ALTERADO: Aumentado para dar espaço vertical ao texto + imagem */
         margin: 10px auto;
         border-radius: 0;
     }
@@ -800,37 +802,42 @@ hr{
         height: 35px;
     }
 
-
     .carrossel-slides .slide {
+        height: 100%; /* ADICIONADO: Força o slide a ocupar a altura total do container */
         flex-direction: column;
         justify-content: center;
-        padding: 20px;
+        padding: 15px;
         text-align: center;
+        box-sizing: border-box; /* ADICIONADO: Impede que o padding estoure a largura */
     }
 
     .banner-conteudo {
         max-width: 100%;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 10px; /* ALTERADO: Leve redução para otimizar espaço */
     }
 
     .banner-titulo {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* ALTERADO: Ajustado para caber sem quebrar em muitas linhas */
     }
 
     .banner-subtitulo {
-        font-size: 0.95rem;
-        margin-bottom: 16px;
+        font-size: 0.85rem; /* ALTERADO: Ajustado para o tamanho mobile */
+        margin-bottom: 10px;
     }
 
     .banner-imagem {
         justify-content: center;
+        width: 100%; /* ADICIONADO: Garante alinhamento central */
     }
 
     .banner-imagem img {
-        max-height: 160px;
+        max-height: 130px; /* ALTERADO: Limita a altura da imagem para caber no banner */
+        max-width: 100%; /* ADICIONADO: Impede que a imagem ultrapasse as laterais */
+        object-fit: contain; /* ADICIONADO: Redimensiona proporcionalmente sem cortar */
     }
 
+    /* --- FIM DO CARROSSEL --- */
 
     .subtitulo {
         font-size: 28px;
@@ -887,14 +894,12 @@ hr{
         width: 100%;
         margin-bottom: 15px;
     }
-
-
-}    
+}  
 /*pagina de login*/
 
 .main-login{
     width: 100%;
-    min-height: calc(100vh - 85px);
+    min-height: calc(100vh - 90px);
     background: var(--cor-fundo);
     display: flex;
     justify-content: center;
@@ -902,7 +907,7 @@ hr{
 
 }
 .esquerda-login{
-    width: 50vw;
+    width: 40%;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -917,10 +922,10 @@ hr{
 }
 
 .esquerda-login-image{
-    width: 28vw;
+    width: 32vw;
 }
 
-.direita-login{
+/*.direita-login{
     width: 50vw;
     height: 100vh;
     display: flex;
@@ -998,6 +1003,290 @@ hr{
     box-shadow: 0px 0px 60px -2px #235aff;
     background: var(--cor-destaque-titulo);
 }
+*/
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha a label à esquerda */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form > label {
+    text-align: left;
+    margin-left: 0; /* ALTERADO: zerado para alinhar exatamente com a borda da caixa */
+    margin-bottom: 5px; /* ALTERADO: espaçamento positivo para não sobrepor a caixa */
+    font-size: 14px;
+    color: #333;
+}
+
+.container-direita{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card{
+    width: 500px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 22px;
+    box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.416);
+    backdrop-filter: blur(7px);
+    box-sizing: border-box;
+}
+
+h2{
+    text-align: center;
+    color: var(--cor-destaque-titulo);
+    margin-bottom: 20px;
+}
+
+
+.input-box{
+    display: flex;
+    align-items: center;
+    width: 100%; /* ADICIONADO: força a caixa a ocupar toda a largura do card */
+    background-color:#f2eee751 ;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 0 0 20px 0; /* ALTERADO: removeu a margem lateral que encolhia o input */
+    box-sizing: border-box;
+}
+
+.icon{
+    margin-right: 10px;
+}
+
+.input-box input{
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.12);
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 14px;
+}
+
+.input-box input::placeholder{
+    color: var(--cor-icone);
+}
+
+.options{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    margin-bottom: 15px;
+    font-size:12px;
+    box-sizing: border-box;
+
+}
+
+.options a{
+    transition: all 0.2s ease-in-out;
+}
+
+.options a:hover{
+    color: var(--cor-destaque-secundario);
+
+}
+
+.link{
+    color: black;
+    text-decoration: none;
+    margin: 20px;
+}
+
+.link-p{
+    text-align: center;
+    width: 100%; 
+    margin-top: 25px;
+}
+
+.link-p a{
+    transition: all 0.2s ease-in-out;
+}
+
+.link-p a:hover{
+    color: var(--cor-destaque-secundario);
+    font-weight: 600;
+}
+.btn{
+    width: 50%;
+    padding: 16px 0px;
+    margin: 20px auto 0 auto;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    font-family: var(--fonte-titulo);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--cor-fundo);
+    background-color:var(--cor-destaque-secundario) ;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -8px #4976ff;
+    transition-duration: 0.5s;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn:hover{
+    background: var(--cor-destaque-titulo);
+}
+
+/*pagina Cadastrar usuarios*/
+
+
+
+.form-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.avatar-upload {
+    position: relative;
+    max-width: 100px;
+    margin: 0 auto 25px auto;
+}
+
+.avatar-preview {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    border-radius: 50%;
+    border: 3px solid var(--cor-destaque-secundario, #4976ff);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    background-color: #f2eee7;
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.btn-upload {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cor-destaque-secundario, #4976ff);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-upload:hover {
+    transform: scale(1.1);
+    background-color: var(--cor-destaque-titulo, #235aff);
+}
+
+/* Esconde o input de ficheiro nativo */
+.avatar-upload input[type="file"] {
+    display: none;
+}
+
+/*
+   ESTILIZAÇÃO DIRETA DOS INPUTS
+*/
+
+.form-usuario input[type="text"],
+.form-usuario input[type="email"],
+.form-usuario input[type="tel"],
+.form-usuario input[type="password"] {
+    width: 100%;
+    background-color: #f2eee751;
+    border: none;
+    outline: none;
+    padding: 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: black;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-usuario input::placeholder {
+    color: #888;
+}
+
+.form-usuario input:focus {
+    background-color: #f2eee790;
+    box-shadow: 0 0 0 2px var(--cor-destaque-secundario, #4976ff);
+}
+
+.link-p-usuario{
+    text-align: center;
+    width: 100%; 
+    margin-top: 25px;
+}
+
+.link-p-usuario a{
+    transition: all 0.2s ease-in-out;
+}
+
+.link-p-usuario a:hover{
+    color: var(--cor-destaque-secundario);
+    font-weight: 600;
+}
+
+/* 
+   BOTÃO DE CADASTRO
+ */
+
+.btn {
+    width: 50%;
+    padding: 16px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    font-family: var(--fonte-titulo);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--cor-fundo, #fff);
+    background-color: var(--cor-destaque-secundario, #4976ff);
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -8px #4976ff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: var(--cor-destaque-titulo, #235aff);
+}
+
+/* RESPONSIVIDADE (MOBILE) */
+
+@media (max-width: 600px) {
+    .btn {
+        width: 100%;
+    }
+}
+
+
 
 @media (max-width: 768px) {
     
@@ -1006,7 +1295,7 @@ hr{
     .main-login {
         flex-direction: column;
         min-height: auto;
-        padding: 20px 15px;
+        padding: 20px 15px 50px 15px;
     }
 
     .esquerda-login {
@@ -1016,23 +1305,40 @@ hr{
     }
 
     .esquerda-login h1 {
-        display: none; /* Esconde o título no celular para economizar espaço */
+        display: none; 
     }
 
     .esquerda-login-image {
-        width: 60%;
+        width: 65%;
         max-width: 220px;
     }
 
-    .direita-login {
+    .container-direita {
         width: 100%;
         height: auto;
-        padding: 10px 0;
+        margin-top: 10px;
+        margin-bottom: 20px; 
     }
 
-    .card-login {
+    .login-card {
         width: 100%;
-        padding: 25px 20px;
+        max-width: 450px;
+        padding: 20px; 
+        border-radius: 16px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .link {
+        margin: 0; 
     }
 }
 
@@ -1301,5 +1607,7 @@ hr{
     height: 300px;
   }
 }
+
+
 
 /*Página de Missão, visão e valores*?

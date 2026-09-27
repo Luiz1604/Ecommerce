@@ -1,26 +1,79 @@
-<!-- Fazer CSS -->
-<html>
-    <body>
-        <form action="insertUsuario.php" method="post"
-        enctype="multipart/form-data">
-            <label for="nome">Digite seu Nome</label>
-            <input type="text" name="nome" id="nome" required><br>
+<?php
+// Recua uma pasta para encontrar os arquivos de inclusão
+include "../util.php";
+include "../_cabecalho.php";
+?>
 
-            <label for="email">Digite seu email</label>
-            <input type="text" name="email" id="email" required><br>
+<body>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-            <label for="senha">Digite sua senha</label>
-            <input type="password" name="senha" id="senha" required><br>
+    <main class="main-login">
+        <div class="container-direita">
+            <div class="login-card">
+                <h2>Cadastro</h2>
 
-            <input type="hidden" name="admin" value="false">
-            
-            <label for="telefone">Digite seu telefone</label>
-            <input type="tel" name="telefone" id="telefone"><br>
+                <form action="insertUsuario.php" method="post" enctype="multipart/form-data">
 
-            <label for="arquivo">Adicione uma imagem</label>
-            <input type="text" name="arquivo" id="arquivo"><br>
-        
-            <input type="submit" value="Adicionar">
-        </form>
-    </body>
+                    <!-- Campo de foto -->
+                    <div class="avatar-upload">
+                        <div class="avatar-preview">
+                            <img id="imagePreview"
+                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                alt="Foto de Perfil">
+                        </div>
+
+                        <label for="foto" class="btn-upload">
+                            <i class="fa-solid fa-camera"></i>
+                        </label>
+
+                        <input type="file"
+                            id="foto"
+                            name="foto"
+                            accept="image/*"
+                            onchange="previewImagem(event)">
+                    </div>
+
+                    <label for="nome">Digite seu Nome</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
+                    </div>
+
+                    <label for="email">Digite seu e-mail</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" name="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <label for="senha">Digite sua senha</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" name="senha" id="senha" placeholder="Sua senha" required>
+                    </div>
+
+                    <input type="hidden" name="admin" value="false">
+
+                    <label for="telefone">Digite seu telefone</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-phone"></i></span>
+                        <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <button type="submit" class="btn">Cadastrar</button>
+
+                    <p class="link-p-usuario">
+                        Já tem uma conta? <a href="../login.php" class="link">Entrar</a>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </main>
+    
+
+    <?php
+    include "../_rodape.php";
+    ?>
+</body>
 </html>

@@ -31,13 +31,14 @@ if (isset($_POST['email'])) {
 
 
     <!--Cadastro-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <main class="main-login">
         <div class="esquerda-login">
             <h1>Entre e encontre a coleção certa<br>para completar o seu estilo.</h1>
-            <img src="login-animate.svg" class="esquerda-login-image" alt="login animação">
+            <img src="security-on-animate.svg" class="esquerda-login-image" alt="login animação">
         </div>
 
-        <div class="direita-login">
+        <!--<div class="direita-login">
             <div class="card-login">
                 <h2>Login</h2>
 
@@ -55,11 +56,47 @@ if (isset($_POST['email'])) {
                     <button type="submit" class="btn-login">Entrar</button>
                 </form>
             </div>
+        </div>-->
+
+        <div class="container-direita">
+            <div class="login-card">
+                <h2>Login</h2>
+
+                <form action="login.php" method="POST">
+                    <label for="email">E-mail</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
+                    </div>
+
+                    <label for="senha">Senha</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required autocomplete="current-password">
+                    </div>
+
+                    <div class="options">
+                        <label>
+                            <input type="checkbox"> Lembrar-me
+                        </label>
+                        <a href="" class="link"> Esquendeu a senha? </a>
+                    </div>
+
+                    <button class="btn"> Entrar </button>
+
+                    <p class="link-p">
+                        <a href="usuario/adicionarUsuario.php" class="link"> Não tem uma conta</a>
+                    </p>
+
+                </form>
+
+            </div>
+
         </div>
     </main>
 
     <?php
-        include "_rodape.php";
+    include "_rodape.php";
     ?>
 </body>
 
