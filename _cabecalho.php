@@ -13,15 +13,20 @@ if (isset($_SESSION['sessaoConectado'])) {
             $fotoPerfil = $prefixo . $imgUsuario;
         } elseif (file_exists($imgUsuario)) {
             $fotoPerfil = $imgUsuario;
+        }elseif (file_exists("../" . $imgUsuario)) {
+            $fotoPerfil = "../" . $imgUsuario;
         }
     }
 
     $login_logado = "
         <li>
-            <a href='minhaConta.php'>
-                <span>Sair</span>
+            <a href='{$prefixo}usuario/minhaConta.php'>
+                <span>Minha conta</span>
                 <img src='$fotoPerfil' alt='$nomeUsuario' class='nav-avatar'>
             </a>
+        </li>
+        <li>
+            <a href='{$prefixo}logout.php'>Sair</a>
         </li>
     ";
 } else {

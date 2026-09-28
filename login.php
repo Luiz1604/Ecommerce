@@ -35,7 +35,12 @@ if (isset($_POST['email'])) {
     <main class="main-login">
         <div class="esquerda-login">
             <h1>Entre e encontre a coleção certa<br>para completar o seu estilo.</h1>
-            <img src="security-on-animate.svg" class="esquerda-login-image" alt="login animação">
+
+            <picture>
+                <source media="(max-width: 768px)" srcset="mobile-login-animate.svg">
+                <img src="login-animate.svg" class="esquerda-login-image" alt="login animação">
+                
+            </picture>
         </div>
 
         <!--<div class="direita-login">
