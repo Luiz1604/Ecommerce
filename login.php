@@ -2,6 +2,10 @@
 include "util.php";
 include "_cabecalho.php";
 
+if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
+    header("Location: index.php");
+
+
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -25,9 +29,6 @@ if (isset($_POST['email'])) {
                 você já está cadastrado";
     }
 }
-
-if($_SESSION['sessaoConectado'])
-    header ("Location: index.php");
 ?>
 
 <body>

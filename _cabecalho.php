@@ -6,6 +6,8 @@ $icone = $prefixo."imagens/favicon.png";
 $logo = $prefixo."imagens/logo.png";
 $home = $prefixo."index.php";
 $MVV = $prefixo."MVV.php";
+$produtos = $prefixo."feedProdutos.php";
+$login = $prefixo."login.php";
 
 
 if (isset($_SESSION['sessaoConectado'])) {
@@ -39,7 +41,7 @@ if (isset($_SESSION['sessaoConectado'])) {
 
     $login_logado = "
         <li>
-            <a href='login.php'>
+            <a href='$login'>
                 <span>Entrar</span>
                 <span class='material-symbols-outlined'>person</span>
             </a>
@@ -90,7 +92,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     </div>
 
     <ul class="links-menu-lateral">
-        <li><a href="feedProdutos.php">Todos os produtos</a></li>
+        <li><a href=<?=$produtos?>>Todos os produtos</a></li>
         <li><a href="#">Colares</a></li>
         <li><a href="#">Chaveiros</a></li>
         <li><a href="#">Sobre Nós</a></li>
