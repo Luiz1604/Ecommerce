@@ -9,6 +9,8 @@ $MVV = $prefixo."MVV.php";
 $produtos = $prefixo."feedProdutos.php";
 $login = $prefixo."login.php";
 $minhaConta = $prefixo."minhaConta.php";
+$padrao = $prefixo."imagens/padraoUser.webp";
+
 
 
 if (isset($_SESSION['sessaoConectado'])) {
@@ -17,7 +19,7 @@ if (isset($_SESSION['sessaoConectado'])) {
     if(isset($_SESSION['sessaoFoto'])){
         $imgUsuario = $_SESSION['sessaoFoto'];
     } else {
-        $imgUsuario = "imagens/padraoUser.webp";
+        $imgUsuario = "$padrao";
     }
 
     
@@ -128,11 +130,6 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
         <ul class="menu-direita">
             <?= $login_logado ?>
-            <li>
-                <a href="#" aria-label="Sacola de compras">
-                    <span class="material-symbols-outlined">shopping_bag</span>
-                </a>
-            </li>
             <li>
                 <a href="#" aria-label="Carrinho de compras">
                     <span class="material-symbols-outlined">shopping_cart</span>

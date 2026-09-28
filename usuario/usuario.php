@@ -13,7 +13,7 @@
     $varSQL = "SELECT * 
                 FROM usuario 
                 WHERE excluido = FALSE
-                ORDER BY nome";
+                ORDER BY id_usuario";
 
     $select = $conn->prepare($varSQL);
     $select->execute();
@@ -47,7 +47,7 @@
                     ?>
                     <tr>
                         <td><?= $id ?></td>
-                        <td><?= $nome ?></td>
+                        <td><?= htmlspecialchars($nome) ?></td>
                         <td><?= $email ?></td>
                         <td><?= $telefone ?></td>
                         <td><?= ($admin ? "Sim" : "Não") ?></td>
@@ -70,11 +70,11 @@
                     <?php
                 }
                 ?>
-            </tbody>
+            </body>
         </table>
 
         <div class="container-botao">
-            <a href="adicionarUsuario.php" class="btn-adicionar">Adicionar Usuário</a>
+            <a href="adicionarUsuarioDev.php" class="btn-adicionar">Adicionar Usuário</a>
         </div>
         <a href="../index.php" class="btn-voltar">voltar</a>
     </div>
