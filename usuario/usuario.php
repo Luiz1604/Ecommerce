@@ -5,6 +5,7 @@
 
 
     include "../util.php";
+    include "../_cabecalho.php";
     SaiSeHacker();
 
     $conn = conecta();
@@ -18,51 +19,65 @@
     $select->execute();
     ?>
 
-    <table border="1">
-        <tr>
-            <td>ID</td>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Telefone</td>
-            <td>Admin</td>
-            <td>Imagem</td>
-            <td></td>
-            <td></td>
+   
+    <div class="container-tabela">
+        <table class="tabela-usuarios">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Admin</th>
+                    <th>Imagem</th>
+                    <th>Ações</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-        </tr>
+            <tbody>
+                <?php
+                while ($linha = $select->fetch()) {
+                    $id = $linha['id_usuario'];
+                    $nome = $linha['nome'];
+                    $email = $linha['email'];
+                    $telefone = $linha['telefone'];
+                    $admin = $linha['admin'];
+                    $imagem = $linha['imagem'];
+                    ?>
+                    <tr>
+                        <td><?= $id ?></td>
+                        <td><?= $nome ?></td>
+                        <td><?= $email ?></td>
+                        <td><?= $telefone ?></td>
+                        <td><?= ($admin ? "Sim" : "Não") ?></td>
+                        
+                        <td class="coluna-imagem">
+                            <?php
+                            if (!empty($imagem) && file_exists($imagem))
+                                
+                                echo "<img src='$imagem' class='img-usuario'>";
+                            else
+                                echo "Não há imagem";
 
-        <?php
-        while ($linha = $select->fetch()) {
-            $id = $linha['id_usuario'];
-            $nome = $linha['nome'];
-            $email = $linha['email'];
-            $telefone = $linha['telefone'];
-            $admin = $linha['admin'];
-            $imagem = $linha['imagem'];
-            ?>
-            <tr>
-                <td><?= $id ?></td>
-                <td><?= $nome ?></td>
-                <td><?= $email ?></td>
-                <td><?= $telefone ?></td>
-                <td><?= ($admin ? "Sim" : "Não") ?></td>
-                <td>
+                            ?>
+                        </td>
+                        
+                        <td><a href='alterarUsuario.php?id=<?= $id ?>' class="btn-acao btn-alterar">Alterar</a></td>
+                        
+                        <td><a href='excluirUsuario.php?id=<?= $id ?>' class="btn-acao btn-excluir">Excluir</a></td>
+                    </tr>
                     <?php
-                    if (!empty($imagem) && file_exists($imagem))
-                        echo "<img src='$imagem'>";
-                    else
-                        echo "Não há imagem";
-        
-        ?>
-            </td>
-            <td><a href='alterarUsuario.php?id=<?=$id?>'>Alterar</a></td>
-            <td><a href='excluirUsuario.php?id=<?=$id?>'>Excluir</a></td>
-        </tr>
-        <?php
-            }
-        ?>
-        <button><a href="adicionarUsuario.php">Adicionar</a></button>
-    </table>
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <div class="container-botao">
+            <a href="adicionarUsuario.php" class="btn-adicionar">Adicionar Usuário</a>
+        </div>
+        <a href="../index.php" class="btn-voltar">voltar</a>
+    </div>
 
 </body>
 

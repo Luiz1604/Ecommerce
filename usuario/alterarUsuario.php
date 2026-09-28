@@ -4,6 +4,8 @@
     <?php
 
     include "../util.php";
+    include "../_cabecalho.php";
+
     SaiSeHacker();
 
     $conn = conecta();
@@ -29,41 +31,60 @@
 
     ?>
 
-    <form action="updateUsuario.php" method="post" enctype="multipart/form-data">
+        <div class="container-form">
+            <form action="updateUsuario.php" method="post" enctype="multipart/form-data" class="form-usuario">
 
-        <input type="hidden" name="id" value="<?= $id ?>">
+                <input type="hidden" name="id" value="<?= $id ?>">
 
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="<?= $nome ?>"><br>
+                <div class="form-grupo">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" id="nome" value="<?= $nome ?>" class="form-input">
+                </div>
 
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="<?= $email ?>"><br>
+                <div class="form-grupo">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" id="email" value="<?= $email ?>" class="form-input">
+                </div>
 
-        <label for="telefone">Telefone</label>
-        <input type="tel" name="telefone" id="telefone" value="<?= $telefone ?>"><br>
+                <div class="form-grupo">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input type="tel" name="telefone" id="telefone" value="<?= $telefone ?>" class="form-input">
+                </div>
 
-        <label for="admin">Administrador</label>
-        <div>
-        <input type="radio" name="admin" id="admin" value="true" <?= $admin ? 'checked' : '' ?>>
-        <label for="">Verdadeiro</label>
-        <input type="radio" name="admin" id="admin" value="false" <?= $admin ? '' : 'checked' ?>>
-        <label for="">falso</label>
+                <div class="form-grupo">
+                    <label class="form-label">Administrador</label>
+                    <div class="radio-grupo">
+                        <label for="admin_sim" class="radio-label">
+                            <input type="radio" name="admin" id="admin_sim" value="true" <?= $admin ? 'checked' : '' ?>>
+                            <span>Sim</span>
+                        </label>
+
+                        <label for="admin_nao" class="radio-label">
+                            <input type="radio" name="admin" id="admin_nao" value="false" <?= $admin ? '' : 'checked' ?>>
+                            <span>Não</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="arquivo" class="form-label">Imagem de Perfil</label>
+
+                    <?php if (!empty($imagem) && file_exists($imagem)): ?>
+                        <div class="preview-imagem">
+                            <img src="<?= $imagem ?>" alt="Foto de <?= $nome ?>" class="img-preview">
+                        </div>
+                    <?php endif; ?>
+
+                    <input type="file" name="arquivo" id="arquivo" class="form-file">
+                </div>
+
+                <div class="form-grupo">
+                    <input type="submit" value="Salvar Alterações" class="btn-submit">
+                    
+                </div>
+<a href="usuario.php" class="btn-voltar">voltar</a>
+            </form>
         </div>
-        <br>
-
-        <?php
-
-        if (!empty($imagem) && file_exists($imagem))
-            echo "<img src='$imagem' alt=''><br>";
-
-        ?>
-
-        <label for="arquivo">Imagem</label>
-        <input type="file" name="arquivo" id="arquivo"><br>
-
-        <input type="submit" value="Alterar">
-
-    </form>
 </body>
 
 </html>

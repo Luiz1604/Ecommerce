@@ -8,6 +8,7 @@ $home = $prefixo."index.php";
 $MVV = $prefixo."MVV.php";
 $produtos = $prefixo."feedProdutos.php";
 $login = $prefixo."login.php";
+$minhaConta = $prefixo."minhaConta.php";
 
 
 if (isset($_SESSION['sessaoConectado'])) {
@@ -28,7 +29,7 @@ if (isset($_SESSION['sessaoConectado'])) {
 
     $login_logado = "
         <li>
-            <a href='{$prefixo}usuario/minhaConta.php'>
+            <a href='{$prefixo}usuario/$minhaConta'>
                 <span>Minha conta</span>
                 <img src='$imgUsuario' alt='$nomeUsuario' class='nav-avatar'>
             </a>

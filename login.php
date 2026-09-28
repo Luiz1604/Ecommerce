@@ -2,7 +2,9 @@
 include "util.php";
 include "_cabecalho.php";
 
-if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
+$erroLogin = false;
+
+if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
     header("Location: index.php");
 
 
@@ -24,9 +26,11 @@ if (isset($_POST['email'])) {
         header("Location: index.php");
 
         DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
+        exit;
     } else {
-        echo "Verifique se a senha está correta ou se
-                você já está cadastrado";
+        /*echo "Verifique se a senha está correta ou se
+                você já está cadastrado";*/
+                $erroLogin = true;
     }
 }
 
@@ -44,7 +48,7 @@ if (isset($_POST['email'])) {
             <picture>
                 <source media="(max-width: 768px)" srcset="mobile-login-animate.svg">
                 <img src="login-animate.svg" class="esquerda-login-image" alt="login animação">
-                
+
             </picture>
         </div>
 
@@ -52,11 +56,19 @@ if (isset($_POST['email'])) {
             <div class="login-card">
                 <h2>Login</h2>
 
-                <form action="login.php" method="POST">
+                <form action="login.php" method="post" class="form-login <?= $erroLogin ? 'login-erro' : '' ?>">
+
+                    <?php if ($erroLogin): ?>
+                        <div class="alerta-erro">
+                            <span class="material-symbols-outlined">error</span>
+                            <span>E-mail ou senha incorretos. Tente novamente.</span>
+                        </div>
+                    <?php endif; ?>
+
                     <label for="email">E-mail</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
+                        <input type="text" id="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
                     </div>
 
                     <label for="senha">Senha</label>
@@ -69,7 +81,7 @@ if (isset($_POST['email'])) {
                         <label>
                             <input type="checkbox"> Lembrar-me
                         </label>
-                        <a href="" class="link"> Esquendeu a senha? </a>
+                        <a href="" class="link"> Esqueceu a senha? </a>
                     </div>
 
                     <button class="btn"> Entrar </button>

@@ -1628,7 +1628,265 @@ h2{
     height: 300px;
   }
 }
+/*tabela usuarios*/
+
+.container-tabela {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
 
 
+.tabela-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
 
-/*Página de Missão, visão e valores*?
+
+.tabela-usuarios th {
+    background-color: #42607d;
+    color: #ffffff;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+.tabela-usuarios td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+
+.tabela-usuarios tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.tabela-usuarios tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+.coluna-imagem {
+    text-align: center;
+}
+
+.img-usuario {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 1px solid #ccc;
+}
+
+
+.btn-acao {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-alterar {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-alterar:hover {
+    background-color: #0056b3;
+}
+
+.btn-excluir {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-excluir:hover {
+    background-color: #a71d2a;
+}
+
+.container-botao {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn-adicionar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-adicionar:hover {
+    background-color: #1e7e34;
+}  
+
+/*pagina de alterarUsuarios*/
+
+.container-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333333;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.radio-grupo {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.preview-imagem {
+    margin-bottom: 10px;
+}
+
+.img-preview {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+}
+
+.form-file {
+    font-size: 14px;
+}
+
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.btn-voltar{
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7dbcff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/*erro login*/
+
+.alerta-erro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fde8e8;
+    color: #9b1c1c;
+    border: 1px solid #f8b4b4;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: shake 0.3s ease-in-out;
+}
+
+.login-erro .form-input {
+    border-color: #e53e3e !important;
+    background-color: #fff5f5;
+}
+
+.login-erro .form-input:focus {
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.login-erro .form-label {
+    color: #c53030;
+}
+
+.login-erro .btn-submit {
+    background-color: #e53e3e;
+}
+
+.login-erro .btn-submit:hover {
+    background-color: #c53030;
+}
+
+/* Animação para tremer a caixa de alerta (deixar ou tirar???) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/*Página de Missão, visão e valores*?/
