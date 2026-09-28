@@ -29,6 +29,7 @@ if (isset($_POST['email'])) {
                 você já está cadastrado";
     }
 }
+
 ?>
 
 <body>

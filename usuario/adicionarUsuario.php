@@ -2,8 +2,8 @@
 // Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
 include "../util.php";
 include "../_cabecalho.php";
-if($_SESSION['sessaoConectado'])
-    header ("Location: ../index.php");
+if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
+    header("Location: ../index.php");
 ?>
 
 <body>
