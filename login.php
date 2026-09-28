@@ -25,6 +25,9 @@ if (isset($_POST['email'])) {
                 você já está cadastrado";
     }
 }
+
+if($_SESSION['sessaoConectado'])
+    header ("Location: index.php");
 ?>
 
 <body>
@@ -42,26 +45,6 @@ if (isset($_POST['email'])) {
                 
             </picture>
         </div>
-
-        <!--<div class="direita-login">
-            <div class="card-login">
-                <h2>Login</h2>
-
-                <form action="login.php" method="POST">
-                    <div class="textfield">
-                        <label for="email">E-mail ou Usuário</label>
-                        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
-                    </div>
-
-                    <div class="textfield">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required autocomplete="current-password">
-                    </div>
-
-                    <button type="submit" class="btn-login">Entrar</button>
-                </form>
-            </div>
-        </div>-->
 
         <div class="container-direita">
             <div class="login-card">

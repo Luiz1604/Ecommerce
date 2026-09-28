@@ -1,5 +1,7 @@
 <?php
     include "../util.php";
+    if($_SESSION['sessaoConectado'])
+        header ("Location: ../index.php");
 
     $conn = conecta();
 
@@ -28,7 +30,7 @@
                 $ext = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
             }
 
-            $caminho = "imagens/usuarios/$id.$ext";
+            $caminho = "../imagens/usuarios/$id.$ext";
 
             if(move_uploaded_file($_FILES["arquivo"]["tmp_name"], $caminho)){
                 $varSQL = "UPDATE usuario
@@ -42,6 +44,18 @@
 
                 $updateImagem->execute();
             }
+    }
+
+    if (ValidaLogin($email, $senha, $nome, $foto, $admin)) {
+        $_SESSION['sessaoConectado'] = true;
+        $_SESSION['sessaoLogin'] = $email;
+        $_SESSION['sessaoNome'] = $nome;
+        $_SESSION['sessaoFoto'] = $foto;
+        $_SESSION['sessaoAdmin'] = $admin;
+
+        header("Location: index.php");
+
+        DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
     }
 
     header("Location: usuario.php");

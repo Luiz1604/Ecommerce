@@ -2,11 +2,11 @@
 // Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
 include "../util.php";
 include "../_cabecalho.php";
+if($_SESSION['sessaoConectado'])
+    header ("Location: ../index.php");
 ?>
 
 <body>
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js" defer></script> <!--alterado-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <main class="main-login">

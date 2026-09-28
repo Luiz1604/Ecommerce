@@ -1,7 +1,13 @@
+<?php
+    $prefixo = file_exists("style.css") ? "" : "../";
+
+    $logo2 = $prefixo."imagens/logo2.png";
+?>
+
 <footer>
         <section id="rodape">
             <div class="final">
-                <img src="imagens/logo2.png" alt="">
+                <img src=<?=$logo2?> alt="">
             </div>
 
             <div class="final">

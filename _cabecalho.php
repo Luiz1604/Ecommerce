@@ -1,28 +1,34 @@
 <?php
 $prefixo = file_exists("style.css") ? "" : "../";
+$estilo = $prefixo."style.css";
+$script = $prefixo."script.js";
+$icone = $prefixo."imagens/favicon.png";
+$logo = $prefixo."imagens/logo.png";
+$home = $prefixo."index.php";
+$MVV = $prefixo."MVV.php";
+
 
 if (isset($_SESSION['sessaoConectado'])) {
 
     $nomeUsuario = $_SESSION['sessaoNome'];
-    $imgUsuario = $_SESSION['sessaoFoto'];
-
-   $fotoPerfil = $prefixo . "imagens/padraoUser.webp";
-
-   if (!empty($imgUsuario)) {
-        if (file_exists($prefixo . $imgUsuario)) {
-            $fotoPerfil = $prefixo . $imgUsuario;
-        } elseif (file_exists($imgUsuario)) {
-            $fotoPerfil = $imgUsuario;
-        }elseif (file_exists("../" . $imgUsuario)) {
-            $fotoPerfil = "../" . $imgUsuario;
-        }
+    if(isset($_SESSION['sessaoFoto'])){
+        $imgUsuario = $_SESSION['sessaoFoto'];
+    } else {
+        $imgUsuario = "imagens/padraoUser.webp";
     }
+
+    
+
+   //$fotoPerfil = $prefixo . "imagens/bannerEletro.jpeg";
+
+
+
 
     $login_logado = "
         <li>
             <a href='{$prefixo}usuario/minhaConta.php'>
                 <span>Minha conta</span>
-                <img src='$fotoPerfil' alt='$nomeUsuario' class='nav-avatar'>
+                <img src='$imgUsuario' alt='$nomeUsuario' class='nav-avatar'>
             </a>
         </li>
         <li>
@@ -66,11 +72,11 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="imagens/favicon.png">
+    <link rel="stylesheet" href=<?=$estilo?>>
+    <link rel="icon" type="image/png" href=<?=$icone?>>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script src="script.js" defer></script>
+    <script src=<?=$script?> defer></script>
     <title>KeyStyle</title>
 </head>
 <div class="fundo-escuro" id="fundoEscuro" onclick="fecharMenu()"></div>
@@ -90,7 +96,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
         <li><a href="#">Sobre Nós</a></li>
         <li><a href="#">Contato</a></li>
         <li><a href="#">Desenvolvedores</a></li>
-        <li><a href="MVV.php">Missão, Visão e Valores</a></li>
+        <li><a href=<?=$MVV?>>Missão, Visão e Valores</a></li>
         <?= $opcoesAdmin ?>
     </ul>
 </aside>
@@ -112,8 +118,8 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
         </div>
 
         <div class="logo-centro">
-            <a href="#">
-                <img src="imagens/logo.png" alt="Logo da Loja">
+            <a href=<?=$home?>>
+                <img src=<?=$logo?> alt="Logo da Loja">
             </a>
         </div>
 
@@ -130,7 +136,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
                 </a>
             </li>
             <li>
-                <a href="index.php" aria-label="Casa">
+                <a href=<?=$home?> aria-label="Casa">
                     <span class="material-symbols-outlined">Home</span>
                 </a>
             </li>
