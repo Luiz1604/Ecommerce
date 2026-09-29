@@ -14,7 +14,7 @@ $padrao = $prefixo."imagens/padraoUser.webp";
 
 
 if (isset($_SESSION['sessaoConectado'])) {
-
+    $imgUsuario;
     $nomeUsuario = $_SESSION['sessaoNome'];
     if(isset($_SESSION['sessaoFoto'])){
         $imgUsuario = $_SESSION['sessaoFoto'];
@@ -31,7 +31,7 @@ if (isset($_SESSION['sessaoConectado'])) {
 
     $login_logado = "
         <li>
-            <a href='{$prefixo}usuario/$minhaConta'>
+            <a href='$minhaConta'>
                 <span>Minha conta</span>
                 <img src='$imgUsuario' alt='$nomeUsuario' class='nav-avatar'>
             </a>
