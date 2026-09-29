@@ -1828,6 +1828,7 @@ h2{
 .btn-voltar{
     width: 100%;
     padding: 12px;
+    margin-top: 20px;
     text-align: center;
     text-decoration: none;
     background-color: #7dbcff;
