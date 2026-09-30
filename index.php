@@ -10,6 +10,9 @@ if (isset($_SESSION['sessaoQtItens'])) {
     $qtdItens = 0;
     $_SESSION["sessaoQtItens"] = $qtdItens;
 }
+
+
+
 ?>
 
 <body>

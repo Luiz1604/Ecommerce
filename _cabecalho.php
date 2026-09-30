@@ -11,7 +11,16 @@ $login = $prefixo."login.php";
 $minhaConta = $prefixo."minhaConta.php";
 $padrao = $prefixo."imagens/padraoUser.webp";
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$paginaAtual = $_SERVER['SCRIPT_FILENAME'];
 
+if (!file_exists($paginaAtual)) {
+    http_response_code(404);
+    include __DIR__ . "/404.php";
+    exit;
+}
 
 if (isset($_SESSION['sessaoConectado'])) {
     $imgUsuario;

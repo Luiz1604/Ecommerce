@@ -4,9 +4,10 @@ include "_cabecalho.php";
 
 $erroLogin = false;
 
+
+
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
     header("Location: index.php");
-
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
@@ -30,7 +31,7 @@ if (isset($_POST['email'])) {
     } else {
         /*echo "Verifique se a senha está correta ou se
                 você já está cadastrado";*/
-                $erroLogin = true;
+        $erroLogin = true;
     }
 }
 
@@ -57,6 +58,8 @@ if (isset($_POST['email'])) {
                 <h2>Login</h2>
 
                 <form action="login.php" method="post" class="form-login <?= $erroLogin ? 'login-erro' : '' ?>">
+
+                <input type="hidden" name="origem" value="login">
 
                     <?php if ($erroLogin): ?>
                         <div class="alerta-erro">
@@ -85,6 +88,8 @@ if (isset($_POST['email'])) {
                     </div>
 
                     <button class="btn"> Entrar </button>
+                    <br>
+                    <hr class="hr-login">
 
                     <p class="link-p">
                         <a href="usuario/adicionarUsuario.php" class="link"> Não tem uma conta</a>

@@ -2,8 +2,14 @@
 // Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
 include "../util.php";
 include "../_cabecalho.php";
-if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
+if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
     header("Location: ../index.php");
+
+$erroSenha = false;
+$erro = $_GET['erro'] ?? false;
+if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
+    $erroSenha = true;
+}
 ?>
 
 <body>
@@ -14,7 +20,23 @@ if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
             <div class="login-card">
                 <h2>Cadastro</h2>
 
-                <form action="insertUsuario.php" method="post" enctype="multipart/form-data">
+                <form action="insertUsuario.php" method="post" enctype="multipart/form-data" class="form-login <?= $erroSenha ? 'login-erro' : '' ?>">
+
+                <input type="hidden" name="origem" value="cadastro">
+
+                    <?php if ($erroSenha): ?>
+                        <div class="alerta-erro">
+                            <span class="material-symbols-outlined">error</span>
+                            <span>As senhas digitadas não coincidem. Tente novamente.</span>
+                        </div>
+                    
+
+                    <?php elseif ($erro === 'email_cadastrado'): ?>
+                        <div class="alerta-erro">
+                            <span class="material-symbols-outlined">error</span>
+                            <span>Este e-mail já está cadastrado. Tente fazer login.</span>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Campo de foto -->
                     <div class="avatar-upload">
@@ -37,8 +59,8 @@ if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
 
                     </div>
                     <small class="imagem-opcional">
-                            Foto opcional (sinta-se à vontade para enviar)
-                        </small>
+                        Foto opcional (sinta-se à vontade para enviar)
+                    </small>
 
                     <label for="nome">Digite seu Nome</label>
                     <div class="input-box">
@@ -56,6 +78,12 @@ if(isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
                         <input type="password" name="senha" id="senha" placeholder="Sua senha" required>
+                    </div>
+
+                    <label for="confirma_senha">Confirme sua senha</label>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Repita a senha" required>
                     </div>
 
                     <input type="hidden" name="admin" value="false">

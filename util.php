@@ -1,21 +1,24 @@
 <?php
 
-session_start();
+// Inicia a sessão com segurança apenas se ainda não foi iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 function conecta($paramStringConexao = "")
 {
   $seu_usuario = "loja5b";
   $seu_banco = "loja5b";
   $sua_senha = "kv03iZ5EWkBUUhI";
-  // string padrao
+
   if ($paramStringConexao == "") {
     $paramStringConexao = "pgsql:host=projetoscti.com.br; port=54432;
         dbname=$seu_banco; user=$seu_usuario; password=$sua_senha";
   }
 
-  try { //tente
+  try {
     $c = new PDO($paramStringConexao);
-  } catch (PDOException $e) { // se der erro ...
+  } catch (PDOException $e) {
     echo ">> Nao conectado ! <br>" .
       "<b>Erro:</b> " . $e->getMessage();
     exit;
@@ -24,6 +27,17 @@ function conecta($paramStringConexao = "")
   return $c;
 }
 
+/* Página 404 para dados/registros inexistentes do Banco */
+function verificaExiste($dado) {
+    if (!$dado || empty($dado)) {
+        http_response_code(404);
+        
+        // Garante a inclusão da página 404 a partir da raiz do projeto
+        include __DIR__ . "/404.php";
+        
+        exit; // Interrompe a execução para não carregar o resto da página
+    }
+}
 function ExecutaSQL($paramConn, $paramSQL)
 {
   // exec eh usado para update, delete, insert

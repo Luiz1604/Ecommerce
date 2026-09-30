@@ -4,11 +4,13 @@
     <?php
 
     include "../util.php";
+    include "../_cabecalho.php";
+
     SaiSeHacker();
 
     $conn = conecta();
 
-    $id = (int) $_GET["id"];
+    $id = $_GET["id"];
 
     $varSQL = "SELECT *
                 FROM produto
@@ -20,38 +22,52 @@
 
     $linha = $select->fetch();
 
-    $id = $linha["id_produto"];
-    $nome = $linha["nome"];
-    $descricao = $linha["descricao"];
-    $valor = $linha["valor_unitario"];
-    $imagem = $linha["imagem"];
+    $id = $linha['id_produto'];
+    $nome = $linha['nome'];
+    $descricao = $linha['descricao'];
+    $valor = $linha['valor_unitario'];
+    $imagem = $linha['imagem'];
 
     ?>
 
-    <form action="updateProduto.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?=$id?>">
-    
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="<?=$nome?>" required><br><br>
+    <div class="container-form">
+        <form action="updateProduto.php" method="post" enctype="multipart/form-data" class="form-usuario">
 
-        <label for="descricao">Descrição</label>
-        <input type="text" name="descricao" id="descricao" value="<?=$descricao?>" required><br><br>
+            <input type="hidden" name="id" value="<?= $id ?>">
 
-        <label for="valor">Valor unitário</label>
-        <input type="number" min="0" step="0.01" name="valor" id="valor" value="<?=$valor?>" required><br><br>
+            <div class="form-grupo">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" name="nome" id="nome" value="<?= $nome ?>" class="form-input">
+            </div>
 
-        <?php
-    
-        if(!empty($imagem) && file_exists($imagem))
-            echo "<img src='$imagem' alt=''><br>";
+            <div class="form-grupo">
+                <label for="descricao" class="form-label">Descrição</label>
+                <input type="text" name="descricao" id="descricao" value="<?= $descricao ?>" class="form-input">
+            </div>
 
-        ?>
+            <div class="form-grupo">
+                <label for="valor" class="form-label">Valor Unitário</label>
+                <input type="number" step="0.01" name="valor" id="valor" value="<?= $valor ?>" class="form-input">
+            </div>
 
-        <label for="arquivo">Adicione uma imagem</label>
-        <input type="text" name="arquivo" id="arquivo"><br><br>
+            <div class="form-grupo">
+                <label for="arquivo" class="form-label">Imagem do Produto</label>
 
-        <input type="submit" value="Alterar">
-    </form>
+                <?php if (!empty($imagem) && file_exists($imagem)): ?>
+                    <div class="preview-imagem">
+                        <img src="<?= $imagem ?>" alt="Foto de <?= $nome ?>" class="img-preview">
+                    </div>
+                <?php endif; ?>
+
+                <input type="file" name="arquivo" id="arquivo" class="form-file">
+            </div>
+
+            <div class="form-grupo">
+                <input type="submit" value="Salvar Alterações" class="btn-submit">
+            </div>
+            <a href="produto.php" class="btn-voltar">voltar</a>
+        </form>
+    </div>
 </body>
 
 </html>
