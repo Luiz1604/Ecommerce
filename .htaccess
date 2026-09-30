@@ -1,5 +1,3 @@
 
-ErrorDocument 404 /Ecommerce/404.php
-
-
-Options -Indexes 
+ErrorDocument 404 /404.php
+Options -Indexes
