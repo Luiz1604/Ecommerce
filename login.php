@@ -84,7 +84,7 @@ if (isset($_POST['email'])) {
                         <label>
                             <input type="checkbox"> Lembrar-me
                         </label>
-                        <a href="" class="link"> Esqueceu a senha? </a>
+                        <a href="esqueci.php" class="link"> Esqueceu a senha? </a>
                     </div>
 
                     <button class="btn"> Entrar </button>

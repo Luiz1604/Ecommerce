@@ -9,7 +9,6 @@ $MVV = $prefixo."MVV.php";
 $produtos = $prefixo."feedProdutos.php";
 $login = $prefixo."login.php";
 $minhaConta = $prefixo."minhaConta.php";
-$padrao = $prefixo."imagens/padraoUser.webp";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -28,7 +27,7 @@ if (isset($_SESSION['sessaoConectado'])) {
     if(isset($_SESSION['sessaoFoto'])){
         $imgUsuario = $_SESSION['sessaoFoto'];
     } else {
-        $imgUsuario = "$padrao";
+        $imgUsuario = "imagens/padraoUser.webp";
     }
 
     
@@ -69,9 +68,9 @@ if (isset($_SESSION['sessaoConectado'])) {
 if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
     $opcoesAdmin = "
-        <li><a href='usuario/usuario.php'>Usuarios</a></li>
-        <li><a href='produto/produto.php'>Produtos</a></li>
-        <li><a href='entrada/entrada.php'>Entradas</a></li>
+        <li><a href=$prefixo.'usuario/usuario.php'>Usuarios</a></li>
+        <li><a href=$prefixo.'produto/produto.php'>Produtos</a></li>
+        <li><a href=$prefixo.'entrada/entrada.php'>Entradas</a></li>
     ";
 } else {
 
@@ -125,10 +124,12 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <input type="text" placeholder="O que você está procurando?">
-                <button type="submit">
-                    <span class="material-symbols-outlined">search</span>
-                </button>
+                <form action="feedProdutos.php" method="POST">
+                    <input type="text" name="procura" placeholder="O que você está procurando?">
+                    <button type="submit">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </form>
             </div>
         </div>
 

@@ -4,12 +4,17 @@
 
     $conn = conecta();
 
+    $filtro = "%".$_POST['procura']."%";
+
     $varSQL = "SELECT *
                 FROM produto
                 WHERE excluido = FALSE
-                ORDER BY id_produto ASC";
+                AND nome ilike :filtro
+                ORDER BY id_produto ASC
+                ";
 
     $select = $conn->prepare($varSQL);
+    $select->bindParam(":filtro", $filtro);
     $select->execute();
 
     $produtos = $select->fetchAll();
