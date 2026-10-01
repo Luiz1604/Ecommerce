@@ -6,7 +6,7 @@ include "_cabecalho.php";
 ?>
 
 <main class="container-404" style="text-align: center; padding: 50px 20px;">
-    <h1 style="font-size: 80px; color: var(--cor-destaque-secundario); margin: 0;">404</h1>
+    <img src="404-error-with-person.svg" class="esquerda-login-image" alt="login animação">
     <h2>Página não encontrada</h2>
     <p>O conteúdo que você está procurando não existe ou foi removido.</p>
     
