@@ -65,7 +65,7 @@ $id = $conn->lastInsertId();
 
 if (isset($_FILES["arquivo"]) && $_FILES['arquivo']['error'] == 0) {
     $ext = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
-    $caminho = "../imagens/usuarios/$id.$ext";
+    $caminho = "imagens/usuarios/$id.$ext";
 
     if (move_uploaded_file($_FILES["arquivo"]["tmp_name"], $caminho)) {
         $varSQL = "UPDATE usuario

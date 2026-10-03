@@ -10,6 +10,8 @@ $produtos = $prefixo."feedProdutos.php";
 $login = $prefixo."login.php";
 $minhaConta = $prefixo."minhaConta.php";
 
+
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -22,10 +24,9 @@ if (!file_exists($paginaAtual)) {
 }
 
 if (isset($_SESSION['sessaoConectado'])) {
-    $imgUsuario;
     $nomeUsuario = $_SESSION['sessaoNome'];
     if(isset($_SESSION['sessaoFoto'])){
-        $imgUsuario = $_SESSION['sessaoFoto'];
+        $imgUsuario = $prefixo.$_SESSION['sessaoFoto'];
     } else {
         $imgUsuario = "imagens/padraoUser.webp";
     }
@@ -68,9 +69,9 @@ if (isset($_SESSION['sessaoConectado'])) {
 if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
     $opcoesAdmin = "
-        <li><a href=$prefixo.'usuario/usuario.php'>Usuarios</a></li>
-        <li><a href=$prefixo.'produto/produto.php'>Produtos</a></li>
-        <li><a href=$prefixo.'entrada/entrada.php'>Entradas</a></li>
+        <li><a href={$prefixo}usuario/usuario.php>Usuarios</a></li>
+        <li><a href={$prefixo}produto/produto.php>Produtos</a></li>
+        <li><a href={$prefixo}entrada/entrada.php>Entradas</a></li>
     ";
 } else {
 
@@ -124,12 +125,14 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="feedProdutos.php" method="POST">
-                    <input type="text" name="procura" placeholder="O que você está procurando?">
+                <form action="feedProdutos.php" method="POST">   
+                <input type="text" name="procura" placeholder="O que você está procurando?">
                     <button type="submit">
                         <span class="material-symbols-outlined">search</span>
-                    </button>
+                    </button>   
+                    
                 </form>
+                
             </div>
         </div>
 
