@@ -4,6 +4,8 @@
 :root{
     --cor-destaque-titulo: #000080;
     --cor-destaque-secundario: #305CDE;
+    --cor-destaque-simples:#2cbcff;
+    --cor-admin:#17e66d;
     --cor-fundo: #F2EEE7;
     --cor-texto: #1E1E1E;
     --cor-menu: white;
@@ -82,7 +84,7 @@ header {
     color: var(--cor-texto);
 }
 
-.caixa-pesquisa {
+div.caixa-pesquisa {
     display: flex;
     align-items: center;
     background-color: #f1f3f5;
@@ -90,32 +92,52 @@ header {
     padding: 8px 16px;
     width: 100%;
     max-width: 280px;
+    text-align: left;
+    box-sizing: border-box;
 }
 
-.caixa-pesquisa input {
+div.caixa-pesquisa > form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.caixa-pesquisa form input {
     border: none;
     background: transparent;
     outline: none;
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     font-size: 0.85rem;
     color: var(--cor-texto);
+    text-align: left;
+    padding: 0;
+    margin: 0;
 }
 
-.caixa-pesquisa button {
+div.caixa-pesquisa form button {
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     color: var(--cor-texto);
     transform-origin: center;
     transition-duration: 0.5s;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0 0 0 8px;
+    line-height: 1;
 }
 
-.caixa-pesquisa button:hover{
+div.caixa-pesquisa form button:hover {
     transform: rotate(90deg);
 }
-
 .logo-centro {
     position: absolute;
     left: 50%;
@@ -810,7 +832,7 @@ hr{
     /* --- CARROSSEL (CORRIGIDO) --- */
 
     .carrossel-container {
-        height: 380px; /* ALTERADO: Aumentado para dar espaço vertical ao texto + imagem */
+        height: 380px; 
         margin: 10px auto;
         border-radius: 0;
     }
@@ -821,42 +843,40 @@ hr{
     }
 
     .carrossel-slides .slide {
-        height: 100%; /* ADICIONADO: Força o slide a ocupar a altura total do container */
+        height: 100%; 
         flex-direction: column;
         justify-content: center;
         padding: 15px;
         text-align: center;
-        box-sizing: border-box; /* ADICIONADO: Impede que o padding estoure a largura */
+        box-sizing: border-box; 
     }
 
     .banner-conteudo {
         max-width: 100%;
         text-align: center;
-        margin-bottom: 10px; /* ALTERADO: Leve redução para otimizar espaço */
+        margin-bottom: 10px; 
     }
 
     .banner-titulo {
-        font-size: 1.2rem; /* ALTERADO: Ajustado para caber sem quebrar em muitas linhas */
+        font-size: 1.2rem; 
     }
 
     .banner-subtitulo {
-        font-size: 0.85rem; /* ALTERADO: Ajustado para o tamanho mobile */
+        font-size: 0.85rem; 
         margin-bottom: 10px;
     }
 
     .banner-imagem {
         justify-content: center;
-        width: 100%; /* ADICIONADO: Garante alinhamento central */
+        width: 100%; 
     }
 
     .banner-imagem img {
-        max-height: 130px; /* ALTERADO: Limita a altura da imagem para caber no banner */
-        max-width: 100%; /* ADICIONADO: Impede que a imagem ultrapasse as laterais */
-        object-fit: contain; /* ADICIONADO: Redimensiona proporcionalmente sem cortar */
+        max-height: 130px; 
+        max-width: 100%; 
+        object-fit: contain; 
     }
-
-    /* --- FIM DO CARROSSEL --- */
-
+/**/
     .subtitulo {
         font-size: 28px;
         margin-top: 3vh;
@@ -1926,6 +1946,362 @@ h2{
     60% { transform: translateX(-4px); }
     80% { transform: translateX(4px); }
     100% { transform: translateX(0); }
+}
+
+/*pagina de minha conta*/
+
+.caixa-conteudo {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cartao-perfil,
+.cartao-edicao {
+    background-color: var(--cor-fundo);
+    border-radius: 16px;
+    max-width: 900px;
+    margin: 40px auto;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cartao-edicao {
+    max-width: 600px;
+    padding: 30px;
+}
+
+.banner-perfil {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.5);
+    transform: scale(1.1);
+}
+
+.cabecalho-perfil {
+    position: relative;
+    padding: 0 30px 15px 30px;
+    margin-top: -75px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.espaco-foto {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid var(--cor-destaque-titulo);
+    background-color: var(--cor-destaque-secundario);
+    display: inline-block;
+}
+
+.espaco-foto img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.botao-foto-lapis {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--cor-destaque-secundario);
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.botao-foto-lapis:hover {
+    background-color: var(--cor-destaque-secundario);
+}
+
+.dados-usuario-cabecalho {
+    margin-top: 12px;
+}
+
+.dados-usuario-cabecalho h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.etiqueta-tipo {
+    display: inline-block;
+    background-color: #000080;
+    color: var(--cor-fundo);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.etiqueta-tipo.admin {
+    background-color: #1b3a24;
+    color: #2ecc71;
+    border-color: #27ae60;
+}
+
+.corpo-perfil {
+    padding: 20px 30px 30px 30px;
+}
+
+.grade-informacoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.caixa-info {
+    background-color: #90999e23;
+    /*border: 1px solid var(--cor-icone);*/
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icone-info {
+    background-color: #000080;
+    color: var(--cor-fundo);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.texto-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.texto-info span {
+    font-size: 0.7rem;
+    color: var(--cor-texto);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+}
+
+.texto-info strong {
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.botao-editar-perfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background-color: var(--cor-destaque-secundario);
+    color: var(--cor-fundo);
+    padding: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.botao-editar-perfil:hover {
+    background-color: #000080;
+}
+
+@media (max-width: 600px) {
+    .grade-informacoes {
+        grid-template-columns: 1fr;
+    }
+
+    .grupo-botoes {
+        flex-direction: column;
+    }
+}
+
+/*pagina de Editar perfil*/
+
+.caixa-conteudo {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cartao-edicao {
+    background-color: var(--cor-fundo);
+    border-radius: 16px;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: var(--cor-texto);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cabecalho-edicao {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.cabecalho-edicao h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cabecalho-edicao h2 i {
+    color: var(--cor-texto);
+}
+
+.subtitulo-edicao {
+    color: var(--cor-texto);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.previa-foto {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 0 auto 25px auto;
+    overflow: hidden;
+    border: 3px solid var(--cor-destaque-titulo);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.previa-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.campo-formulario {
+    margin-bottom: 20px;
+}
+
+.campo-formulario label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--cor-texto);
+    font-size: 0.9rem;
+}
+
+.campo-formulario label i {
+    color: var(--cor-texto);
+}
+
+.campo-formulario input[type="text"],
+.campo-formulario input[type="file"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #90999e23;
+    color: var(--cor-texto);
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.campo-formulario input[type="text"]:focus {
+    outline: none;
+    border-color: var(--cor-destaque-titulo);
+}
+
+.campo-formulario input[type="file"] {
+    cursor: pointer;
+}
+
+.campo-formulario input[type="file"]::-webkit-file-upload-button {
+    background-color: #000080;
+    color: var(--cor-fundo);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: background-color 0.2s;
+}
+
+.campo-formulario input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--cor-destaque-secundario);
+}
+
+.grupo-botoes {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.botao-salvar,
+.botao-cancelar {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.botao-salvar {
+    background-color: var(--cor-destaque-secundario);
+    color: var(--cor-fundo);
+    border: none;
+    cursor: pointer;
+}
+
+.botao-salvar:hover {
+    background-color: #000080;
+}
+
+.botao-cancelar {
+    background-color: #90999e23;
+    color: var(--cor-texto);
+}
+
+.botao-cancelar:hover {
+    background-color: rgba(144, 153, 158, 0.35);
+}
+
+@media (max-width: 600px) {
+    .grupo-botoes {
+        flex-direction: column;
+    }
 }
 
 /*Página de Missão, visão e valores*?/

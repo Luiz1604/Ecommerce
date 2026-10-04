@@ -31,13 +31,6 @@ if (isset($_SESSION['sessaoConectado'])) {
         $imgUsuario = "imagens/padraoUser.webp";
     }
 
-    
-
-   //$fotoPerfil = $prefixo . "imagens/bannerEletro.jpeg";
-
-
-
-
     $login_logado = "
         <li>
             <a href='$minhaConta'>

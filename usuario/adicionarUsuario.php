@@ -71,7 +71,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
                     <label for="email">Digite seu e-mail</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="email" name="email" id="email" placeholder="seu@email.com" required>
+                        <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" oninput="mascaraEmail(this)" required>
                     </div>
 
                     <label for="senha">Digite sua senha</label>
@@ -91,7 +91,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
                     <label for="telefone">Digite seu telefone (opcional)</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-phone"></i></span>
-                        <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000">
+                        <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000" oninput="mascaraTelefone(this)" maxlength="15">
                     </div>
 
                     <button type="submit" class="btn">Cadastrar</button>

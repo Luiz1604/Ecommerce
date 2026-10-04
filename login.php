@@ -71,7 +71,7 @@ if (isset($_POST['email'])) {
                     <label for="email">E-mail</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" id="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
+                        <input type="text" id="email" placeholder="seuemail@exemplo.com" oninput="mascaraEmail(this)"  value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
                     </div>
 
                     <label for="senha">Senha</label>

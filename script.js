@@ -57,3 +57,40 @@ function previewImagem(event) {
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+function mascaraEmail(input) {
+    // Remove espaços em branco e força letras minúsculas
+    let valor = input.value.replace(/\s+/g, "").toLowerCase();
+    
+    // Remove caracteres que não são permitidos em e-mails
+    valor = valor.replace(/[^a-z0-9@._-]/g, "");
+    
+    // Evita múltiplos símbolos '@' consecutivos ou duplicados
+    const partes = valor.split("@");
+    if (partes.length > 2) {
+        valor = partes[0] + "@" + partes.slice(1).join("");
+    }
+    
+    input.value = valor;
+}
+
+// Máscara para Telefone / Celular
+function mascaraTelefone(input) {
+    let valor = input.value.replace(/\D/g, ""); // Remove tudo que não for dígito
+    
+    // Limita a 11 dígitos (DDD + 9 dígitos)
+    valor = valor.substring(0, 11);
+
+    if (valor.length > 10) {
+        // Formato Celular: (14) 99999-9999
+        valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+    } else if (valor.length > 6) {
+        // Formato Fixo / Telefone: (14) 9999-9999
+        valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+    } else if (valor.length > 2) {
+        // Formato DDD: (14) ...
+        valor = valor.replace(/^(\d{2})(\d{0,5})$/, "($1) $2");
+    }
+    
+    input.value = valor;
+}
