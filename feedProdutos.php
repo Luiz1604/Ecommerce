@@ -4,7 +4,7 @@
 
     $conn = conecta();
 
-    $filtro = "%".$_POST['procura']."%";
+    $filtro = "%" . ($_POST['procura'] ?? "") . "%";
 
     $varSQL = "SELECT *
                 FROM produto

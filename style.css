@@ -1606,7 +1606,7 @@ h2{
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #030096;
+  background-color: var(--cor-destaque-titulo);
   color: #ffffff;
   font-weight: 700;
   font-size: 1rem;
@@ -1614,15 +1614,40 @@ h2{
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  text-transform: uppercase;
   transition: background-color 0.2s ease, transform 0.1s ease;
+  transition-duration: 1s;
+}
+
+.btn-carrinho{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--cor-destaque-secundario);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition-duration: 1s;
 }
 
 .btn-reservar:hover {
-  background-color: #020068;
+    box-shadow: 0 0px 20px var(--cor-destaque-titulo);
 }
 
 .btn-reservar:active {
+  transform: scale(0.98);
+}
+
+.btn-carrinho:hover {
+    box-shadow: 0 0px 20px var(--cor-destaque-secundario);
+}
+
+.btn-carrinho:active {
   transform: scale(0.98);
 }
 
@@ -1662,7 +1687,7 @@ h2{
 
 
 .tabela-usuarios th {
-    background-color: #42607d;
+    background-color: var(--cor-destaque-titulo);
     color: #ffffff;
     padding: 12px 15px;
     text-align: left;
@@ -1712,7 +1737,7 @@ h2{
 }
 
 .btn-alterar {
-    background-color: #007bff;
+    background-color: var(--cor-destaque-secundario);
     color: #ffffff;
 }
 

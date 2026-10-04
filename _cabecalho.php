@@ -9,7 +9,7 @@ $MVV = $prefixo."MVV.php";
 $produtos = $prefixo."feedProdutos.php";
 $login = $prefixo."login.php";
 $minhaConta = $prefixo."minhaConta.php";
-
+$carrinho = $prefixo."carrinho.php";
 
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -145,7 +145,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
         <ul class="menu-direita">
             <?= $login_logado ?>
             <li>
-                <a href="#" aria-label="Carrinho de compras">
+                <a href=<?=$carrinho?> aria-label="Carrinho de compras">
                     <span class="material-symbols-outlined">shopping_cart</span>
                 </a>
             </li>
