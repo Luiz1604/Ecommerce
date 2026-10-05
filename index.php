@@ -23,7 +23,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                         <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="imagens/Hands - Procrastinating.png" alt="Colares da KeyStyle">
+                        <img src="Review_Animation.svg" alt="Colares da KeyStyle">
                     </div>
                 </div>
                 <div class="slide">
@@ -33,7 +33,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                         <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
                     </div>->
                     <div class="banner-imagem">
-                        <img src="imagens/Hands - Phone.png" alt="Colares da KeyStyle">
+                        <img src="Shopping bag.svg" alt="Colares da KeyStyle">
                     </div>
                 </div>
                 <div class="slide">
@@ -46,14 +46,25 @@ if (isset($_SESSION['sessaoQtItens'])) {
                         <img src="imagens/Hands - Show.png" alt="Mão a segurar o planeta Terra">
                     </div>
                 </div>
+
+                <div class="slide">
+                    <div class="banner-conteudo">
+                        <h2 class="banner-titulo">VENHA NOS VISITAR</h2>
+                        <p class="banner-subtitulo">Garanta seus produtos exclusivos durante a nossa Semana do colégio.</p>
+                        <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
+                    </div>
+                    <div class="banner-imagem">
+                        <img src="Walking.svg" alt="Mão a segurar o planeta Terra">
+                    </div>
+                </div>
                 <div class="slide">
                     <div class="banner-conteudo">
                         <h2 class="banner-titulo">ENCONTRE O SEU FAVORITO</h2>
                         <p class="banner-subtitulo">Navegue pelas nossas coleções e descubra peças altamente recomendadas.</p>
-                        <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
+                        <a href="adicionarUsuario.php" class="banner-btn">CRIAR CONTA</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="imagens/Allura - Online Searching.png" alt="Ilustração de pesquisa online com avaliações e estrelas">
+                        <img src="Login Character Animation.svg" alt="Ilustração de pesquisa online com avaliações e estrelas">
                     </div>
                 </div>
             </div>
@@ -70,6 +81,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                 <span class="ponto" onclick="irParaSlide(1)"></span>
                 <span class="ponto" onclick="irParaSlide(2)"></span>
                 <span class="ponto" onclick="irParaSlide(3)"></span>
+                <span class="ponto" onclick="irParaSlide(4)"></span>
             </div>
 
         </section>
