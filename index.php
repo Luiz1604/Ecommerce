@@ -43,7 +43,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                         <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="imagens/Hands - Show.png" alt="Mão a segurar o planeta Terra">
+                        <img src="NwfL8ZQn42.svg" alt="Mão a segurar o planeta Terra">
                     </div>
                 </div>
 
