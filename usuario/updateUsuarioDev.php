@@ -1,23 +1,30 @@
 <?php
 
     include "../util.php";
+    SaiSeHacker();
 
     $conn = conecta();
 
-    $email = $_SESSION['sessaoLogin'];
+    $id = $_POST['id'];
     $nome = $_POST['nome'];
+    $email = $_POST['email'];
     $telefone = $_POST['telefone'];
+    $admin = $_POST['admin'];
 
     $varSQL = "UPDATE usuario
         SET nome = :nome,
-        telefone = :telefone
-        WHERE email = :email";
+        email = :email,
+        telefone = :telefone,
+        admin = :admin
+        WHERE id_usuario = :id";
         
     $update = $conn->prepare($varSQL);
 
     $update->bindParam(":nome", $nome);
-    $update->bindParam(":telefone", $telefone);
     $update->bindParam(":email", $email);
+    $update->bindParam(":telefone", $telefone);
+    $update->bindParam(":admin", $admin);
+    $update->bindParam(":id", $id);
 
     if ($update->execute()) {
         if(isset($_FILES['arquivo']) &&
@@ -39,12 +46,9 @@
 
                 $_SESSION['sessaoFoto'] = $caminho;
          }
-        } 
+        }   
     }
-
-    $_SESSION['sessaoNome'] = $nome;
-    $_SESSION['sessaoTel'] = $telefone;
     
-    header("Location: /index.php");
+    header("Location: usuario.php");
 
 ?>

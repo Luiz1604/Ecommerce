@@ -25,20 +25,20 @@
                 $ext = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
             }
 
-            $caminho = "imagens/produtos/$id.$ext";
+            $caminho = salvaUploadProdutos($_FILES, "arquivo");
 
-            if(move_uploaded_file($_FILES["arquivo"]["tmp_name"], $caminho)){
-                $varSQL = "UPDATE produto
+         if ($caminho != ""){
+            $varSQL = "UPDATE produto
                         SET imagem = :imagem
                         WHERE id_produto = :id";
-                        
+
                 $updateImagem = $conn->prepare($varSQL);
 
                 $updateImagem->bindParam(":imagem", $caminho);
                 $updateImagem->bindParam(":id", $id);
 
                 $updateImagem->execute();
-            }
+         }
     }
 
     header("Location: produto.php");

@@ -10,6 +10,8 @@ $erro = $_GET['erro'] ?? false;
 if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
     $erroSenha = true;
 }
+
+$seguranca = "readonly";
 ?>
 
 <body>
@@ -85,8 +87,6 @@ if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
                         <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Repita a senha" required>
                     </div>
-
-                    <input type="hidden" name="admin" value="false">
 
                     <label for="telefone">Digite seu telefone (opcional)</label>
                     <div class="input-box">

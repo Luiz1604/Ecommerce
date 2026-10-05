@@ -43,7 +43,7 @@
                     $email = $linha['email'];
                     $telefone = $linha['telefone'];
                     $admin = $linha['admin'];
-                    $imagem = $linha['imagem'];
+                    $imagem = "../".$linha['imagem'];
                     ?>
                     <tr>
                         <td><?= $id ?></td>
@@ -54,7 +54,7 @@
                         
                         <td class="coluna-imagem">
                             <?php
-                            if (!empty($imagem) && file_exists($imagem))
+                            if (!empty($linha['imagem']) && is_file($imagem))
                                 
                                 echo "<img src='$imagem' class='img-usuario'>";
                             else

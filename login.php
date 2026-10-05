@@ -16,13 +16,15 @@ if (isset($_POST['email'])) {
     $nome = "";
     $foto = "";
     $admin = "";
+    $telefone = "";
 
-    if (ValidaLogin($email, $senha, $nome, $foto, $admin)) {
+    if (ValidaLogin($email, $senha, $nome, $foto, $admin, $telefone)) {
         $_SESSION['sessaoConectado'] = true;
         $_SESSION['sessaoLogin'] = $email;
         $_SESSION['sessaoNome'] = $nome;
         $_SESSION['sessaoFoto'] = $foto;
         $_SESSION['sessaoAdmin'] = $admin;
+        $_SESSION['sessaoTel'] = $telefone;
 
         header("Location: index.php");
 

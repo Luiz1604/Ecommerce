@@ -64,31 +64,33 @@ try {
 $id = $conn->lastInsertId();
 
 if (isset($_FILES["arquivo"]) && $_FILES['arquivo']['error'] == 0) {
-    $ext = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
-    $caminho = "imagens/usuarios/$id.$ext";
+    $caminho = salvaUploadUsuarios($_FILES, "arquivo");
 
-    if (move_uploaded_file($_FILES["arquivo"]["tmp_name"], $caminho)) {
-        $varSQL = "UPDATE usuario
-                    SET imagem = :imagem
-                    WHERE id_usuario = :id";
+         if ($caminho != ""){
+            $varSQL = "UPDATE usuario
+                        SET imagem = :imagem
+                        WHERE email = :email";
 
-        $updateImagem = $conn->prepare($varSQL);
-        $updateImagem->bindParam(":imagem", $caminho);
-        $updateImagem->bindParam(":id", $id);
-        $updateImagem->execute();
+                $updateImagem = $conn->prepare($varSQL);
 
-        $foto = $caminho;
-    }
+                $updateImagem->bindParam(":imagem", $caminho);
+                $updateImagem->bindParam(":email", $email);
+
+                $updateImagem->execute();
+
+                $_SESSION['sessaoFoto'] = $caminho;
+         }
 }
 
 $admin = false;
 
-if (ValidaLogin($email, $senha, $nome, $foto, $admin)) {
+if (ValidaLogin($email, $senha, $nome, $foto, $admin, $telefone)) {
     $_SESSION['sessaoConectado'] = true;
     $_SESSION['sessaoLogin'] = $email;
     $_SESSION['sessaoNome'] = $nome;
     $_SESSION['sessaoFoto'] = $foto;
     $_SESSION['sessaoAdmin'] = $admin;
+    $_SESSION['sessaoTel'] = $telefone;
 
     header("Location: index.php");
 

@@ -26,7 +26,7 @@ if (!file_exists($paginaAtual)) {
 if (isset($_SESSION['sessaoConectado'])) {
     $nomeUsuario = $_SESSION['sessaoNome'];
     if(isset($_SESSION['sessaoFoto'])){
-        $imgUsuario = $prefixo.$_SESSION['sessaoFoto'];
+        $imgUsuario = $_SESSION['sessaoFoto'];
     } else {
         $imgUsuario = "imagens/padraoUser.webp";
     }

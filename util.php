@@ -118,10 +118,11 @@ function ValidaLogin(
   $paramSenha,
   &$paramNome,
   &$paramFoto,
-  &$paramAdmin
+  &$paramAdmin,
+  &$paramTel
 ) {
   $conn = conecta();
-  $varSQL = " select nome,senha,admin,imagem from usuario 
+  $varSQL = " select nome,senha,telefone,admin,imagem from usuario 
                where (not excluido) and email = :paramLogin ";
   $select = $conn->prepare($varSQL);
   $select->bindParam(':paramLogin', $paramLogin);
@@ -131,6 +132,7 @@ function ValidaLogin(
   $paramAdmin = false;
   $paramNome = "";
   $paramFoto = "";
+  $paramTel = "";
   $autenticado = false;
 
   if ($linha) {
@@ -139,6 +141,7 @@ function ValidaLogin(
       $paramAdmin = $linha['admin'];
       $paramNome = $linha['nome'];
       $paramFoto = $linha['imagem'];
+      $paramTel = $linha['telefone'];
     }
   }
 
@@ -230,13 +233,34 @@ function DefineCookie($paramNome, $paramValor, $paramMinutos)
 
   //Função de salvar imagem
 
-function salvaUpload2($paramFiles,$paramCampo)
+function salvaUploadProdutos($paramFiles,$paramCampo)
   {   
     // obtem a extensão do arquivo
     $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
     // cria o novo nome do arquivo
     $novoNome = uniqid('', true);
-    $arquivoNovo = "/imagens/$novoNome.$ext";
+    $arquivoNovo = "/imagens/produto/$novoNome.$ext";
+    
+    try {
+        if ( move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], 
+            Raiz().$arquivoNovo) ) {
+            echo "<br>Arquivo $arquivoNovo criado com sucesso.\n";
+        } else { echo "erro"; }
+    } catch (PDOException $e) { // se der erro ...
+        $arquivoNovo = "";
+        echo "Erro, verifique o arquivo se a pasta imagens existe<br>
+              (Motivo ".$e->getMessage().")";
+    }   
+    return $arquivoNovo;  
+  }
+
+function salvaUploadUsuarios($paramFiles,$paramCampo)
+  {   
+    // obtem a extensão do arquivo
+    $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
+    // cria o novo nome do arquivo
+    $novoNome = uniqid('', true);
+    $arquivoNovo = "/imagens/usuarios/$novoNome.$ext";
     
     try {
         if ( move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], 

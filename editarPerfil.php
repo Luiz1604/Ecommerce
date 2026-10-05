@@ -9,7 +9,7 @@ if (!isset($_SESSION['sessaoConectado']) || $_SESSION['sessaoConectado'] !== tru
 }
 
 $nome     = $_SESSION['sessaoNome'] ?? "";
-$telefone = $_SESSION['sessaoTelefone'] ?? "";
+$telefone = $_SESSION['sessaoTel'] ?? "";
 $foto     = !empty($_SESSION['sessaoFoto']) ? $_SESSION['sessaoFoto'] : "imagens/default-avatar.png";
 ?>
 
@@ -21,7 +21,7 @@ $foto     = !empty($_SESSION['sessaoFoto']) ? $_SESSION['sessaoFoto'] : "imagens
                 <p class="subtitulo-edicao">Aqui você pode alterar as suas informações pessoais</p>
             </div>
 
-            <form action="updateUsuario.php" method="POST" enctype="multipart/form-data">
+            <form action="usuario/updateUsuario.php" method="POST" enctype="multipart/form-data">
                 <div class="previa-foto">
                     <img id="imagemPrevia" src="<?= $foto ?>" alt="Foto de perfil">
                 </div>
@@ -41,7 +41,7 @@ $foto     = !empty($_SESSION['sessaoFoto']) ? $_SESSION['sessaoFoto'] : "imagens
 
                 <div class="campo-formulario">
                     <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone</label>
-                    <input type="text" name="telefone" id="telefone" placeholder="(00) 00000-0000" oninput="mascaraTelefone(this)" maxlength="15" value="<?= htmlspecialchars($telefone) ?>">
+                    <input type="text" name="telefone" id="telefone"  oninput="mascaraTelefone(this)" maxlength="15" value="<?=$telefone ?>">
                 </div>
 
                 <div class="grupo-botoes">
