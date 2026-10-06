@@ -113,9 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!btnToggle || !container) return;
 
-    // =========================================================
     // 1. DEFINIÇÃO DO TEMA INICIAL
-    // =========================================================
+
 
     const temaSalvo = localStorage.getItem("tema_preferido");
     const prefereEscuro =
@@ -126,9 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     htmlElement.setAttribute("data-theme", temaInicial);
 
-    // =========================================================
     // 2. CARREGA A ANIMAÇÃO
-    // =========================================================
 
     const prefixo = window.prefixoSite || "";
 
@@ -140,9 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         path: `${prefixo}theme-toggle3.json`
     });
 
-    // =========================================================
     // 3. FRAMES IMPORTANTES DA ANIMAÇÃO
-    // =========================================================
 
     /*
         Pela estrutura do JSON:
@@ -158,9 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const FRAME_DIA = 30;
     const FRAME_NOITE = 115;
 
-    // =========================================================
     // 4. POSICIONA O BOTÃO NO ESTADO CORRETO AO CARREGAR
-    // =========================================================
+
 
     function fixarQuadro() {
 
@@ -179,10 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     anim.addEventListener("DOMLoaded", fixarQuadro);
     anim.addEventListener("data_ready", fixarQuadro);
 
-    // =========================================================
     // 5. CONTROLE DA ANIMAÇÃO MANUAL
-    // =========================================================
-
     let executando = false;
     let animFrameId = null;
 
@@ -241,10 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(renderizar);
     }
 
-    // =========================================================
     // 6. CLIQUE DO BOTÃO
-    // =========================================================
-
     btnToggle.addEventListener("click", () => {
 
         if (executando || !anim.totalFrames) {
@@ -274,9 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const duracao = 1000;
 
-        // =====================================================
         // DIA → NOITE
-        // =====================================================
 
         if (novoTema === "dark") {
 
@@ -291,10 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        // =====================================================
         // NOITE → DIA
-        // =====================================================
-
         else {
 
             animarManual(
