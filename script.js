@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderer: "svg",
         loop: false,
         autoplay: false,
-        path: `${prefixo}theme-toggle3.json`
+        path: `${prefixo}theme-toggle2.json`
     });
 
     // 3. FRAMES IMPORTANTES DA ANIMAÇÃO

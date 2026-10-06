@@ -60,7 +60,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                 <div class="slide">
                     <div class="banner-conteudo">
                         <h2 class="banner-titulo">ENCONTRE O SEU FAVORITO</h2>
-                        <p class="banner-subtitulo">Navegue pelas nossas coleções e descubra peças altamente recomendadas.</p>
+                        <p class="banner-subtitulo">Navegue pelas nossas coleções e descubra peças que te representam.</p>
                         <a href="adicionarUsuario.php" class="banner-btn">CRIAR CONTA</a>
                     </div>
                     <div class="banner-imagem">
@@ -170,9 +170,6 @@ if (isset($_SESSION['sessaoQtItens'])) {
                     <p class="preco-produto">R$ 19,90</p>
                     <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
                 </div>
-
-            </div>
-
             </div>
         </section>
 

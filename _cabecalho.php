@@ -86,6 +86,9 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     
+    <script>
+        window.prefixoSite ="<?= $prefixo ?>";
+    </script>
     
     <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>

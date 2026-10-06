@@ -5,7 +5,14 @@
     $conn = conecta();
 
     //descobre a sessão do usuário atravez do email
-    $email = $_SESSION['sessaoLogin'];
+    if(isset($_SESSION['sessaoLogin']))
+    {
+        $email = $_SESSION['sessaoLogin'];
+    }
+    else
+    {
+        
+    }
 
     $varSQL = "SELECT id_usuario
                     FROM usuario
@@ -15,7 +22,8 @@
     $select->bindParam(":email", $email);
     $select->execute();
 
-    $usuario = $select->fetch();                                  
+    $usuario = $select->fetch();    
+                                  
     //descobre a compra que está funcionando no carrinho atravez do id_usuario
     $idUsuario = $usuario['id_usuario'];
     $sessao = session_id();
