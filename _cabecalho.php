@@ -1,15 +1,15 @@
 <?php
 $prefixo = file_exists("style.css") ? "" : "../";
-$estilo = $prefixo."style.css";
-$script = $prefixo."script.js";
-$icone = $prefixo."imagens/favicon.png";
-$logo = $prefixo."imagens/logo.png";
-$home = $prefixo."index.php";
-$MVV = $prefixo."MVV.php";
-$produtos = $prefixo."feedProdutos.php";
-$login = $prefixo."login.php";
-$minhaConta = $prefixo."minhaConta.php";
-$carrinho = $prefixo."carrinho.php";
+$estilo = $prefixo . "style.css";
+$script = $prefixo . "script.js";
+$icone = $prefixo . "imagens/favicon.png";
+$logo = $prefixo . "imagens/logo.png";
+$home = $prefixo . "index.php";
+$MVV = $prefixo . "MVV.php";
+$produtos = $prefixo . "feedProdutos.php";
+$login = $prefixo . "login.php";
+$minhaConta = $prefixo . "minhaConta.php";
+$carrinho = $prefixo . "carrinho.php";
 
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -25,7 +25,7 @@ if (!file_exists($paginaAtual)) {
 
 if (isset($_SESSION['sessaoConectado'])) {
     $nomeUsuario = $_SESSION['sessaoNome'];
-    if(isset($_SESSION['sessaoFoto'])){
+    if (isset($_SESSION['sessaoFoto'])) {
         $imgUsuario = $_SESSION['sessaoFoto'];
     } else {
         $imgUsuario = "imagens/padraoUser.webp";
@@ -79,12 +79,16 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=<?=$estilo?>>
-    <link rel="icon" type="image/png" href=<?=$icone?>>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src=<?=$script?> defer></script>
+    <link rel="stylesheet" href=<?= $estilo ?>>
+    <link rel="icon" type="image/png" href=<?= $icone ?>>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script>
+        window.prefixoSite = "<?= $prefixo ?>";
+    </script>
+    <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>
 </head>
 <div class="fundo-escuro" id="fundoEscuro" onclick="fecharMenu()"></div>
@@ -98,13 +102,13 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     </div>
 
     <ul class="links-menu-lateral">
-        <li><a href=<?=$produtos?>>Todos os produtos</a></li>
+        <li><a href=<?= $produtos ?>>Todos os produtos</a></li>
         <li><a href="#">Colares</a></li>
         <li><a href="#">Chaveiros</a></li>
         <li><a href="#">Sobre Nós</a></li>
         <li><a href="#">Contato</a></li>
         <li><a href="#">Desenvolvedores</a></li>
-        <li><a href=<?=$MVV?>>Missão, Visão e Valores</a></li>
+        <li><a href=<?= $MVV ?>>Missão, Visão e Valores</a></li>
         <?= $opcoesAdmin ?>
     </ul>
 </aside>
@@ -118,32 +122,39 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="feedProdutos.php" method="POST">   
-                <input type="text" name="procura" placeholder="O que você está procurando?">
+                <form action="feedProdutos.php" method="POST">
+                    <input type="text" name="procura" placeholder="O que você está procurando?">
                     <button type="submit">
                         <span class="material-symbols-outlined">search</span>
-                    </button>   
-                    
+                    </button>
+
                 </form>
-                
+
             </div>
         </div>
 
         <div class="logo-centro">
-            <a href=<?=$home?>>
-                <img src=<?=$logo?> alt="Logo da Loja">
+            <a href=<?= $home ?>>
+                <img src=<?= $logo ?> alt="Logo da Loja">
             </a>
         </div>
 
         <ul class="menu-direita">
             <?= $login_logado ?>
+
             <li>
-                <a href=<?=$carrinho?> aria-label="Carrinho de compras">
+                <button type="button" id="btn-tema-toggle" class="btn-toggle-tema" aria-label="Alternar Tema">
+                    <div id="lottie-container" style="width: 60px; height: 60px; pointer-events: none;"></div>
+                </button>
+            </li>
+
+            <li>
+                <a href=<?= $carrinho ?> aria-label="Carrinho de compras">
                     <span class="material-symbols-outlined">shopping_cart</span>
                 </a>
             </li>
             <li>
-                <a href=<?=$home?> aria-label="Casa">
+                <a href=<?= $home ?> aria-label="Casa">
                     <span class="material-symbols-outlined">Home</span>
                 </a>
             </li>

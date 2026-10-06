@@ -102,3 +102,209 @@ function mascaraTelefone(input) {
     
     input.value = valor;
 }
+
+// animação de botao thema dark
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnToggle = document.getElementById("btn-tema-toggle");
+    const container = document.getElementById("lottie-container");
+    const htmlElement = document.documentElement;
+
+    if (!btnToggle || !container) return;
+
+    // =========================================================
+    // 1. DEFINIÇÃO DO TEMA INICIAL
+    // =========================================================
+
+    const temaSalvo = localStorage.getItem("tema_preferido");
+    const prefereEscuro =
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const temaInicial =
+        temaSalvo || (prefereEscuro ? "dark" : "light");
+
+    htmlElement.setAttribute("data-theme", temaInicial);
+
+    // =========================================================
+    // 2. CARREGA A ANIMAÇÃO
+    // =========================================================
+
+    const prefixo = window.prefixoSite || "";
+
+    const anim = lottie.loadAnimation({
+        container: container,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: `${prefixo}theme-toggle3.json`
+    });
+
+    // =========================================================
+    // 3. FRAMES IMPORTANTES DA ANIMAÇÃO
+    // =========================================================
+
+    /*
+        Pela estrutura do JSON:
+
+        30  = estado claro
+        115 = estado escuro
+
+        A animação entre eles é:
+        30 → 115 = Dia → Noite
+        115 → 30 = Noite → Dia
+    */
+
+    const FRAME_DIA = 30;
+    const FRAME_NOITE = 115;
+
+    // =========================================================
+    // 4. POSICIONA O BOTÃO NO ESTADO CORRETO AO CARREGAR
+    // =========================================================
+
+    function fixarQuadro() {
+
+        if (!anim.totalFrames) return;
+
+        const tema =
+            htmlElement.getAttribute("data-theme");
+
+        if (tema === "dark") {
+            anim.goToAndStop(FRAME_NOITE, true);
+        } else {
+            anim.goToAndStop(FRAME_DIA, true);
+        }
+    }
+
+    anim.addEventListener("DOMLoaded", fixarQuadro);
+    anim.addEventListener("data_ready", fixarQuadro);
+
+    // =========================================================
+    // 5. CONTROLE DA ANIMAÇÃO MANUAL
+    // =========================================================
+
+    let executando = false;
+    let animFrameId = null;
+
+    function animarManual(
+        frameInicio,
+        frameFim,
+        duracaoMs,
+        callbackConclusao
+    ) {
+
+        if (animFrameId) {
+            cancelAnimationFrame(animFrameId);
+        }
+
+        const tempoInicio = performance.now();
+
+        function renderizar(tempoAtual) {
+
+            const decorrido =
+                tempoAtual - tempoInicio;
+
+            let progresso =
+                decorrido / duracaoMs;
+
+            if (progresso >= 1) {
+                progresso = 1;
+            }
+
+            const frameAtual =
+                frameInicio +
+                (frameFim - frameInicio) *
+                progresso;
+
+            anim.goToAndStop(frameAtual, true);
+
+            if (progresso < 1) {
+
+                animFrameId =
+                    requestAnimationFrame(renderizar);
+
+            } else {
+
+                // Garante que o último frame
+                // seja exatamente o estado desejado
+                anim.goToAndStop(frameFim, true);
+
+                animFrameId = null;
+
+                if (callbackConclusao) {
+                    callbackConclusao();
+                }
+            }
+        }
+
+        animFrameId =
+            requestAnimationFrame(renderizar);
+    }
+
+    // =========================================================
+    // 6. CLIQUE DO BOTÃO
+    // =========================================================
+
+    btnToggle.addEventListener("click", () => {
+
+        if (executando || !anim.totalFrames) {
+            return;
+        }
+
+        executando = true;
+
+        const temaAtual =
+            htmlElement.getAttribute("data-theme");
+
+        const novoTema =
+            temaAtual === "dark"
+                ? "light"
+                : "dark";
+
+        // Muda o tema da página imediatamente
+        htmlElement.setAttribute(
+            "data-theme",
+            novoTema
+        );
+
+        localStorage.setItem(
+            "tema_preferido",
+            novoTema
+        );
+
+        const duracao = 1000;
+
+        // =====================================================
+        // DIA → NOITE
+        // =====================================================
+
+        if (novoTema === "dark") {
+
+            animarManual(
+                FRAME_DIA,
+                FRAME_NOITE,
+                duracao,
+                () => {
+                    executando = false;
+                }
+            );
+
+        }
+
+        // =====================================================
+        // NOITE → DIA
+        // =====================================================
+
+        else {
+
+            animarManual(
+                FRAME_NOITE,
+                FRAME_DIA,
+                duracao,
+                () => {
+                    executando = false;
+                }
+            );
+        }
+    });
+});
