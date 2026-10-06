@@ -45,6 +45,6 @@
     $_SESSION['sessaoNome'] = $nome;
     $_SESSION['sessaoTel'] = $telefone;
     
-    header("Location: /index.php");
+    header("Location: index.php");
 
 ?>

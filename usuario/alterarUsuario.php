@@ -32,7 +32,7 @@
     ?>
 
     <div class="container-form">
-        <form action="updateUsuario.php" method="post" enctype="multipart/form-data" class="form-usuario">
+        <form action="updateUsuarioDev.php" method="post" enctype="multipart/form-data" class="form-usuario">
 
             <input type="hidden" name="id" value="<?= $id ?>">
 
