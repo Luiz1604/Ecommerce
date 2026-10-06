@@ -11,6 +11,53 @@ if (!isset($_SESSION['sessaoConectado']) || $_SESSION['sessaoConectado'] !== tru
 $nome     = $_SESSION['sessaoNome'] ?? "";
 $telefone = $_SESSION['sessaoTel'] ?? "";
 $foto     = !empty($_SESSION['sessaoFoto']) ? $_SESSION['sessaoFoto'] : "imagens/default-avatar.png";
+
+if (isset($_POST['nome'])){
+    $conn = conecta();
+
+    $email = $_SESSION['sessaoLogin'];
+    $nome = $_POST['nome'];
+    $telefone = $_POST['telefone'];
+
+    $varSQL = "UPDATE usuario
+        SET nome = :nome,
+        telefone = :telefone
+        WHERE email = :email";
+        
+    $update = $conn->prepare($varSQL);
+
+    $update->bindParam(":nome", $nome);
+    $update->bindParam(":telefone", $telefone);
+    $update->bindParam(":email", $email);
+
+    if ($update->execute()) {
+        if(isset($_FILES['arquivo']) &&
+         $_FILES['arquivo']['error'] == 0 ) {
+
+         $caminho = salvaUploadUsuarios($_FILES, "arquivo");
+
+         if ($caminho != ""){
+            $varSQL = "UPDATE usuario
+                        SET imagem = :imagem
+                        WHERE email = :email";
+
+                $updateImagem = $conn->prepare($varSQL);
+
+                $updateImagem->bindParam(":imagem", $caminho);
+                $updateImagem->bindParam(":email", $email);
+
+                $updateImagem->execute();
+
+                $_SESSION['sessaoFoto'] = $caminho;
+         }
+        } 
+    }
+
+    $_SESSION['sessaoNome'] = $nome;
+    $_SESSION['sessaoTel'] = $telefone;
+    
+    header("Location: index.php");
+}
 ?>
 
 <body>
@@ -21,7 +68,7 @@ $foto     = !empty($_SESSION['sessaoFoto']) ? $_SESSION['sessaoFoto'] : "imagens
                 <p class="subtitulo-edicao">Aqui você pode alterar as suas informações pessoais</p>
             </div>
 
-            <form action="usuario/updateUsuario.php" method="POST" enctype="multipart/form-data">
+            <form action="editarPerfil.php" method="POST" enctype="multipart/form-data">
                 <div class="previa-foto">
                     <img id="imagemPrevia" src="<?= $foto ?>" alt="Foto de perfil">
                 </div>
