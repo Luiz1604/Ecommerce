@@ -48,7 +48,6 @@
          }
         }   
     }
-    
     header("Location: usuario.php");
 
 ?>
