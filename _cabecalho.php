@@ -85,9 +85,8 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    <script>
-        window.prefixoSite = "<?= $prefixo ?>";
-    </script>
+    
+    
     <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>
 </head>
