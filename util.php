@@ -238,7 +238,7 @@ function salvaUploadProdutos($paramFiles, $paramCampo)
     $novoNome = uniqid('', true);
 
     $arquivoNovo = "imagens/produto/$novoNome.$ext";
-    $caminhoFisico = Raiz() . "/" . $arquivoNovo
+    $caminhoFisico = Raiz() . "/" . $arquivoNovo;
 
     try {
         if (move_uploaded_file(
