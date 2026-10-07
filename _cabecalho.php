@@ -1,5 +1,11 @@
 <?php
-$prefixo = file_exists("style.css") ? "" : "../";
+$diretorioPagina = dirname($_SERVER['SCRIPT_NAME']);
+
+$prefixo = ($diretorioPagina === '/loja5b' || $diretorioPagina === '/loja5b/')
+    ? ''
+    : '../';
+
+
 $estilo = $prefixo . "style.css";
 $script = $prefixo . "script.js";
 $icone = $prefixo . "imagens/favicon.png";
