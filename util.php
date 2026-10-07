@@ -48,12 +48,12 @@ function ExecutaSQL($paramConn, $paramSQL)
 
 function Raiz()
 {
-    return str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+    return str_replace('\\', '/', __DIR__);
 }
 
 function ImagemJaExiste($paramImagem)
 {
-    $caminhoFisico = Raiz() . "/$paramImagem";
+    $caminhoFisico = Raiz() . "/" . $paramImagem;
     return file_exists($caminhoFisico);
 }
 
@@ -275,5 +275,4 @@ function salvaUploadUsuarios($paramFiles, $paramCampo)
         return "";
     }
 }
-
 ?>
