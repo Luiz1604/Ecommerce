@@ -48,14 +48,13 @@ function ExecutaSQL($paramConn, $paramSQL)
 
 function Raiz()
 {
-  return str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+    return str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 }
 
-// agosto 2026 - Marcelo C Peres 
 function ImagemJaExiste($paramImagem)
 {
-  $caminhoFisico = Raiz() . "/$paramImagem";
-  return file_exists($caminhoFisico);
+    $caminhoFisico = Raiz() . "/$paramImagem";
+    return file_exists($caminhoFisico);
 }
 
 // ValorSQL 
@@ -233,46 +232,48 @@ function DefineCookie($paramNome, $paramValor, $paramMinutos)
 
   //Função de salvar imagem
 
-function salvaUploadProdutos($paramFiles,$paramCampo)
-  {   
-    // obtem a extensão do arquivo
-    $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
-    // cria o novo nome do arquivo
+function salvaUploadProdutos($paramFiles, $paramCampo)
+{
+    $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
     $novoNome = uniqid('', true);
-    $arquivoNovo = "/imagens/produto/$novoNome.$ext";
-    
-    try {
-        if ( move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], 
-            Raiz().$arquivoNovo) ) {
-            echo "<br>Arquivo $arquivoNovo criado com sucesso.\n";
-        } else { echo "erro"; }
-    } catch (PDOException $e) { // se der erro ...
-        $arquivoNovo = "";
-        echo "Erro, verifique o arquivo se a pasta imagens existe<br>
-              (Motivo ".$e->getMessage().")";
-    }   
-    return $arquivoNovo;  
-  }
 
-function salvaUploadUsuarios($paramFiles,$paramCampo)
-  {   
-    // obtem a extensão do arquivo
-    $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
-    // cria o novo nome do arquivo
-    $novoNome = uniqid('', true);
-    $arquivoNovo = "/imagens/usuarios/$novoNome.$ext";
-    
+    $arquivoNovo = "imagens/produto/$novoNome.$ext";
+    $caminhoFisico = Raiz() . $arquivoNovo;
+
     try {
-        if ( move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], 
-            Raiz().$arquivoNovo) ) {
-            echo "<br>Arquivo $arquivoNovo criado com sucesso.\n";
-        } else { echo "erro"; }
-    } catch (PDOException $e) { // se der erro ...
-        $arquivoNovo = "";
-        echo "Erro, verifique o arquivo se a pasta imagens existe<br>
-              (Motivo ".$e->getMessage().")";
-    }   
-    return $arquivoNovo;  
-  }
+        if (move_uploaded_file(
+            $paramFiles[$paramCampo]['tmp_name'],
+            $caminhoFisico
+        )) {
+            return $arquivoNovo;
+        } else {
+            return "";
+        }
+    } catch (Exception $e) {
+        return "";
+    }
+}
+
+function salvaUploadUsuarios($paramFiles, $paramCampo)
+{
+    $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
+    $novoNome = uniqid('', true);
+
+    $arquivoNovo = "imagens/usuarios/$novoNome.$ext";
+    $caminhoFisico = Raiz() . $arquivoNovo;
+
+    try {
+        if (move_uploaded_file(
+            $paramFiles[$paramCampo]['tmp_name'],
+            $caminhoFisico
+        )) {
+            return $arquivoNovo;
+        } else {
+            return "";
+        }
+    } catch (Exception $e) {
+        return "";
+    }
+}
 
 ?>

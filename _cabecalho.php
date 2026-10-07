@@ -25,10 +25,11 @@ if (!file_exists($paginaAtual)) {
 
 if (isset($_SESSION['sessaoConectado'])) {
     $nomeUsuario = $_SESSION['sessaoNome'];
-    if (isset($_SESSION['sessaoFoto'])) {
-        $imgUsuario = $_SESSION['sessaoFoto'];
+
+    if (!empty($_SESSION['sessaoFoto'])) {
+        $imgUsuario = $prefixo . $_SESSION['sessaoFoto'];
     } else {
-        $imgUsuario = "imagens/padraoUser.webp";
+        $imgUsuario = $prefixo . "imagens/padraoUser.webp";
     }
 
     $login_logado = "
@@ -85,11 +86,11 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    
+
     <script>
-        window.prefixoSite ="<?= $prefixo ?>";
+        window.prefixoSite = "<?= $prefixo ?>";
     </script>
-    
+
     <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>
 </head>
@@ -124,7 +125,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="feedProdutos.php" method="POST">
+                <form action="<?= $produtos ?>" method="POST">
                     <input type="text" name="procura" placeholder="O que você está procurando?">
                     <button type="submit">
                         <span class="material-symbols-outlined">search</span>
