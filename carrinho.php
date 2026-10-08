@@ -2,8 +2,6 @@
     include "util.php";
     include "_cabecalho.php";
 
-    $produtos = []; //inicialmente $produtos será um array vazio.
-
     $operacao = $_GET['operacao'] ?? null;
     $idProduto = $_GET['id_produto'] ?? null;
     $quantidade = $_POST['quantidade'] ?? 1;
@@ -113,9 +111,9 @@
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_compra", $compra['id_compra']);
             $select->execute();
-
-            $produtos = $select->fetchAll();
         }
+
+        $produtos = $select->fetchAll();
     }
     else //tipo A (visitante)
     {

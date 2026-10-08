@@ -12,7 +12,7 @@ $icone = $prefixo . "imagens/favicon.png";
 $logo = $prefixo . "imagens/logo.png";
 $home = $prefixo . "index.php";
 $MVV = $prefixo . "MVV.php";
-$produtos = $prefixo . "feedProdutos.php";
+$todosProdutos = $prefixo . "feedProdutos.php";
 $login = $prefixo . "login.php";
 $minhaConta = $prefixo . "minhaConta.php";
 $carrinho = $prefixo . "carrinho.php";
@@ -111,7 +111,7 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     </div>
 
     <ul class="links-menu-lateral">
-        <li><a href=<?= $produtos ?>>Todos os produtos</a></li>
+        <li><a href=<?= $todosProdutos ?>>Todos os produtos</a></li>
         <li><a href="#">Colares</a></li>
         <li><a href="#">Chaveiros</a></li>
         <li><a href="#">Sobre Nós</a></li>
@@ -131,14 +131,12 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="<?= $produtos ?>" method="POST">
+                <form action="<?= $todosProdutos ?>" method="POST">
                     <input type="text" name="procura" placeholder="O que você está procurando?">
                     <button type="submit">
                         <span class="material-symbols-outlined">search</span>
                     </button>
-
                 </form>
-
             </div>
         </div>
 
