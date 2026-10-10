@@ -1674,13 +1674,13 @@ h2 {
     box-shadow: 0 0 20px var(--cor-destaque-titulo);
 }
 
+.btn-carrinho:hover {
+    box-shadow: 0 0 20px var(--cor-sombra-btn-azul);
+}
+
 .btn-reservar:active,
 .btn-carrinho:active {
     transform: scale(0.98);
-}
-
-.btn-carrinho:hover {
-    box-shadow: 0 0 20px var(--cor-sombra-btn-azul);
 }
 
 @media (max-width: 768px) {

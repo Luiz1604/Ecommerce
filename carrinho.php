@@ -152,6 +152,8 @@
                         ON produto.id_produto = compra_produto.fk_produto
                     WHERE compra_produto.fk_compra = :id_compra";
 
+            
+
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_compra", $compra['id_compra']);
             $select->execute();

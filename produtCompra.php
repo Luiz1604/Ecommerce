@@ -71,14 +71,14 @@ if (!$produto) {
                         type="number" 
                         id="quantidade" name="quantidade"
                         value="<?= $produto['estoque'] > 0 ? 1 : 0 ?>" 
-                        min="0" 
+                        min="<?= $produto['estoque'] > 0 ? 1 : 0 ?>" 
                         max="<?= $produto['estoque'] ?>"
                     >
-                        <?php if ($produto['estoque'] <= 0) { ?>
-                            <p class="sem-estoque">Produto esgotado</p>
-                        <?php } else { ?>
-                            <p>Estoque disponível: <?= $produto['estoque'] ?></p>
-                        <?php } ?>
+                    <?php if ($produto['estoque'] <= 0) { ?>
+                        <p class="sem-estoque">Produto esgotado</p>
+                    <?php } else { ?>
+                        <p>Estoque disponível: <?= $produto['estoque'] ?></p>
+                    <?php } ?>
                 </div>
 
                 <button type="submit" id="btn-reservar" class="btn-reservar">
