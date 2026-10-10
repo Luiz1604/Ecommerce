@@ -2,6 +2,8 @@
     include "util.php";
     include "_cabecalho.php";
 
+    $produtos = []; //produtos deve começar como um array vazio
+
     $operacao = $_GET['operacao'] ?? null;
     $idProduto = $_GET['id_produto'] ?? null;
     $quantidade = $_POST['quantidade'] ?? 1;
@@ -31,12 +33,12 @@
         $varSQL = "SELECT id_compra
                         FROM compra
                         WHERE fk_usuario = :id_usuario
-                        AND sessao = :sessao
-                        AND status = 'carrinho'";
+                        AND status = 'carrinho'
+                        ORDER BY id_compra DESC
+                        LIMIT 1";
 
         $select = $conn->prepare($varSQL);
         $select->bindParam(":id_usuario", $idUsuario);
-        $select->bindParam(":sessao", $sessao);
         $select->execute();
 
         $compra = $select->fetch();
@@ -55,6 +57,7 @@
             $compra = $insert->fetch();
         }
 
+        //if das operações
         if($operacao == 'incluir'){
 
             //verifica se o produto enviado já existe em compra_produto
@@ -94,8 +97,49 @@
                 $insert->bindParam(":id_produto", $idProduto);
                 $insert->execute();
             }
+        }elseif($operacao == 'mais'){
+            $varSQL = "UPDATE compra_produto
+                       SET quantidade = quantidade + 1
+                       WHERE fk_compra = :id_compra
+                       AND fk_produto = :id_produto";
+                       
+            $update = $conn->prepare($varSQL);
+            $update->bindParam(":id_compra", $compra['id_compra']);
+            $update->bindParam(":id_produto", $idProduto);
+            $update->execute();
 
-            //busca os produtos da compra
+            header("location: carrinho.php");
+            exit;
+
+        }elseif($operacao == 'menos'){
+            $varSQL = "UPDATE compra_produto
+                       SET quantidade = quantidade - 1
+                       WHERE fk_compra = :id_compra
+                       AND fk_produto = :id_produto";
+                       
+            $update = $conn->prepare($varSQL);
+            $update->bindParam(":id_compra", $compra['id_compra']);
+            $update->bindParam(":id_produto", $idProduto);
+            $update->execute();
+
+            header("location: carrinho.php");
+            exit;
+
+        }elseif($operacao == 'excluir'){
+            $varSQL = "DELETE FROM compra_produto
+                       WHERE fk_compra = :id_compra
+                       AND fk_produto = :id_produto";
+                       
+            $delete = $conn->prepare($varSQL);
+            $delete->bindParam(":id_compra", $compra['id_compra']);
+            $delete->bindParam(":id_produto", $idProduto);
+            $delete->execute();
+
+            header("location: carrinho.php");
+            exit;
+        }
+
+        //busca os produtos da compra
             $varSQL = "SELECT 
                         produto.id_produto,
                         produto.nome,
@@ -111,7 +155,6 @@
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_compra", $compra['id_compra']);
             $select->execute();
-        }
 
         $produtos = $select->fetchAll();
     }
@@ -159,9 +202,9 @@
                             <?= $produto['nome'] ?>
                         </td>
                         <td>
-                            <a href="#">-</a>
+                            <a href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>">-</a>
                             <span><?= $produto['quantidade'] ?></span>
-                            <a href="#">+</a>
+                            <a href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>">+</a>
                         </td>
                         <td>
                             R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?>
@@ -175,7 +218,7 @@
                                 ) ?>
                         </td>
                         <td>
-                            <a href="#">Excluir</a>
+                            <a href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>">Excluir</a>
                         </td>
                     </tr>
                 <?php } ?>

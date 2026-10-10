@@ -11,7 +11,16 @@ if (!$id) {
 }
 
 $conn = conecta();
-$varSQL = "SELECT * 
+
+//apresenta a quantidade de produtos e soma as entradas de cada um
+$varSQL = "SELECT 
+                produto.*,
+                COALESCE(
+                    (SELECT SUM(entrada.quantidade)
+                     FROM entrada
+                     WHERE entrada.fk_produto = produto.id_produto),
+                    0
+                ) AS estoque
             FROM produto 
             WHERE id_produto = :id AND excluido = FALSE";
 
@@ -58,10 +67,21 @@ if (!$produto) {
 
                 <div class="campo-qtd">
                     <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
+                    <input
+                        type="number" 
+                        id="quantidade" name="quantidade"
+                        value="<?= $produto['estoque'] > 0 ? 1 : 0 ?>" 
+                        min="0" 
+                        max="<?= $produto['estoque'] ?>"
+                    >
+                        <?php if ($produto['estoque'] <= 0) { ?>
+                            <p class="sem-estoque">Produto esgotado</p>
+                        <?php } else { ?>
+                            <p>Estoque disponível: <?= $produto['estoque'] ?></p>
+                        <?php } ?>
                 </div>
 
-                <button type="submit" class="btn-reservar">
+                <button type="submit" id="btn-reservar" class="btn-reservar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="18" height="18" x="3" y="4" rx="2" />
@@ -73,7 +93,7 @@ if (!$produto) {
                     RESERVAR PRODUTO
                 </button>
 
-                <button type="submit"
+                <button type="submit" id="btn-carrinho"
                     formaction="carrinho.php?operacao=incluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-carrinho">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

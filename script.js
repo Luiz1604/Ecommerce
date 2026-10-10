@@ -291,3 +291,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// Controla a quantidade disponível na página do produto
+document.addEventListener('DOMContentLoaded', () => {
+    const quantidade = document.getElementById('quantidade');
+    const btnReservar = document.getElementById('btn-reservar');
+    const btnCarrinho = document.getElementById('btn-carrinho');
+
+    // Executa somente se os elementos existirem nesta página
+    if (!quantidade || !btnReservar || !btnCarrinho) {
+        return;
+    }
+
+    const estoque = Number(quantidade.max);
+
+    function atualizarBotoes() {
+        const valor = quantidade.value;
+        const qtd = Number(valor);
+
+        const invalida =
+            valor.trim() === '' ||
+            !Number.isInteger(qtd) ||
+            qtd <= 0 ||
+            qtd > estoque;
+
+        btnReservar.disabled = invalida;
+        btnCarrinho.disabled = invalida;
+    }
+
+    quantidade.addEventListener('input', atualizarBotoes);
+
+    atualizarBotoes();
+});
