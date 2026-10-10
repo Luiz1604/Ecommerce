@@ -292,6 +292,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+/*opção de ver senha*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const camposSenha = [
+        {
+            campo: document.getElementById("senha"),
+            botao: document.getElementById("senha-toggle")
+        },
+        {
+            campo: document.getElementById("confirma_senha"),
+            botao: document.getElementById("confirma-senha-toggle")
+        }
+    ];
+
+    camposSenha.forEach(({ campo, botao }) => {
+        if (!campo || !botao) return;
+
+        botao.addEventListener("click", () => {
+            const mostrar = campo.type === "password";
+
+            campo.type = mostrar ? "text" : "password";
+
+            botao.innerHTML = mostrar
+                ? '<i class="fa-solid fa-eye-slash" aria-hidden="true"></i>'
+                : '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
+
+            botao.setAttribute(
+                "aria-label",
+                mostrar ? "Esconder senha" : "Mostrar senha"
+            );
+
+            botao.setAttribute("aria-pressed", String(mostrar));
+        });
+    });
+});
+
 // Controla a quantidade disponível na página do produto
 document.addEventListener('DOMContentLoaded', () => {
     const quantidade = document.getElementById('quantidade');

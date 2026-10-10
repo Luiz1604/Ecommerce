@@ -61,7 +61,7 @@ if (isset($_POST['email'])) {
 
                 <form action="login.php" method="post" class="form-login <?= $erroLogin ? 'login-erro' : '' ?>">
 
-                <input type="hidden" name="origem" value="login">
+                    <input type="hidden" name="origem" value="login">
 
                     <?php if ($erroLogin): ?>
                         <div class="alerta-erro">
@@ -73,13 +73,18 @@ if (isset($_POST['email'])) {
                     <label for="email">E-mail</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" id="email" placeholder="seuemail@exemplo.com" oninput="mascaraEmail(this)"  value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
+                        <input type="text" id="email" placeholder="seuemail@exemplo.com" oninput="mascaraEmail(this)" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" name="email" placeholder="Digite seu e-mail" required autocomplete="username">
                     </div>
 
                     <label for="senha">Senha</label>
                     <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <span class="icon">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
                         <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required autocomplete="current-password">
+                        <button type="button" class="senha-toggle" id="senha-toggle" aria-label="Mostrar senha" aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
                     </div>
 
                     <div class="options">

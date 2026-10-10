@@ -24,14 +24,14 @@ $seguranca = "readonly";
 
                 <form action="insertUsuario.php" method="post" enctype="multipart/form-data" class="form-login <?= $erroSenha ? 'login-erro' : '' ?>">
 
-                <input type="hidden" name="origem" value="cadastro">
+                    <input type="hidden" name="origem" value="cadastro">
 
                     <?php if ($erroSenha): ?>
                         <div class="alerta-erro">
                             <span class="material-symbols-outlined">error</span>
                             <span>As senhas digitadas não coincidem. Tente novamente.</span>
                         </div>
-                    
+
 
                     <?php elseif ($erro === 'email_cadastrado'): ?>
                         <div class="alerta-erro">
@@ -79,19 +79,63 @@ $seguranca = "readonly";
                     <label for="senha">Digite sua senha</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" name="senha" id="senha" placeholder="Sua senha" required>
+
+                        <input
+                            type="password"
+                            name="senha"
+                            id="senha"
+                            placeholder="Sua senha"
+                            required
+                            autocomplete="new-password">
+
+                        <button
+                            type="button"
+                            class="senha-toggle"
+                            id="senha-toggle"
+                            aria-label="Mostrar senha"
+                            aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
                     </div>
 
                     <label for="confirma_senha">Confirme sua senha</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Repita a senha" required>
+
+                        <input
+                            type="password"
+                            name="confirma_senha"
+                            id="confirma_senha"
+                            placeholder="Repita a senha"
+                            required
+                            autocomplete="new-password">
+
+                        <button
+                            type="button"
+                            class="senha-toggle"
+                            id="confirma-senha-toggle"
+                            aria-label="Mostrar senha"
+                            aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
                     </div>
 
-                    <label for="telefone">Digite seu telefone (opcional)</label>
+                    <label for="telefone">Digite seu telefone</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-phone"></i></span>
-                        <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000" oninput="mascaraTelefone(this)" maxlength="15">
+
+                        <input
+                            type="tel"
+                            name="telefone"
+                            id="telefone"
+                            placeholder="(00) 00000-0000"
+                            oninput="mascaraTelefone(this)"
+                            minlength="14"
+                            maxlength="15"
+                            pattern="\(\d{2}\) \d{4,5}-\d{4}"
+                            title="Digite um telefone válido com DDD, por exemplo: (14) 99999-9999"
+                            required
+                            autocomplete="tel">
                     </div>
 
                     <button type="submit" class="btn">Cadastrar</button>

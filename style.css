@@ -458,7 +458,7 @@ div.caixa-pesquisa form button:hover {
 
 .links-menu-lateral a {
     text-decoration: none;
-    color: var(--cor-texto);
+    color: var(--cor-fundo);
     font-size: 1rem;
     font-weight: 500;
     display: block;
@@ -1295,6 +1295,36 @@ h2 {
     width: 100%;
 }
 
+/*opção de ver senha*/
+
+.input-box {
+    position: relative;
+}
+
+.senha-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    color: #90999E;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.senha-toggle:hover {
+    color: var(--cor-destaque-secundario);
+}
+
+.input-box input[name="senha"],
+.input-box input[name="confirma_senha"] {
+    padding-right: 42px;
+}
 .imagem-opcional {
     display: flex;
     align-items: center;
