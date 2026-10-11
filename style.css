@@ -1950,6 +1950,19 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
+/* 
+
+   Parte do carrinho
+
+   .botao-indisponivel {
+        opacity: 0.35;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+
+*/
+
 .alerta-erro {
     display: flex;
     align-items: center;

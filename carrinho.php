@@ -140,23 +140,27 @@
         }
 
         //busca os produtos da compra
-            $varSQL = "SELECT 
-                        produto.id_produto,
-                        produto.nome,
-                        produto.descricao,
-                        produto.imagem,
-                        compra_produto.quantidade,
-                        compra_produto.valor_unitario
-                    FROM compra_produto
-                    INNER JOIN produto
-                        ON produto.id_produto = compra_produto.fk_produto
-                    WHERE compra_produto.fk_compra = :id_compra";
+        $varSQL = "SELECT 
+            produto.id_produto,
+            produto.nome,
+            produto.descricao,
+            produto.imagem,
+            compra_produto.quantidade,
+            compra_produto.valor_unitario,
+            COALESCE(
+                    (SELECT SUM(entrada.quantidade)
+                     FROM entrada
+                     WHERE entrada.fk_produto = produto.id_produto),
+                    0
+            ) AS estoque
+        FROM compra_produto
+        INNER JOIN produto
+            ON produto.id_produto = compra_produto.fk_produto
+        WHERE compra_produto.fk_compra = :id_compra";
 
-            
-
-            $select = $conn->prepare($varSQL);
-            $select->bindParam(":id_compra", $compra['id_compra']);
-            $select->execute();
+        $select = $conn->prepare($varSQL);
+        $select->bindParam(":id_compra", $compra['id_compra']);
+        $select->execute();
 
         $produtos = $select->fetchAll();
     }
@@ -204,9 +208,19 @@
                             <?= $produto['nome'] ?>
                         </td>
                         <td>
-                            <a href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>">-</a>
+                            <?php if ($produto['quantidade'] > 1) { ?>
+                                <a href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>">-</a>
+                            <?php } else { ?>
+                                <span class="botao-indisponivel">-</span>
+                            <?php } ?>
+
                             <span><?= $produto['quantidade'] ?></span>
-                            <a href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>">+</a>
+
+                            <?php if ($produto['quantidade'] < $produto['estoque']) { ?>
+                                <a href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>">+</a>
+                           <?php } else { ?>
+                                <span class="botao-indisponivel">+</span>
+                            <?php } ?>
                         </td>
                         <td>
                             R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?>
