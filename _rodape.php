@@ -16,7 +16,7 @@
             <div class="final">
                 <h3>Navegação</h3>
                 <br>
-                <a href="#">Home</a><br>
+                <a href="index.php">Home</a><br>
                 <a href="feedProdutos.html">Produtos</a><br>
                 <a href="#">Coleções</a><br>
                 <a href="#">Sobre Nós</a><br>

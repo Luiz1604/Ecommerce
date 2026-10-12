@@ -1,4 +1,5 @@
 <?php
+
     include "util.php";
     include "_cabecalho.php";
 
@@ -57,14 +58,100 @@
             $compra = $insert->fetch();
         }
 
-        //if das operações
         if($operacao == 'incluir'){
 
-            //verifica se o produto enviado já existe em compra_produto
-            $varSQL = "SELECT *
-                FROM compra_produto
-                WHERE fk_compra = :id_compra
-                AND fk_produto = :id_produto";
+            // busca o produto e seu estoque
+            $varSQL = " SELECT
+                            produto.id_produto,
+                            COALESCE(
+                                (SELECT SUM(entrada.quantidade)
+                                 FROM entrada
+                                 WHERE entrada.fk_produto = produto.id_produto),
+                                0
+                        ) AS estoque
+                        FROM produto
+                        WHERE produto.id_produto = :id_produto
+                        AND produto.excluido = false";
+
+            $select = $conn->prepare($varSQL);
+            $select->bindParam(":id_produto", $idProduto);
+            $select->execute();
+
+            $produto = $select->fetch();
+
+            // verifica se o produto existe e está disponível
+            $quantidade = filter_var(
+                $quantidade,
+                FILTER_VALIDATE_INT,
+                ["options" => ["min_range" => 1]]
+            );
+
+            if ($produto && $quantidade !== false) {
+                $estoque = (int) $produto['estoque'];
+
+                // descobre a quantidade que já está no carrinho
+                $varSQL = "SELECT quantidade
+                            FROM compra_produto
+                            WHERE fk_compra = :id_compra
+                            AND fk_produto = :id_produto";
+
+                $select = $conn->prepare($varSQL);
+                $select->bindParam(":id_compra", $compra['id_compra']);
+                $select->bindParam(":id_produto", $idProduto);
+                $select->execute();
+
+                $produtoCarrinho = $select->fetch();
+
+                $quantidadeAtual = $produtoCarrinho ? (int) $produtoCarrinho['quantidade'] : 0;
+
+                // só adiciona se houver estoque suficiente
+                if ($quantidadeAtual + $quantidade <= $estoque) {
+
+                    if ($produtoCarrinho) {
+
+                        $varSQL = "UPDATE compra_produto
+                                SET quantidade = quantidade + :quantidade
+                                WHERE fk_compra = :id_compra
+                                AND fk_produto = :id_produto";
+
+                        $update = $conn->prepare($varSQL);
+                        $update->bindParam(":quantidade", $quantidade);
+                        $update->bindParam(":id_compra", $compra['id_compra']);
+                        $update->bindParam(":id_produto", $idProduto);
+                        $update->execute();
+                    }else{
+                        $varSQL = "INSERT INTO compra_produto
+                                    (fk_produto, fk_compra, quantidade, valor_unitario)
+                                    SELECT id_produto, :id_compra, :quantidade, valor_unitario
+                                    FROM produto
+                                    WHERE id_produto = :id_produto
+                                    AND excluido = false";
+
+                        $insert = $conn->prepare($varSQL);
+                        $insert->bindParam(":id_compra", $compra['id_compra']);
+                        $insert->bindParam(":quantidade", $quantidade);
+                        $insert->bindParam(":id_produto", $idProduto);
+                        $insert->execute();
+                    }
+                }
+            }
+
+            header("location: carrinho.php");
+            exit;
+        }elseif($operacao == 'mais'){
+
+            // descobre a quantidade atual e o estoque
+            $varSQL = "SELECT
+                        compra_produto.quantidade,
+                        COALESCE(
+                            (SELECT SUM(entrada.quantidade)
+                                FROM entrada
+                                WHERE entrada.fk_produto = compra_produto.fk_produto),
+                            0
+                        ) AS   estoque
+                        FROM compra_produto
+                        WHERE fk_compra = :id_compra
+                        AND fk_produto = :id_produto";
 
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_compra", $compra['id_compra']);
@@ -73,41 +160,26 @@
 
             $produtoCarrinho = $select->fetch();
 
-            if($produtoCarrinho){
+            // aumente só se ouver estoque disponível
+            if($produtoCarrinho && $produtoCarrinho['quantidade'] < $produtoCarrinho['estoque']){
+
                 $varSQL = "UPDATE compra_produto
-                    SET quantidade = quantidade + :quantidade
-                    WHERE fk_compra = :id_compra
-                    AND fk_produto = :id_produto";
+                       SET quantidade = quantidade + 1
+                       WHERE fk_compra = :id_compra
+                       AND fk_produto = :id_produto
+                       AND EXISTS (
+                            SELECT 1
+                            FROM produto
+                            WHERE produto.id_produto = compra_produto.fk_produto
+                            AND produto.excluido = false
+                        )";
 
                 $update = $conn->prepare($varSQL);
-                $update->bindParam(":quantidade", $quantidade);
                 $update->bindParam(":id_compra", $compra['id_compra']);
                 $update->bindParam(":id_produto", $idProduto);
                 $update->execute();
-            }else{
-                $varSQL = "INSERT INTO compra_produto
-                            (fk_produto, fk_compra, quantidade, valor_unitario)
-                            SELECT id_produto, :id_compra, :quantidade, valor_unitario
-                            FROM produto
-                            WHERE id_produto = :id_produto";
-
-                $insert = $conn->prepare($varSQL);
-                $insert->bindParam(":id_compra", $compra['id_compra']);
-                $insert->bindParam(":quantidade", $quantidade);
-                $insert->bindParam(":id_produto", $idProduto);
-                $insert->execute();
             }
-        }elseif($operacao == 'mais'){
-            $varSQL = "UPDATE compra_produto
-                       SET quantidade = quantidade + 1
-                       WHERE fk_compra = :id_compra
-                       AND fk_produto = :id_produto";
                        
-            $update = $conn->prepare($varSQL);
-            $update->bindParam(":id_compra", $compra['id_compra']);
-            $update->bindParam(":id_produto", $idProduto);
-            $update->execute();
-
             header("location: carrinho.php");
             exit;
 
@@ -115,7 +187,8 @@
             $varSQL = "UPDATE compra_produto
                        SET quantidade = quantidade - 1
                        WHERE fk_compra = :id_compra
-                       AND fk_produto = :id_produto";
+                       AND fk_produto = :id_produto
+                       AND quantidade > 1";
                        
             $update = $conn->prepare($varSQL);
             $update->bindParam(":id_compra", $compra['id_compra']);
@@ -166,8 +239,146 @@
     }
     else //tipo A (visitante)
     {
-        if(!isset($_SESSION['carrinho'])) {   //TERMINAR!!
+        if(!isset($_SESSION['carrinho'])) { 
                 $_SESSION['carrinho'] = [];
+        }
+
+        if ($operacao == 'incluir') {
+
+            // busca o produto e seu estoque
+            $varSQL = "SELECT
+                            produto.id_produto,
+                            COALESCE(
+                                (SELECT SUM(entrada.quantidade)
+                                FROM entrada
+                                WHERE entrada.fk_produto = produto.id_produto),
+                                0
+                            ) AS estoque
+                        FROM produto
+                        WHERE produto.id_produto = :id_produto
+                        AND produto.excluido = false";
+
+            $select = $conn = conecta();
+            $select = $conn->prepare($varSQL);
+            $select->bindParam(":id_produto", $idProduto);
+            $select->execute();
+
+            $produto = $select->fetch();
+
+            // Valida a quantidade recebida
+            $quantidadeValida = filter_var(
+            $quantidade,
+            FILTER_VALIDATE_INT,
+            ["options" => ["min_range" => 1]]
+            );
+
+            if ($produto && $quantidadeValida !== false) {
+
+                $idProduto = (int) $produto['id_produto'];
+                $estoque = (int) $produto['estoque'];
+
+                $quantidadeAtual = $_SESSION['carrinho'][$idProduto] ?? 0;
+
+                // Adiciona somente se houver estoque suficiente
+                if ($quantidadeAtual + $quantidadeValida <= $estoque) {
+                    $_SESSION['carrinho'][$idProduto] =
+                        $quantidadeAtual + $quantidadeValida;
+                }
+            }
+
+            header("location: carrinho.php");
+            exit;
+        }elseif ($operacao == 'mais'){
+            $idProduto = (int) $idProduto;
+
+            if (isset($_SESSION['carrinho'][$idProduto])) {
+
+                $conn = conecta();
+
+                $varSQL = "SELECT
+                                COALESCE(
+                                    (SELECT SUM(entrada.quantidade)
+                                     FROM entrada
+                                     WHERE entrada.fk_produto = produto.id_produto),
+                                    0
+                                ) AS estoque
+                            FROM produto
+                            WHERE produto.id_produto = :id_produto
+                            AND produto.excluido = false";
+
+                $select = $conn->prepare($varSQL);
+                $select->bindParam(":id_produto", $idProduto);
+                $select->execute();
+
+                $produto = $select->fetch();
+
+                if ($produto && $_SESSION['carrinho'][$idProduto] < (int) $produto['estoque']){
+                    $_SESSION['carrinho'][$idProduto]++;
+                }
+            }
+
+            header("location: carrinho.php");
+            exit;
+
+        }elseif ($operacao == 'menos'){
+
+            $idProduto = (int) $idProduto;
+
+            if (isset($_SESSION['carrinho'][$idProduto])) {
+
+                if ($_SESSION['carrinho'][$idProduto] > 1){
+                    $_SESSION['carrinho'][$idProduto]--;
+                }
+            }
+
+            header("location: carrinho.php");
+            exit;
+
+        }elseif ($operacao == 'excluir'){
+
+            $idProduto = (int) $idProduto;
+
+            unset($_SESSION['carrinho'][$idProduto]);
+
+            header("location: carrinho.php");
+            exit;
+        }
+        
+
+        if (!empty($_SESSION['carrinho'])) {
+            $conn = conecta();
+
+            $ids = array_keys($_SESSION['carrinho']);
+            $marcadores = implode(',', array_fill(0, count($ids), '?'));
+
+            $varSQL = "SELECT
+                            produto.id_produto,
+                            produto.nome,
+                            produto.descricao,
+                            produto.imagem,
+                            produto.valor_unitario,
+                            COALESCE(
+                                (SELECT SUM(entrada.quantidade)
+                                 FROM entrada
+                                 WHERE entrada.fk_produto = produto.id_produto),
+                                0
+                            ) AS estoque
+                        FROM produto
+                        WHERE produto.id_produto IN ($marcadores)
+                        AND produto.excluido = false";
+
+            $select = $conn->prepare($varSQL);
+            $select->execute($ids);
+
+            $produtosBanco = $select->fetchAll();
+
+            foreach ($produtosBanco as &$produto) {
+                $id = $produto['id_produto'];
+                $produto['quantidade'] = $_SESSION['carrinho'][$id];
+            }
+            unset($produto);
+
+            $produtos = $produtosBanco;
         }
     }
 ?>
@@ -249,5 +460,4 @@
 </main>
 <?php include "_rodape.php"; ?>
 </body>
-
 </html>
