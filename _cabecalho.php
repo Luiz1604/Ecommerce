@@ -1,11 +1,5 @@
 <?php
-$diretorioPagina = dirname($_SERVER['SCRIPT_NAME']);
-
-$prefixo = ($diretorioPagina === '/loja5b' || $diretorioPagina === '/loja5b/')
-    ? ''
-    : '../';
-
-
+$prefixo = file_exists("style.css") ? "" : "../";
 $estilo = $prefixo . "style.css";
 $script = $prefixo . "script.js";
 $icone = $prefixo . "imagens/favicon.png";
@@ -31,11 +25,10 @@ if (!file_exists($paginaAtual)) {
 
 if (isset($_SESSION['sessaoConectado'])) {
     $nomeUsuario = $_SESSION['sessaoNome'];
-
-    if (!empty($_SESSION['sessaoFoto'])) {
-        $imgUsuario = $prefixo . $_SESSION['sessaoFoto'];
+    if (isset($_SESSION['sessaoFoto'])) {
+        $imgUsuario = $_SESSION['sessaoFoto'];
     } else {
-        $imgUsuario = $prefixo . "imagens/padraoUser.webp";
+        $imgUsuario = "imagens/padraoUser.webp";
     }
 
     $login_logado = "
@@ -92,11 +85,11 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-
+    
     <script>
-        window.prefixoSite = "<?= $prefixo ?>";
+        window.prefixoSite ="<?= $prefixo ?>";
     </script>
-
+    
     <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>
 </head>
@@ -125,36 +118,21 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 <header>
     <nav class="menu-principal">
         <div class="menu-esquerda">
-            <button
-                class="botao-menu-lateral"
-                type="button"
-                onclick="abrirMenu()"
-                aria-label="Abrir menu">
+            <button class="botao-menu-lateral" onclick="abrirMenu()">
                 <span class="material-symbols-outlined">menu</span>
+                <span>Menu</span>
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="<?= $todosProdutos ?>" method="POST">
-                    <input
-                        type="text"
-                        name="procura"
-                        placeholder="O que você está procurando?"
-                        aria-label="Pesquisar produtos">
-                    <button type="submit" aria-label="Pesquisar">
+                <form action="feedProdutos.php" method="POST">
+                    <input type="text" name="procura" placeholder="O que você está procurando?">
+                    <button type="submit">
                         <span class="material-symbols-outlined">search</span>
                     </button>
-                </form>
-            </div>
 
-            <button
-                type="button"
-                class="botao-pesquisa-mobile"
-                id="botao-pesquisa-mobile"
-                aria-label="Abrir pesquisa"
-                aria-expanded="false"
-                aria-controls="pesquisa-mobile">
-                <span class="material-symbols-outlined">search</span>
-            </button>
+                </form>
+
+            </div>
         </div>
 
         <div class="logo-centro">
@@ -184,18 +162,4 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </li>
         </ul>
     </nav>
-
-
-    <div class="pesquisa-mobile" id="pesquisa-mobile">
-        <form action="<?= $todosProdutos ?>" method="POST">
-            <input
-                type="text"
-                name="procura"
-                placeholder="O que você está procurando?"
-                aria-label="Pesquisar produtos">
-            <button type="submit" aria-label="Pesquisar">
-                <span class="material-symbols-outlined">search</span>
-            </button>
-        </form>
-    </div>
 </header>

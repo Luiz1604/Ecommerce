@@ -1,9 +1,11 @@
 <?php
 // Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
-include "../util.php";
-include "../_cabecalho.php";
+include "util.php";
+include "_cabecalho.php";
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
-    header("Location: ../index.php");
+    header("Location: index.php");
+
+
 
 $erroSenha = false;
 $erro = $_GET['erro'] ?? false;
@@ -11,7 +13,6 @@ if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
     $erroSenha = true;
 }
 
-$seguranca = "readonly";
 ?>
 
 <body>
@@ -22,7 +23,7 @@ $seguranca = "readonly";
             <div class="login-card">
                 <h2>Cadastro</h2>
 
-                <form action="insertUsuario.php" method="post" enctype="multipart/form-data" class="form-login <?= $erroSenha ? 'login-erro' : '' ?>">
+                <form action="usuario/insertUsuario.php" method="post" enctype="multipart/form-data" class="form-login <?= $erroSenha ? 'login-erro' : '' ?>">
 
                     <input type="hidden" name="origem" value="cadastro">
 
@@ -141,7 +142,7 @@ $seguranca = "readonly";
                     <button type="submit" class="btn">Cadastrar</button>
 
                     <p class="link-p-usuario">
-                        Já tem uma conta? <a href="../login.php" class="link">Entrar</a>
+                        Já tem uma conta? <a href="login.php" class="link">Entrar</a>
                     </p>
 
                 </form>
@@ -151,7 +152,7 @@ $seguranca = "readonly";
 
 
     <?php
-    include "../_rodape.php";
+    include "_rodape.php";
     ?>
 </body>
 

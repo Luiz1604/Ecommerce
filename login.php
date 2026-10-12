@@ -1,6 +1,8 @@
 <?php
 include "util.php";
 include "_cabecalho.php";
+if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
+    header("Location: index.php");
 
 $erroLogin = false;
 
@@ -99,7 +101,7 @@ if (isset($_POST['email'])) {
                     <hr class="hr-login">
 
                     <p class="link-p">
-                        <a href="usuario/adicionarUsuario.php" class="link"> Não tem uma conta</a>
+                        <a href="cadastro.php" class="link"> Não tem uma conta</a>
                     </p>
 
                 </form>
