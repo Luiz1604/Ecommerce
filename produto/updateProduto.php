@@ -26,12 +26,12 @@
         if(isset($_FILES['arquivo']) &&
          $_FILES['arquivo']['error'] == 0 ) {
 
-         $caminho = salvaUploadUsuarios($_FILES, "arquivo");
+         $caminho = salvaUploadProdutos($_FILES, "arquivo");
 
          if ($caminho != ""){
-            $varSQL = "UPDATE usuario
+            $varSQL = "UPDATE produto
                         SET imagem = :imagem
-                        WHERE id = :id";
+                        WHERE id_produto = :id";
 
                 $updateImagem = $conn->prepare($varSQL);
 

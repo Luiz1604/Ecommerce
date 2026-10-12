@@ -38,7 +38,9 @@
                     $nome = $linha["nome"];
                     $descricao = $linha["descricao"];
                     $valor = $linha["valor_unitario"];
-                    $imagem = $linha["imagem"];
+                    $imagem = "../".$linha["imagem"];
+
+                    $caminhoFisico = Raiz() . "/" . $linha['imagem'];
                 ?>
                     <tr>
                         <td><?= $id ?></td>
@@ -48,7 +50,7 @@
                         
                         <td class="coluna-imagem">
                             <?php
-                            if (!empty($imagem) && file_exists($imagem))
+                            if (!empty($linha['imagem']) && file_exists($caminhoFisico))
                                 echo "<img src='$imagem' class='img-usuario'>";
                             else
                                 echo "Não há imagem";

@@ -17,6 +17,7 @@
             
     $update = $conn->prepare($varSQL);
 
+    $update->bindParam(":id", $id);
     $update->bindParam(":qtd", $qtd);
     $update->bindParam(":custo", $custo);
     $update->bindParam(":obs", $obs);

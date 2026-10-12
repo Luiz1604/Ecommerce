@@ -44,6 +44,8 @@
                     $telefone = $linha['telefone'];
                     $admin = $linha['admin'];
                     $imagem = "../".$linha['imagem'];
+
+                    $caminhoFisico = Raiz() . "/" . $linha['imagem'];
                     ?>
                     <tr>
                         <td><?= $id ?></td>
@@ -54,7 +56,7 @@
                         
                         <td class="coluna-imagem">
                             <?php
-                            if (!empty($linha['imagem']) && is_file($imagem))
+                            if (!empty($linha['imagem']) && is_file($caminhoFisico))
                                 
                                 echo "<img src='$imagem' class='img-usuario'>";
                             else
@@ -74,7 +76,7 @@
         </table>
 
         <div class="container-botao">
-            <a href="adicionarUsuarioDev.php" class="btn-adicionar">Adicionar Usuário</a>
+            <a href="adicionarUsuario.php" class="btn-adicionar">Adicionar Usuário</a>
         </div>
         <a href="../index.php" class="btn-voltar">voltar</a>
     </div>
