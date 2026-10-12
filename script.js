@@ -361,3 +361,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     atualizarBotoes();
 });
+
+/*barra de pesquisa celular*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const botaoPesquisa = document.getElementById("botao-pesquisa-mobile");
+    const pesquisa = document.getElementById("pesquisa-mobile");
+    const campoPesquisa = pesquisa?.querySelector('input[name="procura"]');
+
+    if (!botaoPesquisa || !pesquisa) return;
+
+    function alternarPesquisa(aberta) {
+        pesquisa.classList.toggle("ativo", aberta);
+        botaoPesquisa.setAttribute("aria-expanded", String(aberta));
+        botaoPesquisa.setAttribute(
+            "aria-label",
+            aberta ? "Fechar pesquisa" : "Abrir pesquisa"
+        );
+
+        if (aberta) {
+            campoPesquisa?.focus();
+        }
+    }
+
+    botaoPesquisa.addEventListener("click", () => {
+        alternarPesquisa(!pesquisa.classList.contains("ativo"));
+    });
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape") {
+            alternarPesquisa(false);
+        }
+    });
+});

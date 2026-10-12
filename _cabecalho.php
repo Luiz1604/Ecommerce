@@ -125,19 +125,36 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 <header>
     <nav class="menu-principal">
         <div class="menu-esquerda">
-            <button class="botao-menu-lateral" onclick="abrirMenu()">
+            <button
+                class="botao-menu-lateral"
+                type="button"
+                onclick="abrirMenu()"
+                aria-label="Abrir menu">
                 <span class="material-symbols-outlined">menu</span>
-                <span>Menu</span>
             </button>
 
             <div class="caixa-pesquisa">
                 <form action="<?= $todosProdutos ?>" method="POST">
-                    <input type="text" name="procura" placeholder="O que você está procurando?">
-                    <button type="submit">
+                    <input
+                        type="text"
+                        name="procura"
+                        placeholder="O que você está procurando?"
+                        aria-label="Pesquisar produtos">
+                    <button type="submit" aria-label="Pesquisar">
                         <span class="material-symbols-outlined">search</span>
                     </button>
                 </form>
             </div>
+
+            <button
+                type="button"
+                class="botao-pesquisa-mobile"
+                id="botao-pesquisa-mobile"
+                aria-label="Abrir pesquisa"
+                aria-expanded="false"
+                aria-controls="pesquisa-mobile">
+                <span class="material-symbols-outlined">search</span>
+            </button>
         </div>
 
         <div class="logo-centro">
@@ -167,4 +184,18 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </li>
         </ul>
     </nav>
+
+
+    <div class="pesquisa-mobile" id="pesquisa-mobile">
+        <form action="<?= $todosProdutos ?>" method="POST">
+            <input
+                type="text"
+                name="procura"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos">
+            <button type="submit" aria-label="Pesquisar">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </form>
+    </div>
 </header>

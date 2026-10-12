@@ -43,7 +43,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                         <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
                     </div>
                     <div class="banner-imagem">
-                        <img src="NwfL8ZQn42.svg" alt="Mão a segurar o planeta Terra">
+                        <img src="Sphre Click&Cars.svg" alt="Mão a segurar o planeta Terra">
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
                     <div class="banner-conteudo">
                         <h2 class="banner-titulo">ENCONTRE O SEU FAVORITO</h2>
                         <p class="banner-subtitulo">Navegue pelas nossas coleções e descubra peças que te representam.</p>
-                        <a href="adicionarUsuario.php" class="banner-btn">CRIAR CONTA</a>
+                        <a href="usuario/adicionarUsuario.php" class="banner-btn">CRIAR CONTA</a>
                     </div>
                     <div class="banner-imagem">
                         <img src="Login Character Animation.svg" alt="Ilustração de pesquisa online com avaliações e estrelas">
