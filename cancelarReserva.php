@@ -10,11 +10,7 @@
     // verifica se o id da compra foi enviado
     $idCompra = $_POST['id_compra'] ?? null;
 
-    if (filter_var(
-        $idCompra,
-        FILTER_VALIDATE_INT,
-        ["options" => ["min_range" => 1]]
-    ) === false) {
+    if (filter_var($idCompra, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]) === false) {
         header("Location: minhasReservas.php");
         exit;
     }
