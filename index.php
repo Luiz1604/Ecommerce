@@ -2,7 +2,7 @@
 include "util.php";
 include "_cabecalho.php";
 
-$_SESSION['sessaoSite'] = "index.php";
+$_SESSION['sessaoSite'] = Raiz()."/index.php";
 
 if (isset($_SESSION['sessaoQtItens'])) {
     $qtdItens = $_SESSION['sessaoQtItens'];
