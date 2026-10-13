@@ -83,8 +83,9 @@
                     $total += $subtotal;
                 ?>
                     <tr>
-                        <td>
+                        <td class="celula-imagem-carrinho">
                             <img
+                            class="imagem-carrinho"
                                 src="<?= htmlspecialchars($reserva['imagem']) ?>"
                                 alt="<?= htmlspecialchars($reserva['nome']) ?>"
                             >

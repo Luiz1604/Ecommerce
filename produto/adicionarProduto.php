@@ -35,7 +35,7 @@ SaiSeHacker();
                     <label for="arquivo">Adicione uma imagem</label>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-image"></i></span>
-                        <input type="text" name="arquivo" id="arquivo" placeholder="Nome do arquivo da imagem">
+                        <input type="file" name="arquivo" id="arquivo" placeholder="Nome do arquivo da imagem">
                     </div>
 
                     <button type="submit" class="btn">Adicionar</button>
