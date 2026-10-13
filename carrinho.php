@@ -61,17 +61,27 @@ if (isset($_SESSION['sessaoLogin'])) {
     if ($operacao == 'incluir') {
 
         // busca o produto e seu estoque
-        $varSQL = " SELECT
-                            produto.id_produto,
-                            COALESCE(
-                                (SELECT SUM(entrada.quantidade)
-                                 FROM entrada
-                                 WHERE entrada.fk_produto = produto.id_produto),
-                                0
-                        ) AS estoque
-                        FROM produto
-                        WHERE produto.id_produto = :id_produto
-                        AND produto.excluido = false";
+        $varSQL = "SELECT
+                produto.id_produto,
+                COALESCE(
+                    (SELECT SUM(e.quantidade)
+                     FROM entrada e
+                     WHERE e.fk_produto = produto.id_produto),
+                    0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(cp.quantidade)
+                     FROM compra_produto cp
+                     INNER JOIN compra c
+                         ON c.id_compra = cp.fk_compra
+                     WHERE cp.fk_produto = produto.id_produto
+                       AND c.status IN ('reservado', 'entregue')),
+                    0
+                ) AS estoque
+            FROM produto
+            WHERE produto.id_produto = :id_produto
+              AND produto.excluido = FALSE";
 
         $select = $conn->prepare($varSQL);
         $select->bindParam(":id_produto", $idProduto);
@@ -142,16 +152,29 @@ if (isset($_SESSION['sessaoLogin'])) {
 
         // descobre a quantidade atual e o estoque
         $varSQL = "SELECT
-                        compra_produto.quantidade,
-                        COALESCE(
-                            (SELECT SUM(entrada.quantidade)
-                                FROM entrada
-                                WHERE entrada.fk_produto = compra_produto.fk_produto),
-                            0
-                        ) AS   estoque
-                        FROM compra_produto
-                        WHERE fk_compra = :id_compra
-                        AND fk_produto = :id_produto";
+                compra_produto.quantidade,
+                COALESCE(
+                    (SELECT SUM(e.quantidade)
+                     FROM entrada e
+                     WHERE e.fk_produto = produto.id_produto),
+                    0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(cp.quantidade)
+                     FROM compra_produto cp
+                     INNER JOIN compra c
+                         ON c.id_compra = cp.fk_compra
+                     WHERE cp.fk_produto = produto.id_produto
+                       AND c.status IN ('reservado', 'entregue')),
+                    0
+                ) AS estoque
+            FROM compra_produto
+            INNER JOIN produto
+                ON produto.id_produto = compra_produto.fk_produto
+            WHERE compra_produto.fk_compra = :id_compra
+              AND compra_produto.fk_produto = :id_produto
+              AND produto.excluido = FALSE";
 
         $select = $conn->prepare($varSQL);
         $select->bindParam(":id_compra", $compra['id_compra']);
@@ -212,22 +235,33 @@ if (isset($_SESSION['sessaoLogin'])) {
 
     //busca os produtos da compra
     $varSQL = "SELECT 
-            produto.id_produto,
-            produto.nome,
-            produto.descricao,
-            produto.imagem,
-            compra_produto.quantidade,
-            compra_produto.valor_unitario,
-            COALESCE(
-                    (SELECT SUM(entrada.quantidade)
-                     FROM entrada
-                     WHERE entrada.fk_produto = produto.id_produto),
-                    0
-            ) AS estoque
-        FROM compra_produto
-        INNER JOIN produto
-            ON produto.id_produto = compra_produto.fk_produto
-        WHERE compra_produto.fk_compra = :id_compra";
+                    produto.id_produto,
+                    produto.nome,
+                    produto.descricao,
+                    produto.imagem,
+                    compra_produto.quantidade,
+                    compra_produto.valor_unitario,
+                    COALESCE(
+                        (SELECT SUM(e.quantidade)
+                        FROM entrada e
+                        WHERE e.fk_produto = produto.id_produto),
+                        0
+                    )
+                    -
+                    COALESCE(
+                        (SELECT SUM(cp.quantidade)
+                        FROM compra_produto cp
+                        INNER JOIN compra c
+                            ON c.id_compra = cp.fk_compra
+                        WHERE cp.fk_produto = produto.id_produto
+                        AND c.status IN ('reservado', 'entregue')),
+                        0
+                    ) AS estoque
+                FROM compra_produto
+                INNER JOIN produto
+                    ON produto.id_produto = compra_produto.fk_produto
+                WHERE compra_produto.fk_compra = :id_compra
+                AND produto.excluido = FALSE";
 
     $select = $conn->prepare($varSQL);
     $select->bindParam(":id_compra", $compra['id_compra']);
@@ -244,16 +278,26 @@ if (isset($_SESSION['sessaoLogin'])) {
 
         // busca o produto e seu estoque
         $varSQL = "SELECT
-                            produto.id_produto,
-                            COALESCE(
-                                (SELECT SUM(entrada.quantidade)
-                                FROM entrada
-                                WHERE entrada.fk_produto = produto.id_produto),
-                                0
-                            ) AS estoque
-                        FROM produto
-                        WHERE produto.id_produto = :id_produto
-                        AND produto.excluido = false";
+                produto.id_produto,
+                COALESCE(
+                    (SELECT SUM(e.quantidade)
+                     FROM entrada e
+                     WHERE e.fk_produto = produto.id_produto),
+                    0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(cp.quantidade)
+                     FROM compra_produto cp
+                     INNER JOIN compra c
+                         ON c.id_compra = cp.fk_compra
+                     WHERE cp.fk_produto = produto.id_produto
+                       AND c.status IN ('reservado', 'entregue')),
+                    0
+                ) AS estoque
+            FROM produto
+            WHERE produto.id_produto = :id_produto
+              AND produto.excluido = FALSE";
 
         $conn = conecta();
 
@@ -294,15 +338,26 @@ if (isset($_SESSION['sessaoLogin'])) {
             $conn = conecta();
 
             $varSQL = "SELECT
-                                COALESCE(
-                                    (SELECT SUM(entrada.quantidade)
-                                     FROM entrada
-                                     WHERE entrada.fk_produto = produto.id_produto),
-                                    0
-                                ) AS estoque
-                            FROM produto
-                            WHERE produto.id_produto = :id_produto
-                            AND produto.excluido = false";
+                produto.id_produto,
+                COALESCE(
+                    (SELECT SUM(e.quantidade)
+                     FROM entrada e
+                     WHERE e.fk_produto = produto.id_produto),
+                    0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(cp.quantidade)
+                     FROM compra_produto cp
+                     INNER JOIN compra c
+                         ON c.id_compra = cp.fk_compra
+                     WHERE cp.fk_produto = produto.id_produto
+                       AND c.status IN ('reservado', 'entregue')),
+                    0
+                ) AS estoque
+            FROM produto
+            WHERE produto.id_produto = :id_produto
+              AND produto.excluido = FALSE";
 
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_produto", $idProduto);
@@ -354,9 +409,19 @@ if (isset($_SESSION['sessaoLogin'])) {
                             produto.imagem,
                             produto.valor_unitario,
                             COALESCE(
-                                (SELECT SUM(entrada.quantidade)
-                                 FROM entrada
-                                 WHERE entrada.fk_produto = produto.id_produto),
+                                (SELECT SUM(e.quantidade)
+                                FROM entrada e
+                                WHERE e.fk_produto = produto.id_produto),
+                                0
+                            )
+                            -
+                            COALESCE(
+                                (SELECT SUM(cp.quantidade)
+                                FROM compra_produto cp
+                                INNER JOIN compra c
+                                    ON c.id_compra = cp.fk_compra
+                                WHERE cp.fk_produto = produto.id_produto
+                                AND c.status IN ('reservado', 'entregue')),
                                 0
                             ) AS estoque
                         FROM produto

@@ -11,10 +11,9 @@
 
     $email = $_SESSION['sessaoLogin'];
 
-    $varSQL = "SELECT id_usuario
-               FROM usuario
-               WHERE email = :email";
-
+    $varSQL = "SELECT id_usuario, telefone
+           FROM usuario
+           WHERE email = :email";
     $select = $conn->prepare($varSQL);
     $select->bindParam(":email", $email);
     $select->execute();
@@ -27,6 +26,8 @@
     }
 
     $idUsuario = $usuario['id_usuario'];
+    $telefone = preg_replace('/\D/', '', $usuario['telefone']);
+    $codigoReserva = substr($telefone, -5);
 ?>
 
 <?php include "_cabecalho.php";?>
@@ -61,6 +62,11 @@
 
     <h1>Minhas Reservas</h1>
 
+    <p>
+        Código da reserva: 
+        <strong><?= htmlspecialchars($codigoReserva) ?></strong>
+    </p>
+
     <div class="container-tabela">
         <table class="tabela-usuarios">
             <thead>
@@ -83,9 +89,8 @@
                     $total += $subtotal;
                 ?>
                     <tr>
-                        <td class="celula-imagem-carrinho">
+                        <td>
                             <img
-                            class="imagem-carrinho"
                                 src="<?= htmlspecialchars($reserva['imagem']) ?>"
                                 alt="<?= htmlspecialchars($reserva['nome']) ?>"
                             >
