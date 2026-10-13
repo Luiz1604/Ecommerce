@@ -95,9 +95,9 @@ if (ValidaLogin($email, $senha, $nome, $foto, $admin, $telefone)) {
     $_SESSION['sessaoTel'] = $telefone;
 
     DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
-    
-    header("Location: ../index.php");
 
+    header("Location: /loja5b/index.php");
+    exit;
 }
 
 header("Location: usuario.php");
