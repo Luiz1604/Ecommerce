@@ -69,7 +69,7 @@
                            INNER JOIN compra
                                ON compra.id_compra = compra_produto.fk_compra
                            WHERE compra_produto.fk_produto = produto.id_produto
-                             AND compra.status = 'reservado'
+                             AND compra.status IN ('reservado', 'entregue')
                        ), 0) AS estoque_disponivel
                    FROM produto
                    WHERE produto.id_produto = :id_produto
@@ -188,7 +188,7 @@
                            INNER JOIN compra c
                                ON c.id_compra = cp.fk_compra
                            WHERE cp.fk_produto = produto.id_produto
-                             AND c.status = 'reservado'
+                             AND c.status IN ('reservado', 'entregue')
                        ), 0) AS estoque_disponivel
                    FROM compra_produto
                    INNER JOIN produto

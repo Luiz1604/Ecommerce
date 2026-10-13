@@ -12,17 +12,28 @@ if (!$id) {
 
 $conn = conecta();
 
-//apresenta a quantidade de produtos e soma as entradas de cada um
-$varSQL = "SELECT 
+// apresenta o produto e calcula o estoque disponivel
+$varSQL = "SELECT
                 produto.*,
                 COALESCE(
                     (SELECT SUM(entrada.quantidade)
                      FROM entrada
                      WHERE entrada.fk_produto = produto.id_produto),
                     0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(compra_produto.quantidade)
+                     FROM compra_produto
+                     INNER JOIN compra
+                         ON compra.id_compra = compra_produto.fk_compra
+                     WHERE compra_produto.fk_produto = produto.id_produto
+                       AND compra.status IN ('reservado', 'entregue')),
+                    0
                 ) AS estoque
-            FROM produto 
-            WHERE id_produto = :id AND excluido = FALSE";
+            FROM produto
+            WHERE id_produto = :id
+              AND excluido = FALSE";
 
 $select = $conn->prepare($varSQL);
 $select->bindValue(':id', $id, PDO::PARAM_INT);
