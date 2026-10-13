@@ -4,6 +4,8 @@ if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado' ]== true)
     header("Location: ../index.php");
     exit;
 }
+$index = $_SESSION['sessaoSite'];
+
 $conn = conecta();
 
 $nome = $_POST["nome"];
@@ -92,7 +94,7 @@ if (ValidaLogin($email, $senha, $nome, $foto, $admin, $telefone)) {
     $_SESSION['sessaoAdmin'] = $admin;
     $_SESSION['sessaoTel'] = $telefone;
 
-    header("Location: ../index.php");
+    header("Location: $index");
 
     DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
 }
