@@ -1633,11 +1633,13 @@ h2 {
 }
 
 .img-prod img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    transition: all 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
 }
+
 
 .img-prod img:hover {
     transform: scale(1.2);
@@ -1834,6 +1836,25 @@ h2 {
 .btn-reservar:active,
 .btn-carrinho:active {
     transform: scale(0.98);
+}
+
+/*imagem carrinho*/
+
+.secao-carrinho .celula-imagem-carrinho {
+    width: 110px;
+    min-width: 110px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.secao-carrinho .imagem-carrinho {
+    display: block;
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -2609,5 +2630,81 @@ h2 {
     .pesquisa-mobile form,
     .pesquisa-mobile input {
         min-width: 0;
+    }
+}
+
+
+/*apenas teste, sujeito a melhorias !!!!!!!!!!!!!*/
+
+@media (max-width: 768px) {
+    .container-tabela {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 0 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabela-usuarios {
+        width: 100%;
+        min-width: 650px;
+        table-layout: auto;
+    }
+
+    .tabela-usuarios th,
+    .tabela-usuarios td {
+        padding: 10px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .tabela-usuarios th {
+        font-size: 12px;
+    }
+
+    .tabela-usuarios td img {
+        max-width: 60px;
+        max-height: 60px;
+        object-fit: contain;
+    }
+
+    .tabela-usuarios .img-usuario {
+        width: 42px;
+        height: 42px;
+        object-fit: cover;
+    }
+
+    .btn-acao {
+        padding: 7px 9px;
+        font-size: 12px;
+    }
+
+    .container-botao {
+        margin: 15px 10px;
+        text-align: center;
+    }
+
+    .btn-adicionar {
+        max-width: 100%;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 380px) {
+    .container-tabela {
+        padding: 0 6px;
+    }
+
+    .tabela-usuarios th,
+    .tabela-usuarios td {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .btn-acao {
+        padding: 6px 8px;
+        font-size: 11px;
     }
 }
