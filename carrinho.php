@@ -258,7 +258,8 @@
                         WHERE produto.id_produto = :id_produto
                         AND produto.excluido = false";
 
-            $select = $conn = conecta();
+            $conn = conecta();
+            
             $select = $conn->prepare($varSQL);
             $select->bindParam(":id_produto", $idProduto);
             $select->execute();
@@ -457,6 +458,15 @@
                 Total: R$ <?= number_format($total, 2, ',', '.') ?>
             </h2>
         </div>
+        <?php if (isset($_SESSION['sessaoLogin']) && !empty($produtos)) { ?>
+            <form action="reservar.php" method="POST">
+                <input type="hidden" name="origem" value="carrinho">
+
+                <button type="submit" class="btn-reservar">
+                    RESERVAR PRODUTOS
+                </button>
+            </form>
+        <?php } ?>
 </main>
 <?php include "_rodape.php"; ?>
 </body>

@@ -63,6 +63,8 @@ if (!$produto) {
 
             <form action="reservar.php" method="POST" class="form-reserva">
 
+                <input type="hidden" name="origem" value="produto">
+
                 <input type="hidden" name="produto_id" value="<?= $produto['id_produto'] ?>">
 
                 <div class="campo-qtd">
@@ -80,18 +82,20 @@ if (!$produto) {
                         <p>Estoque disponível: <?= $produto['estoque'] ?></p>
                     <?php } ?>
                 </div>
-
-                <button type="submit" id="btn-reservar" class="btn-reservar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect width="18" height="18" x="3" y="4" rx="2" />
-                        <line x1="16" x2="16" y1="2" y2="6" />
-                        <line x1="8" x2="8" y1="2" y2="6" />
-                        <line x1="3" x2="21" y1="10" y2="10" />
-                        <path d="m9 16 2 2 4-4" />
-                    </svg>
-                    RESERVAR PRODUTO
-                </button>
+                
+                <?php if (isset($_SESSION['sessaoLogin'])) { ?>
+                    <button type="submit" id="btn-reservar" class="btn-reservar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="4" rx="2" />
+                            <line x1="16" x2="16" y1="2" y2="6" />
+                            <line x1="8" x2="8" y1="2" y2="6" />
+                            <line x1="3" x2="21" y1="10" y2="10" />
+                            <path d="m9 16 2 2 4-4" />
+                        </svg>
+                        RESERVAR PRODUTO
+                    </button>
+                <?php } ?>
 
                 <button type="submit" id="btn-carrinho"
                     formaction="carrinho.php?operacao=incluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-carrinho">

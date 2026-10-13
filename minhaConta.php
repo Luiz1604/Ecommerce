@@ -98,15 +98,17 @@ try {
                         </div>
                     </div>
 
-                    <div class="caixa-info">
-                        <div class="icone-info">
-                            <i class="fa-solid fa-bag-shopping"></i>
+                    <a href="minhasReservas.php">
+                        <div class="caixa-info">
+                            <div class="icone-info">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div class="texto-info">
+                                <span>MINHAS RESERVAS</span>
+                                <strong>Ver reservas</strong>
+                            </div>
                         </div>
-                        <div class="texto-info">
-                            <span>TOTAL DE COMPRAS</span>
-                            <strong><?= $totalCompras ?> <?= $totalCompras == 1 ? 'compra' : 'compras' ?></strong>
-                        </div>
-                    </div>
+                    </a>
                 </div>
 
                 <a href="editarPerfil.php" class="botao-editar-perfil">
