@@ -26,9 +26,9 @@ if (!file_exists($paginaAtual)) {
 if (isset($_SESSION['sessaoConectado'])) {
     $nomeUsuario = $_SESSION['sessaoNome'];
     if (isset($_SESSION['sessaoFoto'])) {
-        $imgUsuario = $prefixo.$_SESSION['sessaoFoto'];
+        $imgUsuario = $prefixo . $_SESSION['sessaoFoto'];
     } else {
-        $imgUsuario = $prefixo."imagens/padraoUser.webp";
+        $imgUsuario = $prefixo . "imagens/padraoUser.webp";
     }
 
     $login_logado = "
@@ -85,11 +85,11 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    
+
     <script>
-        window.prefixoSite ="<?= $prefixo ?>";
+        window.prefixoSite = "<?= $prefixo ?>";
     </script>
-    
+
     <script src="<?= $script ?>" defer></script>
     <title>KeyStyle</title>
 </head>
@@ -124,15 +124,24 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </button>
 
             <div class="caixa-pesquisa">
-                <form action="feedProdutos.php" method="POST">
+                <form action="<?= $todosProdutos ?>" method="POST">
                     <input type="text" name="procura" placeholder="O que você está procurando?">
-                    <button type="submit">
+                    <button type="submit" aria-label="Pesquisar">
                         <span class="material-symbols-outlined">search</span>
                     </button>
-
                 </form>
-
             </div>
+
+            <button
+                type="button"
+                class="botao-pesquisa-mobile"
+                id="botao-pesquisa-mobile"
+                aria-label="Abrir pesquisa"
+                aria-expanded="false">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </div>
+
         </div>
 
         <div class="logo-centro">
@@ -162,4 +171,16 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
             </li>
         </ul>
     </nav>
+
+    <div class="pesquisa-mobile" id="pesquisa-mobile">
+        <form action="<?= $todosProdutos ?>" method="POST">
+            <input
+                type="text"
+                name="procura"
+                placeholder="O que você está procurando?">
+            <button type="submit" aria-label="Pesquisar">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </form>
+    </div>
 </header>

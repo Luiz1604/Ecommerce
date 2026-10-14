@@ -10,6 +10,20 @@ if (isset($_SESSION['sessaoQtItens'])) {
     $qtdItens = 0;
     $_SESSION["sessaoQtItens"] = $qtdItens;
 }
+
+$conn = conecta();
+
+$varSQL = "SELECT id_produto, nome, imagem, valor_unitario
+               FROM produto
+               WHERE excluido = FALSE
+               ORDER BY id_produto ASC
+               LIMIT 6";
+
+$select = $conn->prepare($varSQL);
+$select->execute();
+
+$produtos = $select->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <body>
@@ -109,6 +123,7 @@ if (isset($_SESSION['sessaoQtItens'])) {
         <section id="produtos-container">
             <div class="cabecalho-produtos">
                 <h2>Mais Vendidos</h2>
+
                 <a href="feedProdutos.php" class="link-ver-todos">
                     Ver todos
                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -117,59 +132,36 @@ if (isset($_SESSION['sessaoQtItens'])) {
 
             <div class="grid-produtos">
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Colar de mecânica.png" alt="Colar Engrenagem">
-                    </div>
-                    <h3 class="titulo-produto">Colar Mecânica</h3>
-                    <p class="preco-produto">R$ 29,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
+                <?php foreach ($produtos as $produto) { ?>
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Colar de eletrônica.png" alt="Colar Relâmpago">
-                    </div>
-                    <h3 class="titulo-produto">Colar Eletrônica</h3>
-                    <p class="preco-produto">R$ 24,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
+                    <div class="card-produto">
+                        <div class="caixa-imagem">
+                            <img
+                                src="<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>"
+                                alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                        </div>
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Colar de informática.png" alt="Colar Código">
-                    </div>
-                    <h3 class="titulo-produto">Colar Infomática</h3>
-                    <p class="preco-produto">R$ 29,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
+                        <h3 class="titulo-produto">
+                            <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>
+                        </h3>
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Colar de Cruz.jpeg" alt="Colar Cruz">
-                    </div>
-                    <h3 class="titulo-produto">Colar Cruz</h3>
-                    <p class="preco-produto">R$ 19,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
+                        <p class="preco-produto">
+                            R$ <?= number_format((float) $produto['valor_unitario'], 2, ',', '.') ?>
+                        </p>
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Chaveiro de informática.png" alt="Chaveiro informática">
+                        <a
+                            href="produtCompra.php?id=<?= (int) $produto['id_produto'] ?>"
+                            class="btn-detalhes">
+                            VER DETALHES
+                        </a>
                     </div>
-                    <h3 class="titulo-produto">Chaveiro Informática</h3>
-                    <p class="preco-produto">R$ 19,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
 
-                <div class="card-produto">
-                    <div class="caixa-imagem">
-                        <img src="imagens/Chaveiro de mecânica.png" alt="Chaveiro mecãnica">
-                    </div>
-                    <h3 class="titulo-produto">Chaveiro de Mecânica</h3>
-                    <p class="preco-produto">R$ 19,90</p>
-                    <a href="feedProdutos.php" class="btn-detalhes">VER DETALHES</a>
-                </div>
+                <?php } ?>
+
+                <?php if (empty($produtos)) { ?>
+                    <p>Nenhum produto disponível no momento.</p>
+                <?php } ?>
+
             </div>
         </section>
 
