@@ -19,7 +19,7 @@
                 <a href="index.php">Home</a><br>
                 <a href="feedProdutos.html">Produtos</a><br>
                 <a href="#">Coleções</a><br>
-                <a href="#">Sobre Nós</a><br>
+                <a href="sobreNos.php">Sobre Nós</a><br>
                 <a href="MVV.php">Missão, Visão e Valores</a><br>
                 <a href="#">Contato</a><br>
                 <a href="#">Desenvolvedores</a>
