@@ -1,6 +1,6 @@
 <?php
 include "util.php";
-include "_cabecalho.php";
+
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
     header("Location: index.php");
 
@@ -191,11 +191,12 @@ if (isset($_POST['email'])) {
         }
     }
 
-    header("Location: index.php");
-
     DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
 
+    header("Location: index.php");
     exit;
+    
+
         } else {
             /*echo "Verifique se a senha está correta ou se
                     você já está cadastrado";*/
@@ -204,6 +205,8 @@ if (isset($_POST['email'])) {
 }
 
 ?>
+
+<?php include "_cabecalho.php"; ?>
 
 <body>
 
