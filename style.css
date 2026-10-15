@@ -2126,18 +2126,73 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
-/* 
+/*CSS Carinho*/
+.h1-carrinho{
+    margin-top: 30px;
+    font-family: var(--fonte-titulo);
+    color: var(--cor-destaque-titulo);
+}
 
-   Parte do carrinho
+.layout-carrinho {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 30px;
+    align-items: start;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 24px;
+}
 
-   .botao-indisponivel {
-        opacity: 0.35;
-        cursor: not-allowed;
-        pointer-events: none;
+.resumo-carrinho {
+    padding: 24px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.resumo-carrinho h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.linha-resumo,
+.linha-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.linha-total {
+    padding-top: 18px;
+    border-top: 1px solid #d8d8d8;
+    font-size: 18px;
+}
+
+.linha-total strong {
+    color: #305CDE;
+    white-space: nowrap;
+}
+
+.resumo-carrinho form {
+    margin-top: 24px;
+}
+
+.resumo-carrinho .btn-reservar {
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .layout-carrinho {
+        grid-template-columns: 1fr;
     }
 
-
-*/
+    .resumo-carrinho {
+        width: auto;
+    }
+}
 
 .alerta-erro {
     display: flex;

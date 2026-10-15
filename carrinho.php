@@ -1,7 +1,5 @@
 <?php
-
 include "util.php";
-include "_cabecalho.php";
 
 $produtos = []; //produtos deve começar como um array vazio
 
@@ -444,15 +442,14 @@ if (isset($_SESSION['sessaoLogin'])) {
 }
 ?>
 
+<?php include "_cabecalho.php"; ?>
+
 <main class="secao-carrinho">
 
-    <h1>Meu Carrinho</h1>
+    <h1 class="h1-carrinho">MEU CARRINHO</h1>
 
-    <?php
-
-    ?>
-
-    <div class="container-tabela">
+    <div class="layout-carrinho">
+        <div class="container-tabela">
         <table class="tabela-usuarios">
             <thead>
                 <tr>
@@ -468,9 +465,12 @@ if (isset($_SESSION['sessaoLogin'])) {
             <tbody>
                 <?php
                 $total = 0;
+                $quantidadeItens = 0;
+                
                 foreach ($produtos as $produto) {
                     $subtotal = $produto['valor_unitario'] * $produto['quantidade'];
                     $total += $subtotal;
+                    $quantidadeItens += $produto['quantidade'];
                 ?>
                     <tr>
                         <td class="celula-imagem-carrinho">
@@ -515,21 +515,40 @@ if (isset($_SESSION['sessaoLogin'])) {
                 <?php } ?>
             </tbody>
         </table>
+        
+        <a href="feedProdutos.php" class="btn-voltar">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Continuar comprando</span>
+        </a>
+    </div>
+    
+    <aside class="resumo-carrinho">
+        <h2>Resumo da compra</h2>
 
-        <div class="total-carrinho">
-            <h2>
-                Total: R$ <?= number_format($total, 2, ',', '.') ?>
-            </h2>
+        <div class="linha-resumo">
+            <span>Quantidade de itens</span>
+            <span><?= $quantidadeItens ?></span>
         </div>
+
+        <div class="linha-total">
+            <span>Total</span>
+            <strong>
+                R$ <?= number_format($total, 2, ',', '.') ?>
+            </strong>
+        </div>
+
         <?php if (isset($_SESSION['sessaoLogin']) && !empty($produtos)) { ?>
             <form action="reservar.php" method="POST">
                 <input type="hidden" name="origem" value="carrinho">
 
                 <button type="submit" class="btn-reservar">
-                    RESERVAR PRODUTOS
+                    RESERVAR COMPRA
                 </button>
             </form>
         <?php } ?>
+    </aside>
+    </div>
+
 </main>
 <?php include "_rodape.php"; ?>
 </body>
