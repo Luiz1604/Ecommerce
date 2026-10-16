@@ -4,6 +4,8 @@
 
     $conn = conecta();
 
+    if(isset($_POST['email'])){
+
     $email = $_POST['email'];
 
     $varSQL = "SELECT email, senha
@@ -14,10 +16,17 @@
     $select->bindParam(":email", $email);
     $select->execute();
 
-    if($select->fetch())
+    if($linha = $select->fetch()){
         $_SESSION['emailGuardado'] = $email;
-    else
+        $senha = $linha['senha'];
+        $mensagem = '<a href='.home("redefinir.php?senha=$senha").'></a>';
+        EnviaEmail($email, "redefinição de senha", $mensagem);
+    }
+    else{
         echo "email incorreto";
+    }
+    }
+
 
     
 ?>
@@ -28,3 +37,4 @@
 
     <input type="submit">
 </form>
+

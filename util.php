@@ -1,4 +1,15 @@
 <?php
+// mostra TODOS os erros do php
+ error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+
+  require_once __DIR__ . '/phpmailer/src/Exception.php';
+  require_once __DIR__ . '/phpmailer/src/PHPMailer.php';
+  require_once __DIR__ . '/phpmailer/src/SMTP.php';
+
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\Exception;
 
 // Inicia a sessão com segurança apenas se ainda não foi iniciada
 if (session_status() === PHP_SESSION_NONE) {
@@ -44,6 +55,33 @@ function ExecutaSQL($paramConn, $paramSQL)
   // retorna TRUE se houve linhas afetadas
   $linhas = $paramConn->exec($paramSQL);
   return ($linhas > 0); // TRUE se o comando funciounou !!
+}
+
+
+function redirecionar($pagina)
+{
+    $host = $_SERVER['HTTP_HOST'];
+
+    if ($host === 'localhost:3000') {
+        $base = '';
+    } else {
+        $base = '/loja5b';
+    }
+
+    header("Location: " . $base . "/" . ltrim($pagina, '/'));
+    exit;
+}
+
+
+function home ($pagina){
+  $host = $_SERVER['HTTP_HOST'];
+
+    if ($host === 'localhost:3000') {
+        $base = '';
+    } else {
+        $base = '/loja5b';
+    }
+    return $base . "/" . ltrim($pagina, '/');
 }
 
 function Raiz()
@@ -156,7 +194,7 @@ function ValidaLogin(
 
     // se nao for
     if ( !$autorizadoAdmin ) {
-       header ("location: /index.php");
+       redirecionar("index.php");
        exit;   //// encerra a pagina e qquer conteudo lido 
     }     
     
@@ -179,57 +217,35 @@ function DefineCookie($paramNome, $paramValor, $paramMinutos)
   }
 
   //Envia Email
-  function EnviaEmail ( $pEmailDestino, $pAssunto, $pHtml, 
-                        $pUsuario = "seu_email_aqui", 
-                        $pSenha = "sua_senha_aqui", 
-                        $pSMTP = "smtp.gmail.com" )   
-  {   
-      
+   function EnviaEmail ( $pEmailDestino, $pAssunto, $pHtml, 
+                        $pUsuario = "alunocti@efesonet.com", 
+                        $pSenha = "Cti2025!", 
+                        $pSMTP = "smtp.kinghost.net" )   
+  {      
    try {
- 
-     //cria instancia de phpmailer
-     echo "<br>Tentando enviar para $pEmailDestino...";
-     $mail = new PHPMailer(); 
+     $mail = new PHPMailer(true); // Boa prática: passar true ativa as exceções do PHPMailer
      $mail->IsSMTP();  
-  
-     // servidor smtp
      $mail->Host = $pSMTP;
-     $mail->SMTPAuth = true;      // requer autenticacao com o servidor                         
-     $mail->SMTPSecure = 'tls';                            
-      
-     $mail-> SMTPOptions = array (
-       'ssl' => array (
-       'verificar_peer' => false,
-       'verify_peer_name' => false,
-       'allow_self_signed' => true ) );
-      
-     $mail->Port = 587;      
-      
+     $mail->SMTPAuth = true;                              
+     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;    
+     $mail->CharSet    = 'UTF-8';                        
+     $mail->Port = 587;       
      $mail->Username = $pUsuario; 
-     $mail->Password = $pSenha; 
-     $mail->From = $pUsuario; 
+     $mail->Password = $pSenha;    
+     $mail->setFrom($pUsuario); 
      $mail->FromName = "Suporte de senhas"; 
-  
-     $mail->AddAddress($pEmailDestino, "Usuario"); 
+     $mail->AddAddress($pEmailDestino, "Visitante"); 
      $mail->IsHTML(true); 
      $mail->Subject = $pAssunto; 
      $mail->Body = $pHtml;
-     $enviado = $mail->Send(); 
-       
-     if (!$enviado) {
-        echo "<br>Erro: " . $mail->ErrorInfo;
-     } else {
-        echo "<br><b>Enviado!</b>";
-     }
-     return $enviado;         
-      
-   } catch (phpmailerException $e) {
-     echo $e->errorMessage(); // erros do phpmailer
-   } catch (Exception $e) {
-     echo $e->getMessage();  // erros da aplicacao - gerais
-   }      
-  }
+     $enviado = $mail->send(); 
+     return true;
 
+   } catch (Exception $e) { // Captura qualquer outro erro genérico do PHP
+    echo "<br>Mensagem de erro geral: " . $e->getMessage();
+    return false;
+   }
+  }     
   //Função de salvar imagem
 
 function salvaUploadProdutos($paramFiles, $paramCampo)

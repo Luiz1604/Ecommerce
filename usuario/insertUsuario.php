@@ -1,7 +1,7 @@
 <?php
 include "../util.php";
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado' ]== true){
-    header("Location: ../index.php");
+    redirecionar("index.php");
     exit;
 }
 $index = $_SESSION['sessaoSite'];
@@ -96,7 +96,7 @@ if (ValidaLogin($email, $senha, $nome, $foto, $admin, $telefone)) {
 
     DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
 
-    header("Location: ../index.php");
+    redirecionar("index.php");
     exit;
 }
 

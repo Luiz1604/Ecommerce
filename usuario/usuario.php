@@ -78,7 +78,7 @@
         <div class="container-botao">
             <a href="adicionarUsuario.php" class="btn-adicionar">Adicionar Usuário</a>
         </div>
-        <a href="../index.php" class="btn-voltar">voltar</a>
+        <a href="<?=home("index.php")?>" class="btn-voltar">voltar</a>
     </div>
 
 </body>

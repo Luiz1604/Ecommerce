@@ -43,7 +43,7 @@
 
         // valida o id do produto
         if (filter_var($produtoId, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]]) === false){
-            header("Location: index.php");
+            redirecionar("index.php");
             exit;
         }
 
@@ -83,7 +83,7 @@
 
         // verifica se o produto existe
         if (!$produto){
-            header("Location: index.php");
+            redirecionar("index.php");
             exit;
         }
 

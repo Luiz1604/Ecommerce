@@ -10,7 +10,7 @@ include "_cabecalho.php";
     <h2>Página não encontrada</h2>
     <p>O conteúdo que você está procurando não existe ou foi removido.</p>
     
-    <a href="index.php" class="btn" style="display: inline-block; text-decoration: none; margin-top: 20px;">
+    <a href="<?= home("index.php")?>" class="btn" style="display: inline-block; text-decoration: none; margin-top: 20px;">
         Voltar para o Início
     </a>
 </main>

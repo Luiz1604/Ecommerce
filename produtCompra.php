@@ -6,7 +6,7 @@ include "_cabecalho.php";
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: index.php");
+    redirecionar("index.php");
     exit;
 }
 
@@ -42,7 +42,7 @@ $select->execute();
 $produto = $select->fetch();
 
 if (!$produto) {
-    header("Location: index.php");
+    redirecionar("index.php");
     exit;
 }
 ?>

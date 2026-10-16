@@ -7,7 +7,7 @@
 <footer>
         <section id="rodape">
             <div class="final">
-                <a href="index.php" class="logo_rodape">
+                <a href="<?=home("index.php")?>" class="logo_rodape">
                     <img src=<?=$logo2?> alt="">
                 </a>
                 

@@ -56,7 +56,7 @@ if (isset($_POST['nome'])){
     $_SESSION['sessaoNome'] = $nome;
     $_SESSION['sessaoTel'] = $telefone;
     
-    header("Location: index.php");
+    redirecionar("index.php");
 }
 ?>
 

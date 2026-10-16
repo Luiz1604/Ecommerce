@@ -69,7 +69,7 @@
         <div class="container-botao">
             <a href="adicionarProduto.php" class="btn-adicionar">Adicionar Produto</a>
         </div>
-        <a href="../index.php" class="btn-voltar">voltar</a>
+        <a href="<?=home("index.php")?>" class="btn-voltar">voltar</a>
     </div>
 
 </body>

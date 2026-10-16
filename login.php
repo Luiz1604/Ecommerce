@@ -2,14 +2,14 @@
 include "util.php";
 
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
-    header("Location: index.php");
+    redirecionar("index.php");
 
 $erroLogin = false;
 
 
 
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
-    header("Location: index.php");
+    redirecionar("index.php");
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
@@ -193,7 +193,7 @@ if (isset($_POST['email'])) {
 
     DefineCookie('email', $_SESSION['sessaoLogin'], 1440);
 
-    header("Location: index.php");
+    redirecionar("index.php");
     exit;
     
 
@@ -204,9 +204,11 @@ if (isset($_POST['email'])) {
         }
 }
 
+include "_cabecalho.php"
+
 ?>
 
-<?php include "_cabecalho.php"; ?>
+
 
 <body>
 
