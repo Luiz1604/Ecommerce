@@ -108,8 +108,6 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
         <li><a href="#">Colares</a></li>
         <li><a href="#">Chaveiros</a></li>
         <li><a href="sobreNos.php">Sobre Nós</a></li>
-        <li><a href="#">Contato</a></li>
-        <li><a href="#">Desenvolvedores</a></li>
         <li><a href=<?= $MVV ?>>Missão, Visão e Valores</a></li>
         <?= $opcoesAdmin ?>
     </ul>

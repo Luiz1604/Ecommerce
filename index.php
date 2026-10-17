@@ -99,9 +99,6 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
         </section>
-
-        <h2 class="subtitulo">Categorias</h2>
-
         <h2 class="subtitulo">Categorias</h2>
 
         <section id="categorias">

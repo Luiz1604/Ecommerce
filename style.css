@@ -795,7 +795,7 @@ div.caixa-pesquisa form button:hover {
 }
 
 #categorias .categoria:hover .icone-categoria {
-    color: var(--cor-destaque-simples);
+    color: var(--cor-destaque-titulo);
 }
 
 /* RESPONSIVIDADE */
