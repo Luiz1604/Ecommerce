@@ -696,7 +696,7 @@ div.caixa-pesquisa form button:hover {
     transform: scale(1.2);
 }
 
-#categorias {
+/*#categorias {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -728,7 +728,101 @@ div.caixa-pesquisa form button:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}*/
+
+
+
+/* CATEGORIAS */
+
+#categorias {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
+
+#categorias .categoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    min-height: 170px;
+    padding: 24px 16px;
+    box-sizing: border-box;
+
+    color: var(--cor-destaque-titulo);
+    background: var(--cor-menu);
+    border: 1px solid var(--cor-destaque-secundario);
+    border-radius: 18px;
+
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgb(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#categorias .icone-categoria {
+    display: block;
+    font-size: 54px;
+    line-height: 1;
+    color: var(--cor-destaque-secundario);
+    transition: color 0.25s ease;
+}
+
+#categorias .nome-categoria {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#categorias .categoria:hover {
+    transform: translateY(-6px);
+    color: var(--cor-destaque-titulo);
+    border-color: var(--cor-destaque-simples);
+    box-shadow: 0 10px 24px rgb(48, 92, 222, 0.16);
+}
+
+#categorias .categoria:hover .icone-categoria {
+    color: var(--cor-destaque-simples);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+    #categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    #categorias .categoria {
+        min-height: 145px;
+    }
+
+    #categorias .icone-categoria {
+        font-size: 46px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #categorias .categoria,
+    #categorias .icone-categoria {
+        transition: none;
+    }
+}
+
 
 .azul-escuro {
     box-shadow: 0 0 20px var(--cor-destaque-titulo);

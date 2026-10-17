@@ -101,23 +101,39 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
         <h2 class="subtitulo">Categorias</h2>
+
+        <h2 class="subtitulo">Categorias</h2>
+
         <section id="categorias">
-            <div class="categoria azul-escuro">
-                <img src="imagens/modalidade cursos.png" alt="tech">
-            </div>
-            <div class="categoria azul-claro">
-                <img src="imagens/modalidade cute.png" alt="cursos">
-            </div>
-            <div class="categoria azul-escuro">
-                <img src="imagens/modalidade religioso.png" alt="gamer">
-            </div>
-            <div class="categoria azul-claro">
-                <img src="imagens/modalidade astronomia.png" alt="cute">
-            </div>
-            <div class="categoria azul-escuro">
-                <img src="imagens/modalidade gamer.png" alt="religioso">
-            </div>
+            <a href="feedProdutos.php" class="categoria">
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
+                    sports_esports
+                </span>
+                <span class="nome-categoria">Geek</span>
+            </a>
+
+            <a href="feedProdutos.php" class="categoria">
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
+                    church
+                </span>
+                <span class="nome-categoria">Religioso</span>
+            </a>
+
+            <a href="feedProdutos.php" class="categoria">
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
+                    rocket_launch
+                </span>
+                <span class="nome-categoria">Astronomia</span>
+            </a>
+
+            <a href="feedProdutos.php" class="categoria">
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
+                    favorite
+                </span>
+                <span class="nome-categoria">Cute</span>
+            </a>
         </section>
+
 
         <!--Produtos-->
         <section id="produtos-container">
