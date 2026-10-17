@@ -201,7 +201,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*font-family: var(--fonte-principal);*/
+    font-family: var(--fonte-principal);
 }
 
 body {
@@ -734,7 +734,122 @@ div.caixa-pesquisa form button:hover {
 
 /* CATEGORIAS */
 
-.categorias {
+/* =========================================
+   CATEGORIAS
+========================================= */
+
+main > section.categorias {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+
+    box-sizing: border-box;
+}
+
+/* Cartões */
+
+main > section.categorias > a.categoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    min-width: 0;
+    min-height: 170px;
+    padding: 24px 16px;
+
+    box-sizing: border-box;
+
+    color: var(--cor-destaque-titulo);
+    background-color: var(--cor-menu);
+
+    border: 1px solid var(--cor-destaque-secundario);
+    border-radius: 18px;
+
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Ícones */
+
+main > section.categorias > a.categoria > .icone-categoria {
+    display: block;
+
+    font-size: 54px;
+    line-height: 1;
+
+    color: var(--cor-destaque-secundario);
+
+    transition: color 0.25s ease;
+}
+
+/* Nomes das categorias */
+
+main > section.categorias > a.categoria > .nome-categoria {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Efeito ao passar o mouse */
+
+main > section.categorias > a.categoria:hover {
+    transform: translateY(-6px);
+
+    color: var(--cor-destaque-titulo);
+    background-color: var(--cor-menu);
+
+    border-color: var(--cor-destaque-simples);
+
+    box-shadow: 0 10px 24px rgba(48, 92, 222, 0.16);
+}
+
+main > section.categorias > a.categoria:hover > .icone-categoria {
+    color: var(--cor-destaque-titulo);
+}
+
+/* Responsividade */
+
+@media (max-width: 700px) {
+    main > section.categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    main > section.categorias > a.categoria {
+        min-height: 145px;
+    }
+
+    main > section.categorias > a.categoria > .icone-categoria {
+        font-size: 46px;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    main > section.categorias > a.categoria,
+    main > section.categorias > a.categoria > .icone-categoria {
+        transition: none;
+    }
+}
+
+/*.categorias {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
@@ -798,9 +913,9 @@ div.caixa-pesquisa form button:hover {
 
 .categorias .categoria:hover .icone-categoria {
     color: var(--cor-destaque-titulo);
-}
+}*/
 
-/* RESPONSIVIDADE */
+/* RESPONSIVIDADE 
 
 @media (max-width: 700px) {
     .categorias {
@@ -818,14 +933,14 @@ div.caixa-pesquisa form button:hover {
     }
 }
 
-/* ACESSIBILIDADE */
+/* ACESSIBILIDADE 
 
 @media (prefers-reduced-motion: reduce) {
     .categorias .categoria,
     .categorias .icone-categoria {
         transition: none;
     }
-}
+}*/
 
 
 .azul-escuro {
