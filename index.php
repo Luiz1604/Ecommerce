@@ -45,7 +45,7 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
                         <h1 class="banner-titulo">COMPRAS RÁPIDAS E SEGURAS</h1>
                         <p class="banner-subtitulo">A melhor experiência de compra na palma da sua mão.</p>
                         <a href="feedProdutos.php" class="banner-btn">VER COLEÇÃO</a>
-                    </div>->
+                    </div>
                     <div class="banner-imagem">
                         <img src="Shopping bag.svg" alt="Colares da KeyStyle">
                     </div>
@@ -101,32 +101,24 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
         </section>
         <h2 class="subtitulo">Categorias</h2>
 
-        <section id="categorias">
+        <section class="categorias">
             <a href="feedProdutos.php" class="categoria">
-                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
-                    sports_esports
-                </span>
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">sports_esports</span>
                 <span class="nome-categoria">Geek</span>
             </a>
 
             <a href="feedProdutos.php" class="categoria">
-                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
-                    church
-                </span>
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">church</span>
                 <span class="nome-categoria">Religioso</span>
             </a>
 
             <a href="feedProdutos.php" class="categoria">
-                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
-                    rocket_launch
-                </span>
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">rocket_launch</span>
                 <span class="nome-categoria">Astronomia</span>
             </a>
 
             <a href="feedProdutos.php" class="categoria">
-                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">
-                    favorite
-                </span>
+                <span class="material-symbols-outlined icone-categoria" aria-hidden="true">favorite</span>
                 <span class="nome-categoria">Cute</span>
             </a>
         </section>

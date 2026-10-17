@@ -734,10 +734,11 @@ div.caixa-pesquisa form button:hover {
 
 /* CATEGORIAS */
 
-#categorias {
+.categorias {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
+
     width: 100%;
     max-width: 1100px;
     margin: 0 auto 50px;
@@ -745,7 +746,7 @@ div.caixa-pesquisa form button:hover {
     box-sizing: border-box;
 }
 
-#categorias .categoria {
+.categorias .categoria {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -772,53 +773,56 @@ div.caixa-pesquisa form button:hover {
         box-shadow 0.25s ease;
 }
 
-#categorias .icone-categoria {
+.categorias .icone-categoria {
     display: block;
     font-size: 54px;
     line-height: 1;
     color: var(--cor-destaque-secundario);
+
     transition: color 0.25s ease;
 }
 
-#categorias .nome-categoria {
+.categorias .nome-categoria {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-weight: 700;
     text-align: center;
 }
 
-#categorias .categoria:hover {
+.categorias .categoria:hover {
     transform: translateY(-6px);
     color: var(--cor-destaque-titulo);
     border-color: var(--cor-destaque-simples);
     box-shadow: 0 10px 24px rgb(48, 92, 222, 0.16);
 }
 
-#categorias .categoria:hover .icone-categoria {
+.categorias .categoria:hover .icone-categoria {
     color: var(--cor-destaque-titulo);
 }
 
 /* RESPONSIVIDADE */
 
 @media (max-width: 700px) {
-    #categorias {
+    .categorias {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
         padding: 0 16px;
     }
 
-    #categorias .categoria {
+    .categorias .categoria {
         min-height: 145px;
     }
 
-    #categorias .icone-categoria {
+    .categorias .icone-categoria {
         font-size: 46px;
     }
 }
 
+/* ACESSIBILIDADE */
+
 @media (prefers-reduced-motion: reduce) {
-    #categorias .categoria,
-    #categorias .icone-categoria {
+    .categorias .categoria,
+    .categorias .icone-categoria {
         transition: none;
     }
 }
