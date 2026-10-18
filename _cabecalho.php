@@ -7,6 +7,8 @@ $logo = $prefixo . "imagens/logo.png";
 $home = $prefixo . "index.php";
 $MVV = $prefixo . "MVV.php";
 $todosProdutos = $prefixo . "feedProdutos.php";
+$colares = $prefixo . "feedProdutos.php?tipo=colar";
+$chaveiro = $prefixo . "feedProdutos.php?tipo=chaveiro";
 $login = $prefixo . "login.php";
 $minhaConta = $prefixo . "minhaConta.php";
 $carrinho = $prefixo . "carrinho.php";
@@ -105,8 +107,8 @@ if (isset($_SESSION['sessaoAdmin']) && $_SESSION['sessaoAdmin']) {
 
     <ul class="links-menu-lateral">
         <li><a href=<?= $todosProdutos ?>>Todos os produtos</a></li>
-        <li><a href="#">Colares</a></li>
-        <li><a href="#">Chaveiros</a></li>
+        <li><a href="<?= $colares ?>">Colares</a></li>
+        <li><a href="<?= $chaveiro ?>">Chaveiros</a></li>
         <li><a href="sobreNos.php">Sobre Nós</a></li>
         <li><a href=<?= $MVV ?>>Missão, Visão e Valores</a></li>
         <?= $opcoesAdmin ?>

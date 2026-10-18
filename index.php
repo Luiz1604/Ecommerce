@@ -102,22 +102,22 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
         <h2 class="subtitulo">Categorias</h2>
 
         <section class="categorias">
-            <a href="feedProdutos.php" class="categoria">
+            <a href="feedProdutos.php?categoria=geek" class="categoria">
                 <span class="material-symbols-outlined icone-categoria" aria-hidden="true">sports_esports</span>
                 <span class="nome-categoria">Geek</span>
             </a>
 
-            <a href="feedProdutos.php" class="categoria">
+            <a href="feedProdutos.php?categoria=religioso" class="categoria">
                 <span class="material-symbols-outlined icone-categoria" aria-hidden="true">church</span>
                 <span class="nome-categoria">Religioso</span>
             </a>
 
-            <a href="feedProdutos.php" class="categoria">
+            <a href="feedProdutos.php?categoria=astronomia" class="categoria">
                 <span class="material-symbols-outlined icone-categoria" aria-hidden="true">rocket_launch</span>
                 <span class="nome-categoria">Astronomia</span>
             </a>
 
-            <a href="feedProdutos.php" class="categoria">
+            <a href="feedProdutos.php?categoria=cute" class="categoria">
                 <span class="material-symbols-outlined icone-categoria" aria-hidden="true">favorite</span>
                 <span class="nome-categoria">Cute</span>
             </a>

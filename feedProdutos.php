@@ -4,17 +4,26 @@
 
     $conn = conecta();
 
-    $filtro = "%" . ($_POST['procura'] ?? "") . "%";
+    if (isset($_POST['procura']))
+        $filtro = "%" . $_POST['procura'] . "%";
+    else if (isset($_GET['tipo']))
+        $filtro = "%" . $_GET['tipo'] . "%";
+    else 
+        $filtro = "%%";
+
+    $categoria = "%" . ($_GET['categoria'] ?? "") . "%";
 
     $varSQL = "SELECT *
                 FROM produto
                 WHERE excluido = FALSE
                 AND nome ilike :filtro
+                AND categoria ilike :categoria
                 ORDER BY id_produto ASC
                 ";
 
     $select = $conn->prepare($varSQL);
     $select->bindParam(":filtro", $filtro);
+    $select->bindParam(":categoria", $categoria);
     $select->execute();
 
     $produtos = $select->fetchAll();
