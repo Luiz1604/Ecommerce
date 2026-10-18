@@ -4,51 +4,53 @@ include "_cabecalho.php";
 
 $conn = conecta();
 
-if(isset($_POST['senha'])){
+if (isset($_POST['senha'])) {
     $token = $_POST['token'] ?? $_GET['token'] ?? '';
-$tokenHash = hash('sha256', $token);
+    $tokenHash = hash('sha256', $token);
 
-$erroSenha = false;
-$erro = $_GET['erro'] ?? false;
-if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
-    $erroSenha = true;
-}
+    $erroSenha = false;
+    $erro = $_GET['erro'] ?? false;
+    if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
+        $erroSenha = true;
+    }
 
 
-$sql = "SELECT id, id_usuario
+    $sql = "SELECT id, id_usuario
         FROM recuperacao_senha
         WHERE token_hash = :token
           AND usado = FALSE
           AND expira_em > CURRENT_TIMESTAMP";
 
-$select = $conn->prepare($sql);
-$select->bindParam(":token", $tokenHash);
-$select->execute();
+    $select = $conn->prepare($sql);
+    $select->bindParam(":token", $tokenHash);
+    $select->execute();
 
-$recuperacao = $select->fetch();
+    $recuperacao = $select->fetch();
 
-if ($recuperacao && $erroSenha = false) {
-    $senhaNovaCripto = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    if ($recuperacao && $erroSenha == false) {
+        $senhaNovaCripto = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $alter = "UPDATE usuario
+        $alter = "UPDATE usuario
                 SET senha = :senha
                 WHERE id_usuario = :id";
 
-    $select = $conn->prepare($alter);
-    $select->bindParam(":id", $recuperacao['id_usuario']);
-    $select->bindParam(":senha", $senhaNovaCripto );
-    $select->execute();
+        $select = $conn->prepare($alter);
+        $select->bindParam(":id", $recuperacao['id_usuario']);
+        $select->bindParam(":senha", $senhaNovaCripto);
+        $select->execute();
 
-    echo "O procedimento foi bem sucedido";
-} else {
-    echo "houve algum erro no caminho, tente novamente";
-}
-
+        echo "O procedimento foi bem sucedido";
+    } else {
+        echo "houve algum erro no caminho, tente novamente";
+    }
 }
 ?>
 
 <main class="pagina-esqueci">
     <form class="form-esqueci" action="redefinir.php" method="POST">
+
+        <input type="hidden" name="token" value="<?= $_POST['token'] ?>">
+
         <span class="material-symbols-outlined icone-esqueci" aria-hidden="true">lock_reset</span>
         <h1>Redefinir senha</h1>
         <p class="descricao-esqueci">
