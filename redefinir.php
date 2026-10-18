@@ -6,7 +6,7 @@ $conn = conecta();
 $erroSenha = isset($_GET['erro'])
     && $_GET['erro'] === 'senhas_diferentes';
 
-$token = $_POST['token'] ?? $_GET['token'] ?? '';
+$token = trim($_POST['token'] ?? $_GET['token'] ?? '');
 $mensagem = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['senha'])) {
@@ -102,8 +102,8 @@ include "_cabecalho.php";
         <input
             type="hidden"
             name="token"
-            value="<?= htmlspecialchars($token ?? '', ENT_QUOTES, 'UTF-8') ?>">
-
+            value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
+            
         <?php if ($mensagem !== ''): ?>
             <div class="<?= $erroSenha ? 'alerta-erro' : 'alerta-sucesso' ?>">
                 <span>
