@@ -20,10 +20,10 @@
                 SET senha = :senha
                 WHERE email = :email";
 
-        $alter = $conn->prepare();
-        $alter->bindParam(":email", $email);
-        $alter->bindParam(":senha", $senhaNova);
-        $alter->execute();
+        $select = $conn->prepare($alter);
+        $select->bindParam(":email", $email);
+        $select->bindParam(":senha", $senhaNova);
+        $select->execute();
 
         echo"O procedimento foi bem sucedido";
     } else {
@@ -31,9 +31,35 @@
     }
 ?>
 
-<form action="redefinir.php" method="POST">
-    <label for="senha">Confirme sua nova senha</label>
-    <input type="text" name="senha" id="senha">
+<main class="pagina-esqueci">
+    <form class="form-esqueci" action="redefinir.php" method="POST">
+        <span class="material-symbols-outlined icone-esqueci"
+              aria-hidden="true">lock_reset</span>
+        <h1>Redefinir senha</h1>
+        <p class="descricao-esqueci">
+            Crie uma nova senha para voltar a acessar sua conta KeyStyle.
+        </p>
+        <div class="campo-esqueci">
+            <label for="senha">Nova senha</label>
 
-    <input type="submit">
-</form>
+            <input
+                type="password"
+                name="senha"
+                id="senha"
+                placeholder="Digite sua nova senha"
+                autocomplete="new-password"
+                required
+            >
+        </div>
+        <button type="submit" class="btn-esqueci">
+            Redefinir senha
+
+            <span class="material-symbols-outlined"
+                  aria-hidden="true">arrow_forward</span>
+        </button>
+
+        <a href="login.php" class="voltar-login">
+            Voltar para o login
+        </a>
+    </form>
+</main>
