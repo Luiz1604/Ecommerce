@@ -732,7 +732,6 @@ main > section.categorias > a.categoria {
         box-shadow 0.25s ease;
 }
 
-/* Ícones */
 main > section.categorias > a.categoria > .icone-categoria {
     display: block;
     font-size: 54px;
@@ -741,7 +740,6 @@ main > section.categorias > a.categoria > .icone-categoria {
     transition: color 0.25s ease;
 }
 
-/* Nomes das categorias */
 main > section.categorias > a.categoria > .nome-categoria {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
@@ -750,7 +748,6 @@ main > section.categorias > a.categoria > .nome-categoria {
     color: var(--cor-destaque-titulo);
 }
 
-/* Efeito ao passar o mouse */
 main > section.categorias > a.categoria:hover {
     transform: translateY(-6px);
     color: var(--cor-destaque-titulo);
@@ -767,28 +764,64 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     color: var(--cor-destaque-secundario);
 }
 
-/* Responsividade */
 @media (max-width: 700px) {
     main > section.categorias {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
+        width: 100%;
         padding: 0 16px;
+        align-items: stretch;
+        justify-items: stretch;
     }
 
     main > section.categorias > a.categoria {
-        min-height: 145px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        min-height: 135px;
+        padding: 18px 10px;
+        gap: 12px;
+        box-sizing: border-box;
+        text-align: center;
     }
 
     main > section.categorias > a.categoria > .icone-categoria {
-        font-size: 46px;
+        display: block;
+        font-size: 42px;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    main > section.categorias > a.categoria > .nome-categoria {
+        display: block;
+        max-width: 100%;
+
+        font-size: 14px;
+        line-height: 1.3;
+        text-align: center;
+        overflow-wrap: break-word;
     }
 }
 
-/* Acessibilidade */
-@media (prefers-reduced-motion: reduce) {
-    main > section.categorias > a.categoria,
+@media (max-width: 360px) {
+    main > section.categorias {
+        gap: 12px;
+        padding: 0 12px;
+    }
+    main > section.categorias > a.categoria {
+        min-height: 125px;
+        padding: 16px 6px;
+        gap: 10px;
+    }
     main > section.categorias > a.categoria > .icone-categoria {
-        transition: none;
+        font-size: 38px;
+    }
+    main > section.categorias > a.categoria > .nome-categoria {
+        font-size: 13px;
     }
 }
 
@@ -932,7 +965,7 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     background-color: var(--cor-destaque-titulo);
 }
 
-#motivos {
+/*#motivos {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -959,6 +992,111 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     height: 180px;
     position: relative;
     box-sizing: border-box;
+}*/
+
+.motivos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+
+    width: 100%;
+    max-width: 1550px;
+
+    margin: 0 auto;
+    padding: 32px 24px;
+    gap: 28px;
+
+    box-sizing: border-box;
+}
+
+/* Cada motivo */
+
+.motivos .motivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Ícones circulares */
+
+.motivos .icone-motivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+
+    background-color: var(--cor-destaque-secundario);
+    color: #ffffff;
+
+    font-size: 34px;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
+
+/* Container dos textos */
+
+.motivos .texto-motivo {
+    min-width: 0;
+}
+
+/* Títulos */
+
+.motivos .texto-motivo h3 {
+    margin: 0 0 3px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.2;
+
+    color: var(--cor-destaque-titulo);
+}
+
+/* Descrições */
+
+.motivos .texto-motivo p {
+    margin: 0;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: var(--cor-texto);
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 768px) {
+    .motivos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+        padding: 30px 24px;
+    }
+
+    .motivos .motivo {
+        justify-content: flex-start;
+    }
+
+    .motivos .texto-motivo h3 {
+        font-size: 16px;
+    }
+
+    .motivos .texto-motivo p {
+        font-size: 12px;
+    }
 }
 
 #video {

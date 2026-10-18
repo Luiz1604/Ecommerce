@@ -171,18 +171,46 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
         <h2 class="subtitulo">Por que comprar a gente?</h2>
-        <section id="motivos">
+        <section class="motivos" aria-label="Por que comprar na KeyStyle">
+
             <div class="motivo">
-                <img src="imagens/coleção limitada.png" alt="">
+                <span class="material-symbols-outlined icone-motivo"
+                    aria-hidden="true">star</span>
+
+                <div class="texto-motivo">
+                    <h3>COLEÇÃO LIMITADA</h3>
+                    <p>Produtos exclusivos em edições limitadas.</p>
+                </div>
             </div>
+
             <div class="motivo">
-                <img src="imagens/design exclusivo.png" alt="">
+                <span class="material-symbols-outlined icone-motivo"
+                    aria-hidden="true">diamond</span>
+
+                <div class="texto-motivo">
+                    <h3>DESIGN EXCLUSIVO</h3>
+                    <p>Estilo minimalista, moderno e feito para você.</p>
+                </div>
             </div>
+
             <div class="motivo">
-                <img src="imagens/temas universais.png" alt="">
+                <span class="material-symbols-outlined icone-motivo"
+                    aria-hidden="true">public</span>
+
+                <div class="texto-motivo">
+                    <h3>TEMAS UNIVERSAIS</h3>
+                    <p>Estilos que combinam com todos os momentos.</p>
+                </div>
             </div>
+
             <div class="motivo">
-                <img src="imagens/preço justo.png" alt="">
+                <span class="material-symbols-outlined icone-motivo"
+                    aria-hidden="true">account_balance_wallet</span>
+
+                <div class="texto-motivo">
+                    <h3>PREÇO JUSTO</h3>
+                    <p>Preços que cabem no seu bolso.</p>
+                </div>
             </div>
         </section>
 
