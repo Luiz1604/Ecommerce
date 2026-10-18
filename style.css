@@ -1779,6 +1779,17 @@ h2 {
     align-self: stretch;
 }
 
+.caixa-foto-grande {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    height: 500px;
+    box-sizing: border-box;
+    background-color: var(--cor-preto-feed);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .caixa-foto-grande img {
     display: block;
     width: 100%;
