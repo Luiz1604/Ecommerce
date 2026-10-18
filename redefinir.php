@@ -4,7 +4,7 @@ include "_cabecalho.php";
 
 $conn = conecta();
 
-if(isset($_GET['token'])){
+if(isset($_POST['senha'])){
     $token = $_POST['token'] ?? $_GET['token'] ?? '';
 $tokenHash = hash('sha256', $token);
 
@@ -20,7 +20,7 @@ $select->execute();
 
 $recuperacao = $select->fetch();
 
-if ($recuperacao && isset($_POST['senha'])) {
+if ($recuperacao ) {
     $senhaNovaCripto = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
     $alter = "UPDATE usuario
