@@ -47,9 +47,16 @@ if (isset($_POST['senha'])) {
 ?>
 
 <main class="pagina-esqueci">
-    <form class="form-esqueci" action="redefinir.php" method="POST">
+    <form class="form-esqueci" action="redefinir.php" <?= $erroSenha ? 'login-erro' : '' ?> method="POST">
 
-        <input type="hidden" name="token" value="<?= $_POST['token'] ?>">
+        <input type="hidden" name="token" value="<?= $_GET['token'] ?>">
+
+           <?php if ($erroSenha); ?>
+                        <div class="alerta-erro">
+                            <span class="material-symbols-outlined">error</span>
+                            <span>As senhas digitadas não coincidem. Tente novamente.</span>
+                        </div>
+
 
         <span class="material-symbols-outlined icone-esqueci" aria-hidden="true">lock_reset</span>
         <h1>Redefinir senha</h1>
