@@ -8,7 +8,7 @@ if (isset($_POST['email'])) {
 
     $email = trim($_POST['email']);
 
-    $varSQL = "SELECT email, senha
+    $varSQL = "SELECT id_usuario, senha
             FROM usuario
             WHERE email = :email
             AND excluido = FALSE";
@@ -47,7 +47,7 @@ if (isset($_POST['email'])) {
         $insert->execute();
 
 
-        $senha = $linha['senha'];
+        $senha = $usuario['senha'];
         $mensagem = '<a href=' . linkRedefinir("redefinir.php?senha=$token") . '>Clique aqui para redefinir sua senha</a>';
         EnviaEmail($email, "redefinição de senha", $mensagem);
     } else {

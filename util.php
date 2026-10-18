@@ -82,8 +82,7 @@ function linkRedefinir($pagina = "redefinir.php")
         $base = 'eq.projetoscti.com.br/loja5b';
     }
 
-    header("Location: " . $base . "/" . ltrim($pagina, '/'));
-    exit;
+    return $base . "/" . ltrim($pagina, '/');
 }
 
 
