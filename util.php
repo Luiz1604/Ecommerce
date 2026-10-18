@@ -72,6 +72,20 @@ function redirecionar($pagina)
     exit;
 }
 
+function linkRedefinir($pagina = "redefinir.php")
+{
+    $host = $_SERVER['HTTP_HOST'];
+
+    if ($host === 'localhost:3000') {
+        $base = '';
+    } else {
+        $base = 'eq.projetoscti.com.br/loja5b';
+    }
+
+    header("Location: " . $base . "/" . ltrim($pagina, '/'));
+    exit;
+}
+
 
 function home ($pagina){
   $host = $_SERVER['HTTP_HOST'];

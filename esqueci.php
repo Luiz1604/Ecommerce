@@ -1,34 +1,62 @@
-<?php 
-    include "util.php";
-    include "_cabecalho.php";
+<?php
+include "util.php";
+include "_cabecalho.php";
 
-    $conn = conecta();
+$conn = conecta();
 
-    if(isset($_POST['email'])){
+if (isset($_POST['email'])) {
 
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
 
     $varSQL = "SELECT email, senha
             FROM usuario
-            WHERE email = :email";
+            WHERE email = :email
+            AND excluido = FALSE";
 
     $select = $conn->prepare($varSQL);
     $select->bindParam(":email", $email);
     $select->execute();
 
-    if($linha = $select->fetch()){
-        $_SESSION['emailGuardado'] = $email;
+    if ($usuario = $select->fetch()) {
+
+        $token = bin2hex(random_bytes(32));
+
+        // Salva o hash
+        $tokenHash = hash('sha256', $token);
+
+        // Duração do tken
+        $expiraEm = date('Y-m-d H:i:s', time() + 1800);
+
+        // Garante que só haverá um token
+        $sql = "DELETE FROM recuperacao_senha
+                WHERE id_usuario = :id";
+
+        $delete = $conn->prepare($sql);
+        $delete->bindParam(":id", $usuario['id_usuario']);
+        $delete->execute();
+
+        // Registra o novo token
+        $sql = "INSERT INTO recuperacao_senha
+                (id_usuario, token_hash, expira_em)
+                VALUES (:id, :token, :expira)";
+
+        $insert = $conn->prepare($sql);
+        $insert->bindParam(":id", $usuario['id_usuario']);
+        $insert->bindParam(":token", $tokenHash);
+        $insert->bindParam(":expira", $expiraEm);
+        $insert->execute();
+
+
         $senha = $linha['senha'];
-        $mensagem = '<a href=eq.projetoscti.com.br'.home("redefinir.php?senha=$senha").'>Clique aqui para redefinir sua senha</a>';
+        $mensagem = '<a href=' . linkRedefinir("redefinir.php?senha=$token") . '>Clique aqui para redefinir sua senha</a>';
         EnviaEmail($email, "redefinição de senha", $mensagem);
-    }
-    else{
+    } else {
         echo "email incorreto";
     }
-    }
+}
 
 
-    
+
 ?>
 
 <main class="pagina-esqueci">
@@ -43,14 +71,12 @@
             Informe seu e-mail para receber as instruções de redefinição
             da sua senha.
         </p>
+
+        <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+
         <div class="campo-esqueci">
             <label for="email">Endereço de e-mail</label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="seuemail@exemplo.com"
-                autocomplete="email"
+            <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" autocomplete="email"
                 required>
         </div>
 
@@ -66,4 +92,3 @@
         </a>
     </form>
 </main>
-
