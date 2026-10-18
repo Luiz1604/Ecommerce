@@ -8,6 +8,13 @@ if(isset($_POST['senha'])){
     $token = $_POST['token'] ?? $_GET['token'] ?? '';
 $tokenHash = hash('sha256', $token);
 
+$erroSenha = false;
+$erro = $_GET['erro'] ?? false;
+if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
+    $erroSenha = true;
+}
+
+
 $sql = "SELECT id, id_usuario
         FROM recuperacao_senha
         WHERE token_hash = :token
@@ -20,7 +27,7 @@ $select->execute();
 
 $recuperacao = $select->fetch();
 
-if ($recuperacao ) {
+if ($recuperacao && $erroSenha = false) {
     $senhaNovaCripto = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
     $alter = "UPDATE usuario
@@ -28,8 +35,8 @@ if ($recuperacao ) {
                 WHERE id_usuario = :id";
 
     $select = $conn->prepare($alter);
-    $select->bindParam(":email", $email);
-    $select->bindParam(":senha", $recuperacao['id_usuario']);
+    $select->bindParam(":id", $recuperacao['id_usuario']);
+    $select->bindParam(":senha", $senhaNovaCripto );
     $select->execute();
 
     echo "O procedimento foi bem sucedido";
