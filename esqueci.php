@@ -19,9 +19,7 @@
     if($linha = $select->fetch()){
         $_SESSION['emailGuardado'] = $email;
         $senha = $linha['senha'];
-        $mensagem = '<a href='.home("redefinir.php?senha=$senha").'>Clique aqui para redefinir sua senha</a>';
-        echo home("redefinir.php");
-        exit;
+        $mensagem = '<a href=eq.projetoscti.com.br'.home("redefinir.php?senha=$senha").'>Clique aqui para redefinir sua senha</a>';
         EnviaEmail($email, "redefinição de senha", $mensagem);
     }
     else{

@@ -16,6 +16,7 @@
 
     if($senhaEnviada === $linha['senha']){
         $senhaNova = $_POST['senha'];
+        $senhaNovaCripto = password_hash($senhaNova, PASSWORD_DEFAULT);
         $alter = "UPDATE usuario
                 SET senha = :senha
                 WHERE email = :email";
