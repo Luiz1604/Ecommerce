@@ -9,6 +9,15 @@ $erroSenha = isset($_GET['erro'])
 $token = trim($_POST['token'] ?? $_GET['token'] ?? '');
 $mensagem = '';
 
+
+echo '<pre>';
+echo 'Método da requisição: ' . htmlspecialchars($_SERVER['REQUEST_METHOD']) . "\n";
+echo 'Token recebido por GET: ' . (isset($_GET['token']) && $_GET['token'] !== '' ? 'SIM' : 'NÃO') . "\n";
+echo 'Token recebido por POST: ' . (isset($_POST['token']) && $_POST['token'] !== '' ? 'SIM' : 'NÃO') . "\n";
+echo 'Token disponível na variável: ' . ($token !== '' ? 'SIM' : 'NÃO') . "\n";
+echo '</pre>';
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['senha'])) {
 
     $senha = $_POST['senha'];
@@ -103,7 +112,7 @@ include "_cabecalho.php";
             type="hidden"
             name="token"
             value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
-            
+
         <?php if ($mensagem !== ''): ?>
             <div class="<?= $erroSenha ? 'alerta-erro' : 'alerta-sucesso' ?>">
                 <span>
