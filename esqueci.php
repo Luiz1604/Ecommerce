@@ -47,9 +47,14 @@ if (isset($_POST['email'])) {
         $insert->execute();
 
 
-        $senha = $usuario['senha'];
-        $mensagem = '<a href=' . linkRedefinir("redefinir.php?senha=$token") . '>Clique aqui para redefinir sua senha</a>';
-        EnviaEmail($email, "redefinição de senha", $mensagem);
+
+        $link = linkRedefinir("redefinir.php?token=" . urlencode($token));
+
+        $mensagem = '<p>Você solicitou a redefinição da sua senha KeyStyle.</p>
+             <p><a href="' . htmlspecialchars($link, ENT_QUOTES, 'UTF-8') . '">Clique aqui para redefinir sua senha</a></p>
+             <p>Este link expira em 30 minutos.</p>';
+
+        EnviaEmail($email, "Redefinição de senha", $mensagem);
     } else {
         echo "email incorreto";
     }
