@@ -1,7 +1,6 @@
 <?php
 
 include "util.php";
-include "_cabecalho.php";
 
 if (!isset($_SESSION['sessaoConectado']) || $_SESSION['sessaoConectado'] !== true) {
     header("Location: login.php");
@@ -58,6 +57,8 @@ if (isset($_POST['nome'])){
     
     redirecionar("index.php");
 }
+
+include "_cabecalho.php";
 ?>
 
 <body>

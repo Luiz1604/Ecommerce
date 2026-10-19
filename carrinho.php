@@ -448,111 +448,190 @@ if (isset($_SESSION['sessaoLogin'])) {
 
     <h1 class="h1-carrinho">MEU CARRINHO</h1>
 
-    <div class="layout-carrinho">
-        <div class="container-tabela">
-        <table class="tabela-usuarios">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th></th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Subtotal</th>
-                    <th>Excluir</th>
-                    <th>Ver detalhes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $total = 0;
-                $quantidadeItens = 0;
-                
-                foreach ($produtos as $produto) {
-                    $subtotal = $produto['valor_unitario'] * $produto['quantidade'];
-                    $total += $subtotal;
-                    $quantidadeItens += $produto['quantidade'];
-                ?>
-                    <tr>
-                        <td class="coluna-imagem">
-                            <img
-                                class="img-prod-carrinho"
-                                src="<?= $produto['imagem'] ?>"
-                                alt="<?= $produto['nome'] ?>">
-                        </td>
-                        <td>
-                            <?= $produto['nome'] ?>
-                        </td>
-                        <td>
-                            <?php if ($produto['quantidade'] > 1) { ?>
-                                <a href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>">-</a>
-                            <?php } else { ?>
-                                <span class="botao-indisponivel">-</span>
-                            <?php } ?>
+    <?php if (empty($produtos)) { ?>
+        <div class="carrinho-vazio-quadro">
+            <div class="carrinho-vazio">
+                <h2>Seu carrinho está vazio</h2>
+                <p>Expresse quem você é</p>
+                <img src="atacado e varejo.svg" alt="carrinho vazio" class="svg-carrinho">
+                <a href="feedProdutos.php" class="btn-ver-produtos">
+                    Ver produtos
+                </a>
+            </div>
+        </div>
+    <?php } else { ?>
+        <div class="layout-carrinho">
+            <div class="container-tabela-carrinho">
+                <div class="lista-produtos">
+                    <?php
+                    $total = 0;
+                    $quantidadeItens = 0;
 
-                            <span><?= $produto['quantidade'] ?></span>
+                    foreach ($produtos as $produto) {
+                        $subtotal = $produto['valor_unitario'] * $produto['quantidade'];
+                        $total += $subtotal;
+                        $quantidadeItens += $produto['quantidade'];
+                    ?>
 
-                            <?php if ($produto['quantidade'] < $produto['estoque']) { ?>
-                                <a href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>">+</a>
-                            <?php } else { ?>
-                                <span class="botao-indisponivel">+</span>
-                            <?php } ?>
-                        </td>
-                        <td>
-                            R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?>
-                        </td>
-                        <td>
-                            R$ <?= number_format(
+                        <article class="card-produto-carrinho">
+
+                            <div class="info-produto-carrinho">
+                                <img
+                                    class="img-prod-carrinho"
+                                    src="<?= htmlspecialchars($produto['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($produto['nome']) ?>"
+                                >
+
+                                <div class="dados-produto-carrinho">
+                                    <h3>
+                                        <?= htmlspecialchars($produto['nome']) ?>
+                                    </h3>
+
+                                    <div class="controle-quantidade">
+                                        <span>Quantidade:</span>
+
+                                        <div class="botoes-quantidade">
+                                            <?php if ($produto['quantidade'] > 1) { ?>
+                                                <a
+                                                    href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>"
+                                                    class="btn-maismenos"
+                                                    aria-label="Diminuir quantidade"
+                                                >
+                                                    <span class="material-symbols-outlined">remove</span>
+                                                </a>
+                                            <?php } else { ?>
+                                                <span class="btn-indisponivel">
+                                                    <span class="material-symbols-outlined">remove</span>
+                                                </span>
+                                            <?php } ?>
+
+                                            <span class="valor-quantidade">
+                                                <?= $produto['quantidade'] ?>
+                                            </span>
+
+                                            <?php if ($produto['quantidade'] < $produto['estoque']) { ?>
+                                                <a
+                                                    href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>"
+                                                    class="btn-maismenos"
+                                                    aria-label="Aumentar quantidade"
+                                                >
+                                                    <span class="material-symbols-outlined">add</span>
+                                                </a>
+                                            <?php } else { ?>
+                                                <span class="btn-indisponivel">
+                                                    <span class="material-symbols-outlined">add</span>
+                                                </span>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="preco-produto-carrinho">
+                                <span class="rotulo-mobile">Preço Unitário</span>
+                                <span>
+                                    R$ <?= number_format(
+                                        $produto['valor_unitario'],
+                                        2,
+                                        ',',
+                                        '.'
+                                    ) ?>
+                                </span>
+                            </div>
+
+                            <div class="subtotal-produto-carrinho">
+                                <span class="rotulo-mobile">Subtotal</span>
+                                <strong>
+                                    R$ <?= number_format(
+                                        $subtotal,
+                                        2,
+                                        ',',
+                                        '.'
+                                    ) ?>
+                                </strong>
+                            </div>
+
+                            <div class="acoes-produto-carrinho">
+                                <a
+                                    href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>"
+                                    class="btn-acao btn-excluir"
+                                >
+                                    <span class="material-symbols-outlined">delete</span>
+                                    Excluir
+                                </a>
+
+                                <a
+                                    href="produtCompra.php?id=<?= $produto['id_produto'] ?>"
+                                    class="btn-acao btn-alterar"
+                                >
+                                    <span class="material-symbols-outlined">info</span>
+                                    Detalhes
+                                </a>
+                            </div>
+
+                        </article>
+
+                    <?php } ?>
+                </div>
+
+                <a href="feedProdutos.php" class="btn-voltar">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Continuar comprando</span>
+                </a>
+
+            </div>    
+
+            <aside class="resumo-carrinho">
+                <h2>Resumo da compra</h2>
+
+                <div class="linha-resumo">
+                    <span>Quantidade de itens:</span>
+                    <strong>
+                        <span><?= $quantidadeItens ?></span>
+                    </strong>
+                </div>
+
+                <div class="lista-subtotais">
+                    <h3>Subtotal por produto</h3>
+
+                    <?php foreach ($produtos as $produto) { ?>
+                        <div class="linha-subtotal">
+                            <span>
+                                <?= htmlspecialchars($produto['nome']) ?>
+                                (<?= $produto['quantidade'] ?>x)
+                            </span>
+                            <strong>
+                                R$
+                                <?= number_format(
                                     $produto['valor_unitario'] * $produto['quantidade'],
                                     2,
                                     ',',
                                     '.'
                                 ) ?>
-                        </td>
-                        <td>
-                            <a href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-acao btn-excluir" >Excluir</a>
-                        </td>
-                        <td>
-                            <a href="produtCompra.php?id=<?= $produto['id_produto'] ?>"
-                                class="btn-acao btn-alterar">Detalhes</a>
-                        </td>
-                    </tr>
+                            </strong>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="linha-total">
+                    <span>Total:</span>
+                    <strong>
+                        R$ <?= number_format($total, 2, ',', '.') ?>
+                    </strong>
+                </div>
+
+                <?php if (isset($_SESSION['sessaoLogin']) && !empty($produtos)) { ?>
+                    <form action="reservar.php" method="POST">
+                        <input type="hidden" name="origem" value="carrinho">
+
+                        <button type="submit" class="btn-reservar">
+                            RESERVAR COMPRA
+                        </button>
+                    </form>
                 <?php } ?>
-            </tbody>
-        </table>
-        <a href="feedProdutos.php" class="btn-voltar">
-            <i class="fa-solid fa-arrow-left"></i>
-            <span>Continuar comprando</span>
-        </a>
-    </div>
-    
-    <aside class="resumo-carrinho">
-        <h2>Resumo da compra</h2>
-
-        <div class="linha-resumo">
-            <span>Quantidade de itens:</span>
-            <strong>
-                <span><?= $quantidadeItens ?></span>
-            </strong>
+            </aside>
         </div>
-
-        <div class="linha-total">
-            <span>Total:</span>
-            <strong>
-                R$ <?= number_format($total, 2, ',', '.') ?>
-            </strong>
-        </div>
-
-        <?php if (isset($_SESSION['sessaoLogin']) && !empty($produtos)) { ?>
-            <form action="reservar.php" method="POST">
-                <input type="hidden" name="origem" value="carrinho">
-
-                <button type="submit" class="btn-reservar">
-                    RESERVAR COMPRA
-                </button>
-            </form>
-        <?php } ?>
-    </aside>
-    </div>
+    <?php } ?>
 
 </main>
 <?php include "_rodape.php"; ?>

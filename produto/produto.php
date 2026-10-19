@@ -3,7 +3,6 @@
 <body>
     <?php
     include "../util.php";
-    include "../_cabecalho.php";
     SaiSeHacker();
 
     $conn = conecta();
@@ -15,12 +14,14 @@
 
     $select = $conn->prepare($varSQL);
     $select->execute();
+
+    include "../_cabecalho.php";
     ?>
 <!--mesmo nome de classes da tabela usuarios, para manter o estilo padronizado e economizar css-->
     <div class="container-tabela">
         <table class="tabela-usuarios">
             <thead>
-                <tr>
+                <tr>    
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Descrição</th>

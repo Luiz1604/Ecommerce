@@ -31,7 +31,7 @@
             <div class="final">
                 <h3>Coleções</h3>
                 <br>
-                <a href="feedProdutos.php?categoria=astronomia" class="categoria">Astronomia</a>
+                <a href="feedProdutos.php?categoria=astronomia" class="categoria">Astronomia</a><br>
                 <a href="feedProdutos.php?categoria=geek" class="categoria">Geek</a><br>
                 <a href="feedProdutos.php?categoria=cute" class="categoria">Cute</a><br>
                 <a href="feedProdutos.php?categoria=religioso" class="categoria">Religioso</a>
