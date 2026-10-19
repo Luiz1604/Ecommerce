@@ -448,6 +448,24 @@ if (isset($_SESSION['sessaoLogin'])) {
 
     <h1 class="h1-carrinho">MEU CARRINHO</h1>
 
+    <?php if (!empty($_SESSION['mensagemCarrinho'])) { ?>
+        <div class="mensagem-estoque" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">
+                warning
+            </span>
+
+            <p>
+                <?= htmlspecialchars(
+                    $_SESSION['mensagemCarrinho'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                ) ?>
+            </p>
+        </div>
+
+        <?php unset($_SESSION['mensagemCarrinho']); ?>
+    <?php } ?>
+
     <?php if (empty($produtos)) { ?>
         <div class="carrinho-vazio-quadro">
             <div class="carrinho-vazio">
@@ -479,8 +497,7 @@ if (isset($_SESSION['sessaoLogin'])) {
                                 <img
                                     class="img-prod-carrinho"
                                     src="<?= htmlspecialchars($produto['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($produto['nome']) ?>"
-                                >
+                                    alt="<?= htmlspecialchars($produto['nome']) ?>">
 
                                 <div class="dados-produto-carrinho">
                                     <h3>
@@ -495,8 +512,7 @@ if (isset($_SESSION['sessaoLogin'])) {
                                                 <a
                                                     href="carrinho.php?operacao=menos&id_produto=<?= $produto['id_produto'] ?>"
                                                     class="btn-maismenos"
-                                                    aria-label="Diminuir quantidade"
-                                                >
+                                                    aria-label="Diminuir quantidade">
                                                     <span class="material-symbols-outlined">remove</span>
                                                 </a>
                                             <?php } else { ?>
@@ -513,8 +529,7 @@ if (isset($_SESSION['sessaoLogin'])) {
                                                 <a
                                                     href="carrinho.php?operacao=mais&id_produto=<?= $produto['id_produto'] ?>"
                                                     class="btn-maismenos"
-                                                    aria-label="Aumentar quantidade"
-                                                >
+                                                    aria-label="Aumentar quantidade">
                                                     <span class="material-symbols-outlined">add</span>
                                                 </a>
                                             <?php } else { ?>
@@ -524,6 +539,19 @@ if (isset($_SESSION['sessaoLogin'])) {
                                             <?php } ?>
                                         </div>
                                     </div>
+
+                                    <?php if ((int) $produto['quantidade'] > (int) $produto['estoque']) { ?>
+                                        <p class="aviso-estoque-produto" role="alert">
+                                            <span class="material-symbols-outlined" aria-hidden="true">
+                                                warning
+                                            </span>
+
+                                            Estoque insuficiente. Disponíveis:
+                                            <?= max(0, (int) $produto['estoque']) ?> unidade(s).
+                                            Reduza a quantidade para reservar.
+                                        </p>
+                                    <?php } ?>
+                                    
                                 </div>
                             </div>
 
@@ -531,11 +559,11 @@ if (isset($_SESSION['sessaoLogin'])) {
                                 <span class="rotulo-mobile">Preço Unitário</span>
                                 <span>
                                     R$ <?= number_format(
-                                        $produto['valor_unitario'],
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
+                                            $produto['valor_unitario'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
                                 </span>
                             </div>
 
@@ -543,27 +571,25 @@ if (isset($_SESSION['sessaoLogin'])) {
                                 <span class="rotulo-mobile">Subtotal</span>
                                 <strong>
                                     R$ <?= number_format(
-                                        $subtotal,
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
+                                            $subtotal,
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
                                 </strong>
                             </div>
 
                             <div class="acoes-produto-carrinho">
                                 <a
                                     href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>"
-                                    class="btn-acao btn-excluir"
-                                >
+                                    class="btn-acao btn-excluir">
                                     <span class="material-symbols-outlined">delete</span>
                                     Excluir
                                 </a>
 
                                 <a
                                     href="produtCompra.php?id=<?= $produto['id_produto'] ?>"
-                                    class="btn-acao btn-alterar"
-                                >
+                                    class="btn-acao btn-alterar">
                                     <span class="material-symbols-outlined">info</span>
                                     Detalhes
                                 </a>
@@ -579,7 +605,7 @@ if (isset($_SESSION['sessaoLogin'])) {
                     <span>Continuar comprando</span>
                 </a>
 
-            </div>    
+            </div>
 
             <aside class="resumo-carrinho">
                 <h2>Resumo da compra</h2>

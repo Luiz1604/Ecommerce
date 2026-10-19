@@ -4669,3 +4669,52 @@ body::before {
     color: var(--cor-texto);
 }
 
+/* Mensagem de estoque indisponível */
+.mensagem-estoque {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin: 20px 0;
+    padding: 16px 18px;
+
+    color: #8a2424;
+    background: #fff0f0;
+    border: 1px solid #e8aaaa;
+    border-left: 5px solid #c62828;
+    border-radius: 10px;
+}
+
+.mensagem-estoque > .material-symbols-outlined {
+    flex-shrink: 0;
+    font-size: 24px;
+}
+
+.mensagem-estoque p {
+    margin: 2px 0 0;
+    line-height: 1.5;
+}
+
+/* Aviso abaixo da quantidade do produto */
+.aviso-estoque-produto {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+
+    margin: 10px 0 0;
+    color: #b42323;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.aviso-estoque-produto .material-symbols-outlined {
+    flex-shrink: 0;
+    font-size: 19px;
+}
+
+/* Botões de quantidade indisponíveis */
+.btn-indisponivel {
+    color: #d32f2f;
+    cursor: not-allowed;
+    opacity: 0.75;
+}

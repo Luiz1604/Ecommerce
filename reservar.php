@@ -210,7 +210,17 @@
 
          // verifica se existe estoque suficiente para todos os produtos
         foreach ($produtosCarrinho as $produto) {
-            if ($produto['quantidade'] > $produto['estoque_disponivel']) {
+            if ((int) $produto['quantidade'] > (int) $produto['estoque_disponivel']) {
+
+                $estoqueDisponivel = max(0, (int) $produto['estoque_disponivel']);
+
+                $_SESSION['mensagemCarrinho'] =
+                    'Estoque insuficiente para reservar "' .
+                    $produto['nome'] . '". Você tem ' .
+                    $produto['quantidade'] . ' unidade(s) no carrinho, mas apenas ' .
+                    $estoqueDisponivel . ' unidade(s) estão disponíveis. ' .
+                    'Altere a quantidade para continuar.';
+
                 header("Location: carrinho.php");
                 exit;
             }
