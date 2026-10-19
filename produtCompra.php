@@ -121,7 +121,7 @@ if (!$produto) {
             </form>
 
 
-            <a href="feedProdutos.php" class="btn-voltar">
+            <a href="feedProdutos.php" class="btn-voltar-produtCompra">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Continuar comprando</span>
             </a>

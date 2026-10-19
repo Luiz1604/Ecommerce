@@ -2003,7 +2003,7 @@ h2 {
     color: var(--cor-texto);
 }
 
-.btn-voltar,
+.btn-voltar-produtCompra,
 .btn-reservar,
 .btn-carrinho {
     width: 100%;
@@ -2036,7 +2036,7 @@ h2 {
     color: var(--cor-branco);
 }
 
-.btn-voltar {
+.btn-voltar-produtCompra {
     margin-top: 20px;
     background-color: var(--cor-azul-claro);
     color: var(--cor-preto);
@@ -2053,25 +2053,6 @@ h2 {
 .btn-reservar:active,
 .btn-carrinho:active {
     transform: scale(0.98);
-}
-
-/*imagem carrinho*/
-
-.secao-carrinho .celula-imagem-carrinho {
-    width: 110px;
-    min-width: 110px;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.secao-carrinho .imagem-carrinho {
-    display: block;
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    margin: 0 auto;
-    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -2151,6 +2132,7 @@ h2 {
 }
 
 .tabela-usuarios {
+    text-align: left;
     width: 100%;
     border-collapse: collapse;
     background-color: var(--cor-card);
@@ -2351,11 +2333,18 @@ h2 {
     padding: 0 24px;
 }
 
+.img-prod-carrinho{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid var(--cor-cinza-borda);
+}
+
 .resumo-carrinho {
     padding: 24px;
-    border: 1px solid #d8d8d8;
+    border: 1px solid var(--cor-destaque-simples);
     border-radius: 12px;
-    background: #ffffff;
+    background: var(--cor-card);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -2380,7 +2369,12 @@ h2 {
 }
 
 .linha-total strong {
-    color: #305CDE;
+    color: var(--cor-azul-banner-hover);
+    white-space: nowrap;
+}
+
+.linha-resumo strong {
+    color: var(--cor-azul-banner-hover);
     white-space: nowrap;
 }
 
@@ -2390,6 +2384,15 @@ h2 {
 
 .resumo-carrinho .btn-reservar {
     width: 100%;
+}
+
+.secao-carrinho .btn-voltar {
+    display: flex;
+    width: fit-content;
+    align-self: flex-start;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 5px;
 }
 
 @media (max-width: 850px) {
@@ -2841,6 +2844,22 @@ h2 {
 
 .botao-cancelar:hover {
     background-color: var(--cor-cinza-hover);
+}
+
+.btn-voltar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--cor-azul-claro);
+    color: var(--cor-preto);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .btn-toggle-tema {

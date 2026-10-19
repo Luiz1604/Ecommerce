@@ -453,13 +453,13 @@ if (isset($_SESSION['sessaoLogin'])) {
         <table class="tabela-usuarios">
             <thead>
                 <tr>
-                    <th>Imagem</th>
-                    <th>Nome</th>
+                    <th>Produto</th>
+                    <th></th>
                     <th>Quantidade</th>
                     <th>Preço</th>
                     <th>Subtotal</th>
-                    <th>Ações</th>
-                    <th></th>
+                    <th>Excluir</th>
+                    <th>Ver detalhes</th>
                 </tr>
             </thead>
             <tbody>
@@ -473,9 +473,9 @@ if (isset($_SESSION['sessaoLogin'])) {
                     $quantidadeItens += $produto['quantidade'];
                 ?>
                     <tr>
-                        <td class="celula-imagem-carrinho">
+                        <td class="coluna-imagem">
                             <img
-                                class="imagem-carrinho"
+                                class="img-prod-carrinho"
                                 src="<?= $produto['imagem'] ?>"
                                 alt="<?= $produto['nome'] ?>">
                         </td>
@@ -509,13 +509,16 @@ if (isset($_SESSION['sessaoLogin'])) {
                                 ) ?>
                         </td>
                         <td>
-                            <a href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>">Excluir</a>
+                            <a href="carrinho.php?operacao=excluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-acao btn-excluir" >Excluir</a>
+                        </td>
+                        <td>
+                            <a href="produtCompra.php?id=<?= $produto['id_produto'] ?>"
+                                class="btn-acao btn-alterar">Detalhes</a>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        
         <a href="feedProdutos.php" class="btn-voltar">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Continuar comprando</span>
@@ -526,12 +529,14 @@ if (isset($_SESSION['sessaoLogin'])) {
         <h2>Resumo da compra</h2>
 
         <div class="linha-resumo">
-            <span>Quantidade de itens</span>
-            <span><?= $quantidadeItens ?></span>
+            <span>Quantidade de itens:</span>
+            <strong>
+                <span><?= $quantidadeItens ?></span>
+            </strong>
         </div>
 
         <div class="linha-total">
-            <span>Total</span>
+            <span>Total:</span>
             <strong>
                 R$ <?= number_format($total, 2, ',', '.') ?>
             </strong>
