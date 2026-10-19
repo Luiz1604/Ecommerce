@@ -17,29 +17,24 @@
                 <h3>Navegação</h3>
                 <br>
                 <a href="index.php">Home</a><br>
-                <a href="feedProdutos.html">Produtos</a><br>
-                <a href="#">Coleções</a><br>
+                <a href="feedProdutos.php">Produtos</a><br>
+                <a href="feedProdutos.php">Coleções</a><br>
                 <a href="sobreNos.php">Sobre Nós</a><br>
                 <a href="MVV.php">Missão, Visão e Valores</a><br>
-                <a href="#">Contato</a><br>
-                <a href="#">Desenvolvedores</a>
             </div>
             <div class="final">
                 <h3>Ajuda</h3>
                 <br>
-                <a href="#">Como comprar?</a><br>
-                <a href="#">Perguntas Frequentes</a><br>
-                <a href="#">Política de Privacidade</a><br>
-                <a href="#">Termos de uso</a>
+                <a href="comoComprar.php">Como comprar?</a><br>
+                <a href="perguntasFrequentes.php">Perguntas Frequentes</a><br>
             </div>
             <div class="final">
                 <h3>Coleções</h3>
                 <br>
-                <a href="#">Tech</a><br>
-                <a href="#">Cursos Técnicos</a><br>
-                <a href="#">Gamer</a><br>
-                <a href="#">Cute</a><br>
-                <a href="#">Religioso</a>
+                <a href="feedProdutos.php?categoria=astronomia" class="categoria">Astronomia</a>
+                <a href="feedProdutos.php?categoria=geek" class="categoria">Geek</a><br>
+                <a href="feedProdutos.php?categoria=cute" class="categoria">Cute</a><br>
+                <a href="feedProdutos.php?categoria=religioso" class="categoria">Religioso</a>
             </div>
             <div class="final">
                 <h3>Desenvolvedores</h3>

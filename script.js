@@ -395,3 +395,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+/*perguntas frequentes*/
+function toggleCard(botao) {
+    const card = botao.closest('.pf-card');
+    const estavaAberto = card.classList.contains('ativo');
+
+    card.classList.toggle('ativo', !estavaAberto);
+    botao.setAttribute('aria-expanded', String(!estavaAberto));
+} 

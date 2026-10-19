@@ -475,8 +475,6 @@ div.caixa-pesquisa form button:hover {
     font-weight: bolder;
 }
 
-
-
 .botao-pesquisa-mobile,
 .pesquisa-mobile {
     display: none;
@@ -708,7 +706,6 @@ main > section.categorias {
     box-sizing: border-box;
 }
 
-/* Cartões */
 main > section.categorias > a.categoria {
     display: flex;
     flex-direction: column;
@@ -828,15 +825,12 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
 .azul-escuro {
     box-shadow: 0 0 20px var(--cor-destaque-titulo);
 }
-
 .azul-claro {
     box-shadow: 0 0 20px var(--cor-destaque-secundario);
 }
-
 .azul-escuro:hover {
     box-shadow: 0 0 35px var(--cor-destaque-titulo);
 }
-
 .azul-claro:hover {
     box-shadow: 0 0 35px var(--cor-destaque-secundario);
 }
@@ -965,35 +959,6 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     background-color: var(--cor-destaque-titulo);
 }
 
-/*#motivos {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-top: 1px;
-    width: 100%;
-    min-height: 250px;
-    box-sizing: border-box;
-    padding-bottom: 0;
-}
-
-.motivo img {
-    border-radius: 30px;
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-}
-
-.motivo {
-    border-radius: 30px;
-    margin: 10px;
-    width: 30%;
-    min-width: 250px;
-    height: 180px;
-    position: relative;
-    box-sizing: border-box;
-}*/
-
 .motivos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1009,8 +974,6 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     box-sizing: border-box;
 }
 
-/* Cada motivo */
-
 .motivos .motivo {
     display: flex;
     align-items: center;
@@ -1021,35 +984,24 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     box-sizing: border-box;
 }
 
-/* Ícones circulares */
-
 .motivos .icone-motivo {
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex: 0 0 56px;
     width: 56px;
     height: 56px;
-
     border-radius: 50%;
-
     background-color: var(--cor-destaque-secundario);
     color: #ffffff;
-
     font-size: 34px;
     line-height: 1;
-
     box-sizing: border-box;
 }
-
-/* Container dos textos */
 
 .motivos .texto-motivo {
     min-width: 0;
 }
-
-/* Títulos */
 
 .motivos .texto-motivo h3 {
     margin: 0 0 3px;
@@ -1063,7 +1015,6 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
 }
 
 /* Descrições */
-
 .motivos .texto-motivo p {
     margin: 0;
 
@@ -1074,10 +1025,6 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
 
     color: var(--cor-texto);
 }
-
-/* =========================================
-   TABLETS
-========================================= */
 
 @media (max-width: 768px) {
     .motivos {
@@ -2446,23 +2393,18 @@ h2 {
     0% {
         transform: translateX(0);
     }
-
     20% {
         transform: translateX(-6px);
     }
-
     40% {
         transform: translateX(6px);
     }
-
     60% {
         transform: translateX(-4px);
     }
-
     80% {
         transform: translateX(4px);
     }
-
     100% {
         transform: translateX(0);
     }
@@ -3297,10 +3239,7 @@ h2 {
         transition: none !important;
     }
 }
-
-
 /*pagina Sobre nos*/
-
 
 .pagina-sobre {
     --sobre-fundo-card: var(--cor-menu, #fff);
@@ -3333,7 +3272,7 @@ h2 {
     z-index: -1;
     pointer-events: none;
     background-image: radial-gradient(rgba(48, 92, 222, 0.16) 1px,
-            transparent 1px);
+    transparent 1px);
     background-size: 22px 22px;
     opacity: 0.4;
     mask-image: linear-gradient(to bottom, #000, transparent 85%);
@@ -3855,7 +3794,6 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     .sobre-card,
     .sobre-pessoa {
         transition: none;
@@ -3882,9 +3820,6 @@ h2 {
         position: static;
         transform: none;
     }
-
-
-
 /*apenas teste, sujeito a melhorias !!!!!!!!!!!!!*/
 
 @media (max-width: 768px) {
@@ -3960,6 +3895,41 @@ h2 {
     .descricao-esqueci {
         font-size: 13px;
     }
+
+    /*faq*/
+     .pagina-faq {
+        width: 92%;
+        padding: 25px 0 40px;
+    }
+
+    .pagina-faq .caixapf {
+        gap: 12px;
+    }
+
+    .pagina-faq .pf-toggle-btn {
+        min-height: 68px;
+        gap: 12px;
+        padding: 16px;
+        font-size: 0.92rem;
+    }
+
+    .pagina-faq .pf-icon {
+        font-size: 24px;
+    }
+
+    .pagina-faq .pf-content {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .pagina-faq .pf-card.ativo .pf-content {
+        padding: 0 16px 18px;
+    }
+
+    .pagina-faq .pf-content p {
+        font-size: 0.88rem;
+        line-height: 1.75;
+    }
 }
 
 @media (max-width: 380px) {
@@ -3983,52 +3953,37 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex: 1;
     width: 100%;
     padding: 50px 20px;
-
     box-sizing: border-box;
 }
-
-/* Formulário */
 
 .form-esqueci {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-
     width: 100%;
     max-width: 430px;
-
     padding: 36px;
     gap: 20px;
-
     background-color: var(--cor-menu);
     border: 1px solid var(--cor-destaque-secundario);
     border-radius: 18px;
-
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
-
     box-sizing: border-box;
 }
-
-/* Ícone */
 
 .material-symbols-outlined.icone-esqueci {
     display: grid;
     place-items: center;
-
     align-self: center;
-
     width: 64px;
     height: 64px;
     padding: 0;
-
     color: #ffffff;
     background-color: var(--cor-destaque-secundario);
     border-radius: 50%;
-
     font-size: 36px;
     line-height: 1;
     vertical-align: unset;
@@ -4036,9 +3991,7 @@ h2 {
 
 .form-esqueci h1 {
     margin: 0;
-
     color: var(--cor-destaque-titulo);
-
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     font-weight: 800;
@@ -4047,9 +4000,7 @@ h2 {
 
 .descricao-esqueci {
     margin: -8px 0 0;
-
     color: var(--cor-texto);
-
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     line-height: 1.6;
@@ -4130,3 +4081,195 @@ h2 {
     color: var(--cor-destaque-titulo);
     text-decoration: underline;
 }
+
+html {
+    min-height: 100%;
+    background-color: var(--cor-fundo);
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    overflow-x: clip;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(
+        rgba(48, 92, 222, 0.16) 1.2px,
+        transparent 1.2px
+    );
+    background-size: 24px 24px;
+    background-position: 12px 12px;
+}
+
+[data-theme="dark"] body::before {
+    background-image: radial-gradient(
+        rgba(100, 145, 255, 0.15) 1.2px,
+        transparent 1.2px
+    );
+}
+
+.pagina-faq {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    box-sizing: border-box;
+    width: min(1000px, 92%);
+    margin: 0 auto;
+    padding: 35px 0 60px;
+    background: transparent;
+    overflow: visible;
+}
+
+.pagina-faq > .Tsimples {
+    margin: 0 0 18px;
+    text-align: center;
+    color: var(--cor-destaque-titulo);
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.pagina-faq > .sep2 {
+    width: min(180px, 40%);
+    height: 2px;
+    margin: 20px auto 35px;
+    border: 0;
+    background: var(--cor-destaque-secundario);
+}
+
+.pagina-faq .caixapf {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow: visible;
+}
+
+.pagina-faq .pf-card {
+    position: relative;
+    min-width: 0;
+    border: 1px solid var(--cor-destaque-secundario);
+    border-radius: 14px;
+    background: var(--cor-card);
+    box-shadow: 0 5px 18px rgba(0, 0, 128, 0.08);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.pagina-faq .pf-card:hover {
+    border-color: var(--cor-destaque-simples);
+    box-shadow: 0 8px 24px rgba(48, 92, 222, 0.15);
+}
+
+.pagina-faq .pf-toggle-btn {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border: 0;
+    border-radius: 13px;
+    background: transparent;
+    color: var(--cor-texto);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+}
+
+.pagina-faq .pf-toggle-btn:focus-visible {
+    outline: 3px solid var(--cor-destaque-simples);
+    outline-offset: -4px;
+}
+
+.pagina-faq .pf-icon {
+    flex-shrink: 0;
+    color: var(--cor-destaque-secundario);
+    font-size: 28px;
+}
+
+.pagina-faq .pf-pergunta {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+}
+
+.pagina-faq .pf-seta {
+    flex-shrink: 0;
+    color: var(--cor-destaque-secundario);
+    transition: transform 0.25s ease;
+}
+
+.pagina-faq .pf-card.ativo .pf-seta {
+    transform: rotate(180deg);
+}
+
+.pagina-faq .pf-content {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    padding: 0 24px;
+    opacity: 0;
+    overflow: hidden;
+
+    transition:
+        grid-template-rows 0.3s ease,
+        opacity 0.25s ease,
+        padding 0.3s ease;
+}
+
+.pagina-faq .pf-content p {
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+
+    color: var(--cor-texto);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.94rem;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.pagina-faq .pf-card.ativo .pf-content {
+    grid-template-rows: 1fr;
+    padding: 0 24px 22px;
+    opacity: 1;
+}
+
+.pagina-faq .pf-card.ativo .pf-content p + p {
+    margin-top: 12px;
+}
+
+.pagina-faq .pf-content a {
+    color: var(--cor-destaque-secundario);
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+[data-theme="dark"] .pagina-faq .pf-card {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20);
+}
+
+[data-theme="dark"] .pagina-faq .pf-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
+}
+
+[data-theme="dark"] .pagina-faq .pf-toggle-btn {
+    color: var(--cor-texto);
+}
+
