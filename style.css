@@ -4718,3 +4718,30 @@ body::before {
     cursor: not-allowed;
     opacity: 0.75;
 }
+
+/* Mensagem de reserva realizada com sucesso */
+.mensagem-sucesso-reserva {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 20px 0;
+    padding: 16px 20px;
+
+    color: #176534;
+    background: #eaf8ef;
+    border: 1px solid #a8dfb8;
+    border-left: 5px solid #24964b;
+    border-radius: 10px;
+}
+
+.mensagem-sucesso-reserva .material-symbols-outlined {
+    flex-shrink: 0;
+    font-size: 28px;
+}
+
+.mensagem-sucesso-reserva p {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}

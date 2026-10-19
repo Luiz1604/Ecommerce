@@ -1,40 +1,40 @@
 <?php
 
-    include "util.php";
+include "util.php";
 
-    if (!isset($_SESSION['sessaoLogin'])){
-        header("Location: login.php");
-        exit;
-    }
+if (!isset($_SESSION['sessaoLogin'])) {
+    header("Location: login.php");
+    exit;
+}
 
-    $conn = conecta();
+$conn = conecta();
 
-    $email = $_SESSION['sessaoLogin'];
+$email = $_SESSION['sessaoLogin'];
 
-    $varSQL = "SELECT id_usuario, telefone
+$varSQL = "SELECT id_usuario, telefone
            FROM usuario
            WHERE email = :email";
-    $select = $conn->prepare($varSQL);
-    $select->bindParam(":email", $email);
-    $select->execute();
+$select = $conn->prepare($varSQL);
+$select->bindParam(":email", $email);
+$select->execute();
 
-    $usuario = $select->fetch();
+$usuario = $select->fetch();
 
-    if (!$usuario) {
-        header("Location: login.php");
-        exit;
-    }
+if (!$usuario) {
+    header("Location: login.php");
+    exit;
+}
 
-    $idUsuario = $usuario['id_usuario'];
-    $telefone = preg_replace('/\D/', '', $usuario['telefone']);
-    $codigoReserva = substr($telefone, -5);
+$idUsuario = $usuario['id_usuario'];
+$telefone = preg_replace('/\D/', '', $usuario['telefone']);
+$codigoReserva = substr($telefone, -5);
 ?>
 
-<?php include "_cabecalho.php";?>
+<?php include "_cabecalho.php"; ?>
 
 <?php
-     // busca as reservas do usuario
-    $varSQL = "SELECT
+// busca as reservas do usuario
+$varSQL = "SELECT
                compra.id_compra,
                compra.data,
                produto.id_produto,
@@ -50,15 +50,33 @@
            WHERE compra.fk_usuario = :id_usuario
              AND compra.status = 'reservado'
            ORDER BY compra.data DESC, produto.nome";
-    
-    $select = $conn->prepare($varSQL);
-    $select->bindParam(":id_usuario", $idUsuario);
-    $select->execute();
 
-    $reservas = $select->fetchAll(PDO::FETCH_ASSOC);
+$select = $conn->prepare($varSQL);
+$select->bindParam(":id_usuario", $idUsuario);
+$select->execute();
+
+$reservas = $select->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main class="secao-carrinho">
+
+    <?php if (!empty($_SESSION['mensagemSucesso'])) { ?>
+        <div class="mensagem-sucesso-reserva" role="status">
+            <span class="material-symbols-outlined" aria-hidden="true">
+                check_circle
+            </span>
+
+            <p>
+                <?= htmlspecialchars(
+                    $_SESSION['mensagemSucesso'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                ) ?>
+            </p>
+        </div>
+
+        <?php unset($_SESSION['mensagemSucesso']); ?>
+    <?php } ?>
 
     <h1 class="h1-carrinho">MINHAS RESERVAS</h1>
 
@@ -108,8 +126,7 @@
                                 <img
                                     class="img-prod-carrinho"
                                     src="<?= htmlspecialchars($reserva['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($reserva['nome']) ?>"
-                                >
+                                    alt="<?= htmlspecialchars($reserva['nome']) ?>">
 
                                 <div class="dados-produto-carrinho">
 
@@ -135,11 +152,11 @@
 
                                 <span>
                                     R$ <?= number_format(
-                                        $reserva['valor_unitario'],
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
+                                            $reserva['valor_unitario'],
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
                                 </span>
                             </div>
 
@@ -148,32 +165,29 @@
 
                                 <strong>
                                     R$ <?= number_format(
-                                        $subtotal,
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
+                                            $subtotal,
+                                            2,
+                                            ',',
+                                            '.'
+                                        ) ?>
                                 </strong>
                             </div>
 
                             <div class="acoes-produto-carrinho">
                                 <a
                                     href="produtCompra.php?id=<?= $reserva['id_produto'] ?>"
-                                    class="btn-acao btn-alterar"
-                                >
+                                    class="btn-acao btn-alterar">
                                     <span class="material-symbols-outlined">info</span>
                                     Detalhes
                                 </a>
                                 <form
                                     action="cancelarReserva.php"
                                     method="POST"
-                                    onsubmit="return confirm('Deseja cancelar esta reserva?');"
-                                >
+                                    onsubmit="return confirm('Deseja cancelar esta reserva?');">
                                     <input
                                         type="hidden"
                                         name="id_compra"
-                                        value="<?= $reserva['id_compra'] ?>"
-                                    >
+                                        value="<?= $reserva['id_compra'] ?>">
                                     <button type="submit" class="btn-acao btn-cancelar">
                                         <span class="material-symbols-outlined">delete</span>
                                         Cancelar reserva
@@ -221,11 +235,11 @@
 
                             <strong>
                                 R$ <?= number_format(
-                                    $reserva['valor_unitario'] * $reserva['quantidade'],
-                                    2,
-                                    ',',
-                                    '.'
-                                ) ?>
+                                        $reserva['valor_unitario'] * $reserva['quantidade'],
+                                        2,
+                                        ',',
+                                        '.'
+                                    ) ?>
                             </strong>
 
                         </div>
@@ -251,4 +265,5 @@
 
 <?php include "_rodape.php"; ?>
 </body>
+
 </html>
