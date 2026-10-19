@@ -157,11 +157,13 @@
                             </div>
 
                             <div class="acoes-produto-carrinho">
-
-                                <span class="status-reservado">
-                                    Reservado
-                                </span>
-
+                                <a
+                                    href="produtCompra.php?id=<?= $reserva['id_produto'] ?>"
+                                    class="btn-acao btn-alterar"
+                                >
+                                    <span class="material-symbols-outlined">info</span>
+                                    Detalhes
+                                </a>
                                 <form
                                     action="cancelarReserva.php"
                                     method="POST"
@@ -172,14 +174,8 @@
                                         name="id_compra"
                                         value="<?= $reserva['id_compra'] ?>"
                                     >
-
-                                    <button
-                                        type="submit"
-                                        class="btn-acao btn-excluir"
-                                    >
-                                        <span class="material-symbols-outlined">
-                                            cancel
-                                        </span>
+                                    <button type="submit" class="btn-acao btn-cancelar">
+                                        <span class="material-symbols-outlined">delete</span>
                                         Cancelar reserva
                                     </button>
                                 </form>

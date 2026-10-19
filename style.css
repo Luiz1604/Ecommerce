@@ -2512,6 +2512,7 @@ h2 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     padding-top: 14px;
     border-top: 1px solid var(--cor-borda);
@@ -2522,6 +2523,8 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 5px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .acoes-produto-carrinho .material-symbols-outlined {
@@ -2695,6 +2698,48 @@ h2 {
     .acoes-produto-carrinho .btn-acao {
         padding: 7px 9px;
         font-size: 12px;
+    }
+}
+
+.codigo-reserva {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 24px;
+    color: var(--cor-texto);
+}
+
+.acoes-produto-carrinho form {
+    display: flex;
+    margin: 0;
+}
+
+.acoes-produto-carrinho .btn-cancelar {
+    background-color: var(--cor-vermelho-erro);
+    color: white;
+    border: 1px solid var(--cor-vermelho-erro);
+}
+
+.acoes-produto-carrinho .btn-cancelar:hover {
+    filter: brightness(0.9);
+}
+
+.acoes-produto-carrinho .material-symbols-outlined {
+    font-size: 18px;
+}
+
+@media (max-width: 520px) {
+    .codigo-reserva {
+        padding: 0 16px;
+        overflow-wrap: anywhere;
+    }
+
+    .acoes-produto-carrinho form {
+        max-width: 100%;
+    }
+
+    .acoes-produto-carrinho .btn-cancelar {
+        font-size: 12px;
+        padding: 7px 9px;
     }
 }
 
