@@ -4710,7 +4710,7 @@ body::before {
     color: #d32f2f;
     cursor: not-allowed;
     opacity: 0.75;
-}
+} 
 /* Mensagem de reserva realizada com sucesso*/ 
 .mensagem-sucesso-reserva {
     display: flex;
