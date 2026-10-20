@@ -2,7 +2,6 @@
 // Recua uma pasta para encontrar os arquivos de inclusão // verigicar dps
 include "../util.php";
 include "../_cabecalho.php";
-SaiSeHacker();
 ?>
 
 <body>
@@ -36,8 +35,8 @@ SaiSeHacker();
 
                     </div>
                     <small class="imagem-opcional">
-                            Foto opcional (sinta-se à vontade para enviar)
-                        </small>
+                        Foto opcional (sinta-se à vontade para enviar)
+                    </small>
 
                     <label for="nome">Digite seu Nome</label>
                     <div class="input-box">
@@ -55,6 +54,19 @@ SaiSeHacker();
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
                         <input type="password" name="senha" id="senha" placeholder="Sua senha" required>
+                    </div>
+
+                    <label for="confirma_senha">Confirme sua senha</label>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input
+                            type="password"
+                            name="confirma_senha"
+                            id="confirma_senha"
+                            placeholder="Confirme sua senha"
+                            required>
                     </div>
 
                     <input type="hidden" name="admin" value="false">

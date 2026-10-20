@@ -105,35 +105,35 @@
 
                 <article class="sobre-pessoa">
                     <img src="imagens/templatedesenvolvedor.png" alt="Foto de Artur Xavier Cabral">
-                    <span class="sobre-pessoa-numero">06</span>
+                    <span class="sobre-pessoa-numero"></span>
                     <h3>Artur Xavier Cabral</h3>
                     <p>Desenvolvedor</p>
                 </article>
 
                 <article class="sobre-pessoa">
                     <img src="imagens/templatedesenvolvedor.png" alt="Foto de Dáblio Piza da Silva">
-                    <span class="sobre-pessoa-numero">08</span>
+                    <span class="sobre-pessoa-numero"></span>
                     <h3>Dáblio Piza da Silva</h3>
                     <p>Desenvolvedor</p>
                 </article>
 
                 <article class="sobre-pessoa">
                     <img src="imagens/templatedesenvolvedor.png" alt="Foto de Gustavo Ferreira Poli">
-                    <span class="sobre-pessoa-numero">16</span>
+                    <span class="sobre-pessoa-numero"></span>
                     <h3>Gustavo Ferreira Poli</h3>
                     <p>Desenvolvedor</p>
                 </article>
 
                 <article class="sobre-pessoa">
                     <img src="imagens/templatedesenvolvedor.png" alt="Foto de Luiz Miguél Piton">
-                    <span class="sobre-pessoa-numero">27</span>
+                    <span class="sobre-pessoa-numero"></span>
                     <h3>Luiz Miguél Piton</h3>
                     <p>Desenvolvedor</p>
                 </article>
 
                 <article class="sobre-pessoa">
                     <img src="imagens/templatedesenvolvedor.png" alt="Foto de Marcus Pietro Morelli e Souza">
-                    <span class="sobre-pessoa-numero">29</span>
+                    <span class="sobre-pessoa-numero"></span>
                     <h3>Marcus Pietro Morelli e Souza</h3>
                     <p>Desenvolvedor</p>
                 </article>

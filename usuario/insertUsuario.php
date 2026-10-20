@@ -1,35 +1,32 @@
 <?php
-include "../util.php";
-if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado' ]== true){
+require_once "../util.php";
+
+if (
+    isset($_SESSION['sessaoConectado']) &&
+    $_SESSION['sessaoConectado'] == true
+) {
     redirecionar("index.php");
-    exit;
 }
-$index = $_SESSION['sessaoSite'];
+
+$index = $_SESSION['sessaoSite'] ?? null;
 
 $conn = conecta();
 
-$nome = $_POST["nome"];
-$email = $_POST["email"];
-$senha = $_POST["senha"];
-$confirma_senha = $_POST['confirma_senha'];
-$telefone = $_POST["telefone"];
+$nome = $_POST["nome"] ?? "";
+$email = $_POST["email"] ?? "";
+$senha = $_POST["senha"] ?? "";
+$confirma_senha = $_POST["confirma_senha"] ?? "";
+$telefone = $_POST["telefone"] ?? "";
 
-/*if ($senha !== $confirma_senha) {
-        header("Location: cadastro.php?erro=senhas_diferentes");
-        exit;
-    }*/
-
-$origem = isset($_POST['origem']) ? $_POST['origem'] : 'cadastro';
+$origem = $_POST['origem'] ?? 'cadastro';
 
 if ($senha !== $confirma_senha) {
     if ($origem === 'login') {
-        header("Location: ../login.php?erro=senhas_diferentes");
+        redirecionar("login.php?erro=senhas_diferentes");
     } else {
-        header("Location: adicionarUsuario.php?erro=senhas_diferentes");
+        redirecionar("cadastro.php?erro=senhas_diferentes");
     }
-    exit;
 }
-
 $senhaCripto = password_hash($senha, PASSWORD_DEFAULT);
 
 $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)

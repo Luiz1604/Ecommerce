@@ -4616,11 +4616,9 @@ body::before {
 .pagina-faq .pf-content {
     display: grid;
     grid-template-rows: 0fr;
-
     padding: 0 24px;
     opacity: 0;
     overflow: hidden;
-
     transition:
         grid-template-rows 0.3s ease,
         opacity 0.25s ease,
@@ -4631,12 +4629,10 @@ body::before {
     min-height: 0;
     margin: 0;
     overflow: hidden;
-
     color: var(--cor-texto);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.94rem;
     line-height: 1.8;
-
     overflow-wrap: anywhere;
 }
 
@@ -4674,10 +4670,8 @@ body::before {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-
     margin: 20px 0;
     padding: 16px 18px;
-
     color: #8a2424;
     background: #fff0f0;
     border: 1px solid #e8aaaa;
@@ -4700,7 +4694,6 @@ body::before {
     display: flex;
     align-items: flex-start;
     gap: 6px;
-
     margin: 10px 0 0;
     color: #b42323;
     font-size: 0.85rem;
@@ -4718,16 +4711,13 @@ body::before {
     cursor: not-allowed;
     opacity: 0.75;
 }
-
-/* Mensagem de reserva realizada com sucesso */
+/* Mensagem de reserva realizada com sucesso*/ 
 .mensagem-sucesso-reserva {
     display: flex;
     align-items: center;
     gap: 12px;
-
     margin: 20px 0;
     padding: 16px 20px;
-
     color: #176534;
     background: #eaf8ef;
     border: 1px solid #a8dfb8;
