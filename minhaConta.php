@@ -109,6 +109,30 @@ try {
                             </div>
                         </div>
                     </a>
+
+                    <a href="carrinho.php">
+                        <div class="caixa-info">
+                            <div class="icone-info">
+                                <i class="fa-solid fa-shopping-cart"></i>
+                            </div>
+                            <div class="texto-info">
+                                <span>MEU CARRINHO</span>
+                                <strong>Ver carrinho</strong> 
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="carrinho.php">
+                        <div class="caixa-info">
+                            <div class="icone-info">
+                                <i class="fa-solid fa-sign-out"></i> <!-- COLOCAR A LÓGICA DE SAIR -->
+                            </div>
+                            <div class="texto-info">
+                                <span>SAIR DA CONTA</span>
+                                <strong>Sair</strong> 
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
                 <a href="editarPerfil.php" class="botao-editar-perfil">
