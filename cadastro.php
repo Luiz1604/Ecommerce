@@ -1,7 +1,5 @@
 <?php
-
 include "util.php";
-include "_cabecalho.php";
 if (isset($_SESSION['sessaoConectado']) && $_SESSION['sessaoConectado'] == true)
     redirecionar("index.php");
 
@@ -13,6 +11,7 @@ if (isset($_GET['erro']) && $_GET['erro'] == 'senhas_diferentes') {
     $erroSenha = true;
 }
 
+include "_cabecalho.php";
 ?>
 
 <body>

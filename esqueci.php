@@ -1,6 +1,5 @@
 <?php
 include "util.php";
-include "_cabecalho.php";
 
 $conn = conecta();
 
@@ -61,7 +60,7 @@ if (isset($_POST['email'])) {
 }
 
 
-
+include "_cabecalho.php";
 ?>
 
 <main class="pagina-esqueci">

@@ -13,11 +13,31 @@ if (isset($_SESSION['sessaoQtItens'])) {
 
 $conn = conecta();
 
-$varSQL = "SELECT id_produto, nome, imagem, valor_unitario
-               FROM produto
-               WHERE excluido = FALSE
-               ORDER BY id_produto ASC
-               LIMIT 6";
+$varSQL = "SELECT
+                produto.id_produto,
+                produto.nome,
+                produto.imagem,
+                produto.valor_unitario,
+                COALESCE(
+                    (SELECT SUM(entrada.quantidade)
+                     FROM entrada
+                     WHERE entrada.fk_produto = produto.id_produto),
+                    0
+                )
+                -
+                COALESCE(
+                    (SELECT SUM(compra_produto.quantidade)
+                     FROM compra_produto
+                     INNER JOIN compra
+                        ON compra.id_compra = compra_produto.fk_compra
+                     WHERE compra_produto.fk_produto = produto.id_produto
+                       AND compra.status IN ('reservado', 'entregue')),
+                    0
+                ) AS estoque
+            FROM produto
+            WHERE produto.excluido = FALSE
+            ORDER BY produto.id_produto ASC
+            LIMIT 6";
 
 $select = $conn->prepare($varSQL);
 $select->execute();
@@ -127,7 +147,7 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
         <!--Produtos-->
         <section id="produtos-container">
             <div class="cabecalho-produtos">
-                <h2>Mais Vendidos</h2>
+                <h2>Alguns dos nossos produtos</h2>
 
                 <a href="feedProdutos.php" class="link-ver-todos">
                     Ver todos
@@ -140,27 +160,29 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($produtos as $produto) { ?>
 
                     <div class="card-produto">
-                        <div class="caixa-imagem">
+                        <div class="caixa-imagem <?= $produto['estoque'] <= 0 ? 'esgotado' : '' ?>">
                             <img
                                 src="<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>"
                                 alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>">
                         </div>
-
                         <h3 class="titulo-produto">
                             <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>
                         </h3>
-
                         <p class="preco-produto">
                             R$ <?= number_format((float) $produto['valor_unitario'], 2, ',', '.') ?>
                         </p>
-
-                        <a
-                            href="produtCompra.php?id=<?= (int) $produto['id_produto'] ?>"
-                            class="btn-detalhes">
-                            VER DETALHES
-                        </a>
+                        <?php if ($produto['estoque'] > 0) { ?>
+                            <a
+                                href="produtCompra.php?id=<?= (int) $produto['id_produto'] ?>"
+                                class="btn-detalhes">
+                                VER DETALHES
+                            </a>
+                        <?php } else { ?>
+                            <span class="btn-esgotado">
+                                PRODUTO ESGOTADO
+                            </span>
+                        <?php } ?>
                     </div>
-
                 <?php } ?>
 
                 <?php if (empty($produtos)) { ?>
