@@ -1,6 +1,9 @@
 
 <?php
 include "util.php";
+if (isset($_POST['pdf'])){
+            ob_start();
+        }
 include "_cabecalho.php";
 ?>
 <link rel="stylesheet" href="monitorVendas.css">
@@ -26,6 +29,7 @@ include "_cabecalho.php";
         </div>
 
         <input type="submit" class="monitor-botao" value="Enviar">
+        <input type="submit" class="monitor-botao" name="pdf" value="Exportar PDF">
     </form>
 
     <?php
@@ -46,6 +50,8 @@ include "_cabecalho.php";
         $select->bindParam(':datai', $datai);
         $select->bindParam(':dataf', $dataf);
         $select->execute();
+
+        
     ?>
 
     <h3 class="monitor-periodo">
@@ -124,11 +130,24 @@ include "_cabecalho.php";
                 $selectItens = null;
                 }
                 ?>
-            </tbody>
+            </body>
         </table>
     </div>
 
-    <?php } ?>
+    <?php 
+        if (isset($_POST['pdf'])) {
+
+            require_once "vendor/autoload.php";
+
+            $html = ob_get_clean();
+
+            $dompdf = new Dompdf\Dompdf();
+            $dompdf->loadHtml($html);
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+            $dompdf->stream("monitor-vendas.pdf");
+            exit;
+    } }?>
 
 </div>
 
