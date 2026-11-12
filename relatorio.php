@@ -1,126 +1,135 @@
-<?php 
-  include   "util.php";
-  include   "_cabecalho.php";
+
+<?php
+include "util.php";
+include "_cabecalho.php";
 ?>
+<link rel="stylesheet" href="monitorVendas.css">
 
-  <center><h1>Monitor de vendas</h1></center>  
-  <form action='' method='post'>
-     Data inicial<br>
-     <input type='date' name='datai' value = '<?= date('Y/m/d') ?>'><br><br>
-     Data final<br>
-     <input type='date' name='dataf' value value = '<?= date('Y/m/d') ?>'><br><br>
-     <input type='checkbox' name="cancelados" value="checked" checked>
-     <label for="cancelados">omitir cancelados</label><br><br>
-     <input type='submit' value='Enviar'><br>  
-  </form>
+<div class="monitor-vendas-page">
 
-  <?php 
+    <h1 class="monitor-titulo">Monitor de vendas</h1>
 
-  if ($_POST ) {
+    <form class="monitor-formulario" action="" method="post">
+        <div class="monitor-campo">
+            <label for="datai">Data inicial</label>
+            <input type="date" id="datai" name="datai" value="<?= date('Y-m-d') ?>">
+        </div>
 
-      $conn = conecta();
+        <div class="monitor-campo">
+            <label for="dataf">Data final</label>
+            <input type="date" id="dataf" name="dataf" value="<?= date('Y-m-d') ?>">
+        </div>
 
-      $datai = $_POST['datai'];
-      $dataf = $_POST['dataf'];
-      if (!isset($_POST['cancelados']))  {
-         $cancelados= ""; 
-      } else {
-         $cancelados = $_POST['cancelados'];
-      }
+        <div class="monitor-checkbox">
+            <input type="checkbox" id="cancelados" name="cancelados" value="checked" checked>
+            <label for="cancelados">Omitir cancelados</label>
+        </div>
 
-      $sql = " select id_compra, status, data, usuario.nome 
-               from compra left join usuario on compra.fk_usuario = usuario.id_usuario
-               where data between :datai and :dataf ". 
-               ($cancelados == "checked" ? " and ( status!='cancelado') " : ""). 
-             " order by data desc ";
+        <input type="submit" class="monitor-botao" value="Enviar">
+    </form>
 
-      $select = $conn->prepare($sql);
-      $select->bindParam(':datai',$datai);
-      $select->bindParam(':dataf',$dataf);
-      $select->execute();
+    <?php
+    if ($_POST) {
+        $conn = conecta();
+        $datai = $_POST['datai'];
+        $dataf = $_POST['dataf'];
+        $cancelados = isset($_POST['cancelados']) ? $_POST['cancelados'] : "";
 
-      ?>
-      <h3>Periodo de <?= date('d/m', strtotime($datai)) ?> a <?= date('d/m', strtotime($dataf)) ?></h3>
-      <table id='tabela'>
-         <tr>
-           <th>Id</th>
-           <th style='width: 100px;'>Sit</th>
-           <th style='width: 50px;' Data></th>
-           <th style='width: 100px;'>Usuario<br>Prod</th>
-           <th>Qtd</th>
-           <th style='width: 70px;'>$ unit</th>
-           <th style='width: 70px;'>$ Sub</th>                      
-           <th style='width: 70px;'>$ Tot</th>                      
-         </tr>
+        $sql = "SELECT id_compra, status, data, usuario.nome
+                FROM compra
+                LEFT JOIN usuario ON compra.fk_usuario = usuario.id_usuario
+                WHERE data BETWEEN :datai AND :dataf " .
+                ($cancelados == "checked" ? " AND status != 'cancelado' " : "") .
+                " ORDER BY data DESC";
 
-      <?php 
+        $select = $conn->prepare($sql);
+        $select->bindParam(':datai', $datai);
+        $select->bindParam(':dataf', $dataf);
+        $select->execute();
+    ?>
 
-      while ( $linha = $select->fetch() ) {
+    <h3 class="monitor-periodo">
+        Período de <?= date('d/m', strtotime($datai)) ?> a <?= date('d/m', strtotime($dataf)) ?>
+    </h3>
 
-          $id_compra = $linha['id_compra'];
-          $status    = $linha['status'];
-          $data      = $linha['data'];        
-          $nome      = $linha['nome'];
-          ?>
+    <div class="monitor-tabela-container">
+        <table class="monitor-tabela">
+            <thead>
+                <tr>
+                    <th class="col-id">ID</th>
+                    <th class="col-status">Sit</th>
+                    <th class="col-data">Data</th>
+                    <th class="col-produto">Usuário / Produto</th>
+                    <th class="col-qtd">Qtd</th>
+                    <th class="col-valor">$ Unit</th>
+                    <th class="col-sub">$ Sub</th>
+                    <th class="col-total">$ Tot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($linha = $select->fetch()) {
+                    $id_compra = $linha['id_compra'];
+                    $status = $linha['status'];
+                    $data = $linha['data'];
+                    $nome = $linha['nome'];
+                ?>
 
-          <tr>
-              <td align='right'><?= $id_compra ?></td>
-              <td><?= $status ?></td>
-              <td><?= date('d/m', strtotime($data)) ?></td>
-              <td style='width: 300px;' colspan='5'><?= $nome ?></td>
-          </tr>
-
-          <?php 
-          //////// SELECIONA E IMPRIME OS ITENS DA COMPRA //////////////// 
-          $sqlItens =
-                  "select compra_produto.fk_produto, produto.nome, compra_produto.quantidade, 
-                          compra_produto.valor_unitario, 
-                          compra_produto.valor_unitario * compra_produto.quantidade as sub
-                   from compra_produto inner join produto on compra_produto.fk_produto = 
-                        produto.id_produto
-                   where compra_produto.fk_compra = $id_compra 
-                   order by produto.nome";
-
-          $selectItens = $conn->prepare($sqlItens);
-
-          $selectItens->execute();
-          
-          $tot = 0;
-          while ( $linhaItens = $selectItens->fetch() ) {
-
-                  $id_produto     = $linhaItens['fk_produto']; 
-                  $nome           = $linhaItens['nome'];  
-                  $quantidade     = $linhaItens['quantidade'];  
-                  $valor_unitario = number_format($linhaItens['valor_unitario'],2);  
-                  $sub            = number_format($linhaItens['sub'],2); 
-                  $tot += $linhaItens['sub'];
-                  ?>
-
-                  <tr>
-                    <td colspan='3'></td>
-                    <td><b><?= $nome ?></b></td>
-                    <td align='right'><?= $quantidade ?></td>                    
-                    <td align='right'><?= $valor_unitario ?></td>
-                    <td align='right'><?= $sub ?></td>
-                    <td></td>
-                  </tr>
+                <tr class="monitor-linha-compra">
+                    <td class="col-id texto-direita"><?= $id_compra ?></td>
+                    <td class="col-status"><?= $status ?></td>
+                    <td class="col-data"><?= date('d/m', strtotime($data)) ?></td>
+                    <td class="col-identificacao" colspan="5"><?= $nome ?></td>
+                </tr>
 
                 <?php
-                      
-          }
-          ?>
-          <tr>
-            <td colspan="7"></td>
-            <td align='right'>R$ <?= $tot ?></td>
-          </tr>
-          <?php
-          //////// FIM DE IMPRIME OS ITENS DA COMPRA //////////////// 
-          
-          $selectItens = null;
-      }     
+                $sqlItens = "SELECT compra_produto.fk_produto, produto.nome,
+                                    compra_produto.quantidade,
+                                    compra_produto.valor_unitario,
+                                    compra_produto.valor_unitario * compra_produto.quantidade AS sub
+                             FROM compra_produto
+                             INNER JOIN produto ON compra_produto.fk_produto = produto.id_produto
+                             WHERE compra_produto.fk_compra = $id_compra
+                             ORDER BY produto.nome";
 
-      echo "</table>";
+                $selectItens = $conn->prepare($sqlItens);
+                $selectItens->execute();
+                $tot = 0;
 
-  }   
-  include "_rodape.php";
-?>
+                while ($linhaItens = $selectItens->fetch()) {
+                    $nome = $linhaItens['nome'];
+                    $quantidade = $linhaItens['quantidade'];
+                    $valor_unitario = number_format($linhaItens['valor_unitario'], 2);
+                    $sub = number_format($linhaItens['sub'], 2);
+                    $tot += $linhaItens['sub'];
+                ?>
+
+                <tr class="monitor-linha-produto">
+                    <td colspan="3"></td>
+                    <td class="monitor-nome-produto"><b><?= $nome ?></b></td>
+                    <td class="texto-direita"><?= $quantidade ?></td>
+                    <td class="texto-direita"><?= $valor_unitario ?></td>
+                    <td class="texto-direita"><?= $sub ?></td>
+                    <td></td>
+                </tr>
+
+                <?php } ?>
+
+                <tr class="monitor-linha-total">
+                    <td colspan="7"></td>
+                    <td class="texto-direita">R$ <?= number_format($tot, 2) ?></td>
+                </tr>
+
+                <?php
+                $selectItens = null;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <?php } ?>
+
+</div>
+
+<?php include "_rodape.php"; ?>

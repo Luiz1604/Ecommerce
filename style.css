@@ -4784,3 +4784,208 @@ body::before {
     line-height: 1.5;
     font-weight: 500;
 }
+
+/*pagina relatorio*/
+
+
+/* ===== MONITOR DE VENDAS ===== */
+
+.monitor-vendas-page {
+    background-color: #F4F3EF;
+    color: #171717;
+    padding: 30px;
+    min-height: 80vh;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* ===== TÍTULO ===== */
+
+.monitor-vendas-page .monitor-titulo {
+    text-align: center;
+    color: #080080;
+    font-size: 30px;
+    margin: 10px 0 25px;
+}
+
+.monitor-vendas-page .monitor-periodo {
+    color: #080080;
+    font-size: 19px;
+    margin: 25px 0 15px;
+}
+
+/* ===== FORMULÁRIO ===== */
+
+.monitor-vendas-page .monitor-formulario {
+    background-color: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 22px;
+    max-width: 350px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.monitor-vendas-page .monitor-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.monitor-vendas-page .monitor-campo label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.monitor-vendas-page .monitor-campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D5D5D5;
+    border-radius: 6px;
+    background-color: #F7F7F7;
+    color: #171717;
+    box-sizing: border-box;
+}
+
+.monitor-vendas-page .monitor-campo input:focus {
+    outline: none;
+    border-color: #315CEB;
+}
+
+.monitor-vendas-page .monitor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.monitor-vendas-page .monitor-checkbox input {
+    accent-color: #080080;
+    cursor: pointer;
+}
+
+.monitor-vendas-page .monitor-checkbox label {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.monitor-vendas-page .monitor-botao {
+    background-color: #315CEB;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 11px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.monitor-vendas-page .monitor-botao:hover {
+    background-color: #2449C5;
+}
+
+/* ===== TABELA ===== */
+
+.monitor-vendas-page .monitor-tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 9px;
+}
+
+.monitor-vendas-page .monitor-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF;
+    color: #171717;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.monitor-vendas-page .monitor-tabela thead th {
+    background-color: #080080;
+    color: #FFFFFF;
+    padding: 14px 12px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.monitor-vendas-page .monitor-tabela td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #E1E1E1;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* ===== IDENTIFICAÇÃO DA COMPRA ===== */
+
+.monitor-vendas-page .monitor-linha-compra {
+    background-color: #ECECF3;
+    font-weight: bold;
+}
+
+.monitor-vendas-page .monitor-linha-compra td {
+    border-top: 1px solid #DADADA;
+}
+
+.monitor-vendas-page .monitor-linha-compra .col-identificacao {
+    color: #080080;
+}
+
+/* ===== PRODUTOS ===== */
+
+.monitor-vendas-page .monitor-linha-produto {
+    background-color: #FFFFFF;
+}
+
+.monitor-vendas-page .monitor-linha-produto:nth-child(even) {
+    background-color: #F6F7F8;
+}
+
+.monitor-vendas-page .monitor-nome-produto {
+    text-align: left;
+}
+
+
+.monitor-vendas-page .texto-direita {
+    text-align: right;
+}
+
+
+.monitor-vendas-page .monitor-linha-total {
+    background-color: #ECECF3;
+    font-weight: bold;
+}
+
+.monitor-vendas-page .monitor-linha-total td {
+    color: #080080;
+    border-bottom: 2px solid #DADADA;
+}
+
+.monitor-vendas-page .monitor-tabela tbody tr:hover td {
+    filter: brightness(0.96);
+    transition: 0.2s;
+}
+
+@media (max-width: 768px) {
+    .monitor-vendas-page {
+        padding: 15px;
+    }
+
+    .monitor-vendas-page .monitor-titulo {
+        font-size: 24px;
+    }
+
+    .monitor-vendas-page .monitor-formulario {
+        max-width: 100%;
+    }
+
+    .monitor-vendas-page .monitor-tabela {
+        min-width: 650px;
+    }
+}
