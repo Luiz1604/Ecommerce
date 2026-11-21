@@ -178,9 +178,11 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
                                 VER DETALHES
                             </a>
                         <?php } else { ?>
-                            <span class="btn-esgotado">
+                            <a
+                                href="produtCompra.php?id=<?= (int) $produto['id_produto'] ?>"
+                                class="btn-esgotado">
                                 PRODUTO ESGOTADO
-                            </span>
+                            </a>
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -245,14 +247,11 @@ $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="legenda">
-                    Somos um projeto de e-commerce desenvolvido por alunos do 2º ano de Informática do CTI Bauru
-                    (UNESP)! Nosso objetivo é planejar, criar e gerenciar uma loja virtual completa para apresentar e
-                    vender nossos produtos durante a Semana do Colégio.
+                    Somos a Keystyle, um projeto de e-commerce desenvolvido por alunos do 2º ano de Informática do CTI Bauru (UNESP), com o objetivo de aplicar na prática os conhecimentos adquiridos ao longo do curso, integrando tecnologia, empreendedorismo e gestão de negócios.
 
-                    Especializados em acessórios exclusivos, trazemos uma coleção especial de chaveiros temáticos para
-                    representar com orgulho os cursos técnicos do CTI: Informática, Eletrônica e Mecânica. Além dos
-                    símbolos dos cursos, oferecemos uma variedade de chaveiros super cute, criativos e geek para
-                    personalizar mochilas, estojos e chaves com muito estilo.
+                    Nossa loja é especializada em acessórios, oferecendo uma seleção de colares e chaveiros com diferentes estilos e temáticas. Buscamos proporcionar produtos que permitam aos clientes expressar sua personalidade e seus gostos, unindo criatividade, variedade e acessibilidade.
+
+                    O projeto envolve todas as etapas de desenvolvimento e administração de uma loja virtual, desde a identidade visual e organização dos produtos até a implementação do site, gestão de estoque, vendas e atendimento aos clientes.
                 </div>
             </div>
         </section>

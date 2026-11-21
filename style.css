@@ -982,6 +982,30 @@ main > section.categorias > a.categoria:hover > .nome-categoria{
     cursor: default;
 }
 
+#produtos-container .btn-esgotado {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    background-color: #777;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    text-transform: uppercase;
+    margin-top: auto;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+#produtos-container .btn-esgotado:hover {
+    background-color: #555;
+    border-radius: 10px;
+    transform: translateY(-2px);
+}
+
 .motivos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1870,10 +1894,19 @@ h2 {
     font-weight: 700;
     font-size: 0.85rem;
     text-align: center;
+    text-decoration: none;
     border-radius: 6px;
     text-transform: uppercase;
     margin-top: auto;
-    cursor: default;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    cursor: pointer;
+}
+
+.secao-prod .btn-esgotado:hover {
+    background-color: #555;
+    border-radius: 10px;
+    transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
@@ -2049,6 +2082,33 @@ h2 {
 .btn-reservar:active,
 .btn-carrinho:active {
     transform: scale(0.98);
+}
+
+/* Imagem em preto e branco quando esgotado */
+.caixa-foto-grande.esgotado img {
+    filter: grayscale(100%);
+}
+
+/* Impede o zoom na imagem esgotada */
+.caixa-foto-grande.esgotado img:hover {
+    transform: none;
+}
+
+/* Indicador de produto esgotado na página de detalhes */
+.btn-esgotado-detalhe {
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #777;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: default;
 }
 
 @media (max-width: 768px) {

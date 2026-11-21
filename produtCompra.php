@@ -53,8 +53,9 @@ if (!$produto) {
 
 
         <div class="coluna-imagem">
-            <div class="caixa-foto-grande">
-                <img src="<?= $produto['imagem'] ?>" alt="<?= htmlspecialchars($produto['nome']) ?>">
+            <div class="caixa-foto-grande <?= $produto['estoque'] <= 0 ? 'esgotado' : '' ?>">
+                <img src="<?= htmlspecialchars($produto['imagem']) ?>" 
+                    alt="<?= htmlspecialchars($produto['nome']) ?>">
             </div>
         </div>
 
@@ -72,54 +73,60 @@ if (!$produto) {
                 </p>
             </div>
 
-            <form action="reservar.php" method="POST" class="form-reserva">
+           <?php if ($produto['estoque'] > 0) { ?>
 
-                <input type="hidden" name="origem" value="produto">
+                <form action="reservar.php" method="POST" class="form-reserva">
 
-                <input type="hidden" name="produto_id" value="<?= $produto['id_produto'] ?>">
+                    <input type="hidden" name="origem" value="produto">
 
-                <div class="campo-qtd">
-                    <label for="quantidade">Quantidade:</label>
-                    <input
-                        type="number" 
-                        id="quantidade" name="quantidade"
-                        value="<?= $produto['estoque'] > 0 ? 1 : 0 ?>" 
-                        min="<?= $produto['estoque'] > 0 ? 1 : 0 ?>" 
-                        max="<?= $produto['estoque'] ?>"
-                    >
-                    <?php if ($produto['estoque'] <= 0) { ?>
-                        <p class="sem-estoque">Produto esgotado</p>
-                    <?php } else { ?>
+                    <input type="hidden" name="produto_id" value="<?= $produto['id_produto'] ?>">
+
+                    <div class="campo-qtd">
+                        <label for="quantidade">Quantidade:</label>
+                        <input
+                            type="number" 
+                            id="quantidade" name="quantidade"
+                            value="1"
+                            min="1"
+                            max="<?= $produto['estoque'] ?>"
+                        >
+
                         <p>Estoque disponível: <?= $produto['estoque'] ?></p>
+                    </div>
+
+                    <?php if (isset($_SESSION['sessaoLogin'])) { ?>
+                        <button type="submit" id="btn-reservar" class="btn-reservar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" />
+                                <line x1="16" x2="16" y1="2" y2="6" />
+                                <line x1="8" x2="8" y1="2" y2="6" />
+                                <line x1="3" x2="21" y1="10" y2="10" />
+                                <path d="m9 16 2 2 4-4" />
+                            </svg>
+                            RESERVAR PRODUTO
+                        </button>
                     <?php } ?>
-                </div>
-                
-                <?php if (isset($_SESSION['sessaoLogin'])) { ?>
-                    <button type="submit" id="btn-reservar" class="btn-reservar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="18" height="18" x="3" y="4" rx="2" />
-                            <line x1="16" x2="16" y1="2" y2="6" />
-                            <line x1="8" x2="8" y1="2" y2="6" />
-                            <line x1="3" x2="21" y1="10" y2="10" />
-                            <path d="m9 16 2 2 4-4" />
+
+                    <button type="submit" id="btn-carrinho"
+                        formaction="carrinho.php?operacao=incluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-carrinho">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="20" cy="21" r="1" />
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                         </svg>
-                        RESERVAR PRODUTO
+                        COLOCAR NO CARRINHO
                     </button>
-                <?php } ?>
 
-                <button type="submit" id="btn-carrinho"
-                    formaction="carrinho.php?operacao=incluir&id_produto=<?= $produto['id_produto'] ?>" class="btn-carrinho">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="20" cy="21" r="1" />
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                    </svg>
-                    COLOCAR NO CARRINHO
-                </button>
+                </form>
 
-            </form>
+            <?php } else { ?>
 
+                <div class="btn-esgotado-detalhe">
+                    PRODUTO ESGOTADO
+                </div>
+
+            <?php } ?>
 
             <a href="feedProdutos.php" class="btn-voltar-produtCompra">
                 <i class="fa-solid fa-arrow-left"></i>

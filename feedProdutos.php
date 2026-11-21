@@ -68,9 +68,10 @@
                             VER DETALHES
                         </a>
                     <?php } else { ?>
-                        <span class="btn-esgotado">
+                        <a href="produtCompra.php?id=<?= $produto['id_produto'] ?>"
+                        class="btn-esgotado">
                             PRODUTO ESGOTADO
-                        </span>
+                        </a>
                     <?php } ?>
                 </div>
             <?php } ?> 
