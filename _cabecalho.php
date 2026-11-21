@@ -40,9 +40,6 @@ if (isset($_SESSION['sessaoConectado'])) {
                 <img src='$imgUsuario' alt='$nomeUsuario' class='nav-avatar'>
             </a>
         </li>
-        <li>
-            <a href='{$prefixo}logout.php'>Sair</a>
-        </li>
     ";
 } else {
 

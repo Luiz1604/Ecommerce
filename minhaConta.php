@@ -120,10 +120,10 @@ include "_cabecalho.php";
                         </div>
                     </a>
 
-                    <a href="carrinho.php">
+                    <a href="logout.php">
                         <div class="caixa-info">
                             <div class="icone-info">
-                                <i class="fa-solid fa-sign-out"></i> <!-- COLOCAR A LÓGICA DE SAIR -->
+                                <i class="fa-solid fa-sign-out"></i>
                             </div>
                             <div class="texto-info">
                                 <span>SAIR DA CONTA</span>
